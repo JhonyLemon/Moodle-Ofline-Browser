@@ -4,5 +4,6 @@ namespace XMLparser
 {
     public class Class1
     {
+
     }
 }
