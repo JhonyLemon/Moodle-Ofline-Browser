@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace Moodle_Ofline_Browser
 {
@@ -15,6 +16,15 @@ namespace Moodle_Ofline_Browser
         public Form1()
         {
             InitializeComponent();
+            try
+            {
+                XDocument xDocument = System.Xml.Linq.XDocument.Load("roles.xml");
+                Console.WriteLine(xDocument);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
     }
 }

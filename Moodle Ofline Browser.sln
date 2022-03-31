@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.32002.261
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Moodle Ofline Browser", "Moodle Ofline Browser\Moodle Ofline Browser.csproj", "{3FD5C177-C587-4191-A408-2ADD1CA1AFCA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Moodle Ofline Browser Core", "Moodle Ofline Browser Core\Moodle Ofline Browser Core.csproj", "{631F4BA7-E532-403D-97DE-59B9FF2EFD92}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XMLparser", "XMLparser\XMLparser.csproj", "{E61604ED-5A7C-43CB-8B89-57855D5C2C4D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Moodle Ofline Browser Terminal", "Moodle Ofline Browser Terminal\Moodle Ofline Browser Terminal.csproj", "{9C1FE817-139A-4FD7-AEF0-D6DD54B99BC3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3FD5C177-C587-4191-A408-2ADD1CA1AFCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3FD5C177-C587-4191-A408-2ADD1CA1AFCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3FD5C177-C587-4191-A408-2ADD1CA1AFCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3FD5C177-C587-4191-A408-2ADD1CA1AFCA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E61604ED-5A7C-43CB-8B89-57855D5C2C4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E61604ED-5A7C-43CB-8B89-57855D5C2C4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E61604ED-5A7C-43CB-8B89-57855D5C2C4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E61604ED-5A7C-43CB-8B89-57855D5C2C4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{631F4BA7-E532-403D-97DE-59B9FF2EFD92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{631F4BA7-E532-403D-97DE-59B9FF2EFD92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{631F4BA7-E532-403D-97DE-59B9FF2EFD92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{631F4BA7-E532-403D-97DE-59B9FF2EFD92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C1FE817-139A-4FD7-AEF0-D6DD54B99BC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C1FE817-139A-4FD7-AEF0-D6DD54B99BC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C1FE817-139A-4FD7-AEF0-D6DD54B99BC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C1FE817-139A-4FD7-AEF0-D6DD54B99BC3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
