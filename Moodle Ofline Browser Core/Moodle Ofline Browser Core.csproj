@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CsQuery, Version=1.3.3.249, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CsQuery.1.3.4\lib\net40\CsQuery.dll</HintPath>
+    </Reference>
     <Reference Include="SharpCompress, Version=0.31.0.0, Culture=neutral, PublicKeyToken=afb0a02973931d96, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpCompress.0.31.0\lib\net461\SharpCompress.dll</HintPath>
     </Reference>
@@ -62,45 +65,62 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MbzDecompressor.cs" />
-    <Compile Include="models\Activities.cs" />
-    <Compile Include="models\Activity.cs" />
-    <Compile Include="models\Contents.cs" />
-    <Compile Include="models\Course.cs" />
-    <Compile Include="models\Ddmarker.cs" />
-    <Compile Include="models\Detail.cs" />
-    <Compile Include="models\Details.cs" />
-    <Compile Include="models\Gradebook.cs" />
-    <Compile Include="models\GradeCategories.cs" />
-    <Compile Include="models\GradeCategory.cs" />
-    <Compile Include="models\GradeGrade.cs" />
-    <Compile Include="models\GradeGrades.cs" />
-    <Compile Include="models\GradeItem.cs" />
-    <Compile Include="models\GradeItems.cs" />
-    <Compile Include="models\GradeSetting.cs" />
-    <Compile Include="models\GradeSettings.cs" />
-    <Compile Include="models\Information.cs" />
-    <Compile Include="models\MoodleBackup.cs" />
-    <Compile Include="models\PluginQtypeDdmarkerQuestion.cs" />
-    <Compile Include="models\Preference.cs" />
-    <Compile Include="models\Preferences.cs" />
-    <Compile Include="models\Question.cs" />
-    <Compile Include="models\QuestionCategories.cs" />
-    <Compile Include="models\QuestionCategory.cs" />
-    <Compile Include="models\Questions.cs" />
-    <Compile Include="models\Role.cs" />
-    <Compile Include="models\RolesDefinition.cs" />
-    <Compile Include="models\Section.cs" />
-    <Compile Include="models\Sections.cs" />
-    <Compile Include="models\Setting.cs" />
-    <Compile Include="models\Settings.cs" />
+    <Compile Include="models\badges\Badges.cs" />
+    <Compile Include="models\completion\Course_completion.cs" />
+    <Compile Include="models\completion\Course_completions.cs" />
+    <Compile Include="models\files\File.cs" />
+    <Compile Include="models\files\Files.cs" />
+    <Compile Include="models\FullCourse.cs" />
+    <Compile Include="models\gradebook\Gradebook.cs" />
+    <Compile Include="models\gradebook\Grade_categories.cs" />
+    <Compile Include="models\gradebook\Grade_category.cs" />
+    <Compile Include="models\gradebook\Grade_grade.cs" />
+    <Compile Include="models\gradebook\Grade_grades.cs" />
+    <Compile Include="models\gradebook\Grade_item.cs" />
+    <Compile Include="models\gradebook\Grade_items.cs" />
+    <Compile Include="models\gradebook\Grade_setting.cs" />
+    <Compile Include="models\gradebook\Grade_settings.cs" />
+    <Compile Include="models\grade_history\Grade_grade.cs" />
+    <Compile Include="models\grade_history\Grade_grades.cs" />
+    <Compile Include="models\grade_history\Grade_history.cs" />
+    <Compile Include="models\groups\Groups.cs" />
+    <Compile Include="models\moodle_backup\Activities.cs" />
+    <Compile Include="models\moodle_backup\Activity.cs" />
+    <Compile Include="models\moodle_backup\Contents.cs" />
+    <Compile Include="models\moodle_backup\Course.cs" />
+    <Compile Include="models\moodle_backup\Detail.cs" />
+    <Compile Include="models\moodle_backup\Details.cs" />
+    <Compile Include="models\moodle_backup\Information.cs" />
+    <Compile Include="models\moodle_backup\Moodle_backup.cs" />
+    <Compile Include="models\moodle_backup\Section.cs" />
+    <Compile Include="models\moodle_backup\Sections.cs" />
+    <Compile Include="models\moodle_backup\Setting.cs" />
+    <Compile Include="models\moodle_backup\Settings.cs" />
+    <Compile Include="models\outcomes\Outcomes.cs" />
+    <Compile Include="models\questions\Ddmarker.cs" />
+    <Compile Include="models\questions\Plugin_qtype_ddmarker_question.cs" />
+    <Compile Include="models\questions\Question.cs" />
+    <Compile Include="models\questions\Questions.cs" />
+    <Compile Include="models\questions\Question_categories.cs" />
+    <Compile Include="models\questions\Question_category.cs" />
+    <Compile Include="models\roles\Role.cs" />
+    <Compile Include="models\roles\Roles_definition.cs" />
+    <Compile Include="models\scales\Scales.cs" />
+    <Compile Include="models\users\Preference.cs" />
+    <Compile Include="models\users\Preferences.cs" />
+    <Compile Include="models\users\Roles.cs" />
+    <Compile Include="models\users\User.cs" />
+    <Compile Include="models\users\Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="models\Roles.cs" />
-    <Compile Include="models\User.cs" />
-    <Compile Include="models\Users.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="models\activities\" />
+    <Folder Include="models\course\" />
+    <Folder Include="models\sections\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
