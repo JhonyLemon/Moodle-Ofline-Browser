@@ -7,24 +7,10 @@ using System.Xml.Serialization;
 
 namespace Moodle_Ofline_Browser_Core.models.questions
 {
-
-
-
-
-
-
-
-
-
-	[XmlRoot(ElementName = "questions")]
-	public class Questions
-	{
-		[XmlElement(ElementName = "question")]
-		public Question Question { get; set; }
-	}
-
-
-
-
-
+		[XmlRoot(ElementName = "questions")]
+		public class Questions
+		{
+			[XmlElement(ElementName = "question")]
+			public Question Question { get; set; }
+		}
 }

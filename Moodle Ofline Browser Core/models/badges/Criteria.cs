@@ -7,10 +7,10 @@ using System.Xml.Serialization;
 
 namespace Moodle_Ofline_Browser_Core.models.badges
 {
-		[XmlRoot(ElementName = "badges")]
-		public class Badges
-		{
-			[XmlElement(ElementName = "badge")]
-			public Badge Badge { get; set; }
-		}
+	[XmlRoot(ElementName = "criteria")]
+	public class Criteria
+	{
+		[XmlElement(ElementName = "criterion")]
+		public List<Criterion> Criterion { get; set; }
+	}
 }

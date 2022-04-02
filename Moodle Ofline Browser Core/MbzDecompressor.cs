@@ -12,40 +12,69 @@ using Moodle_Ofline_Browser_Core.models;
 
 namespace Moodle_Ofline_Browser_Core
 {
-    public struct Pair
-    {
-        public Pair(Type Type, string propertyName)
-        {
-            this.Type = Type;
-            this.propertyName = propertyName;
-        }
-        public Type Type { get; }
-        public string propertyName { get; }
-    }
-
     public static class MbzDecompressor
     {
-        private static Dictionary<string, Pair> TypeMap = new Dictionary<string, Pair>()
+        private static Dictionary<string, TypeAndName> TypeMap = new Dictionary<string, TypeAndName>()
         {
-            {"badges.xml",new Pair(typeof(models.badges.Badges),"Badges")},
-            {"completion.xml",new Pair(typeof(models.completion.Course_completions),"Completion")},
-            {"files.xml",new Pair(typeof(models.files.Files),"Files")},
-            {"grade_history.xml",new Pair(typeof(models.grade_history.Grade_history),"gradeHistory")},
-            {"gradebook.xml",new Pair(typeof(models.gradebook.Gradebook),"Gradebook")},
-            {"groups.xml",new Pair(typeof(models.groups.Groups),"Groups")},
-            {"moodle_backup.xml",new Pair(typeof(models.moodle_backup.Moodle_backup),"moodleBackup")},
-            {"outcomes.xml",new Pair(typeof(models.outcomes.Outcomes),"Outcomes")},
-            {"questions.xml",new Pair(typeof(models.questions.Questions),"Questions")},
-            {"roles.xml",new Pair(typeof(models.roles.Roles_definition),"Roles")},
-            {"scales.xml",new Pair(typeof(models.scales.Scales),"Scales")},
-            {"users.xml",new Pair(typeof(models.users.Users),"Users")}
+            {"badges.xml",new TypeAndName(typeof(models.badges.Badges),"Badges")},
+            {"completion.xml",new TypeAndName(typeof(models.completion.Course_completion),"Completion")},
+            {"files.xml",new TypeAndName(typeof(models.files.Files),"Files")},
+            {"grade_history.xml",new TypeAndName(typeof(models.grade_history.Grade_history),"gradeHistory")},
+            {"gradebook.xml",new TypeAndName(typeof(models.gradebook.Gradebook),"Gradebook")},
+            {"groups.xml",new TypeAndName(typeof(models.groups.Groups),"Groups")},
+            {"moodle_backup.xml",new TypeAndName(typeof(models.moodle_backup.Moodle_backup),"moodleBackup")},
+            //{"outcomes.xml",new Pair(typeof(models.outcomes.Outcomes),"Outcomes")},
+            {"questions.xml",new TypeAndName(typeof(models.questions.Question_categories),"Questions")},
+            {"roles.xml",new TypeAndName(typeof(models.roles.Roles_definition),"Roles")},
+            //{"scales.xml",new Pair(typeof(models.scales.Scales),"Scales")},
+            {"users.xml",new TypeAndName(typeof(models.users.Users),"Users")}
         };
 
+        private static Dictionary<string, TypeAndName> ActivitiesTypeMap = new Dictionary<string, TypeAndName>()
+        {
+            {"module.xml",new TypeAndName(typeof(models.module.Module),"Module")},
+            {"roles.xml",new TypeAndName(typeof(models.roles.Roles),"Roles")},
+            {"logstores.xml",new TypeAndName(typeof(models.logstores.Logstores),"Logstores")},
+            //{"logs.xml",new Pair(typeof(models.logs.Logs),"Logs")},
+            {"inforef.xml",new TypeAndName(typeof(models.inforef.Inforef),"Inforef")},
+            {"grades.xml",new TypeAndName(typeof(models.grades.Activity_gradebook),"activityGradebook")},
+            {"grade_history.xml",new TypeAndName(typeof(models.grade_history.Grade_history),"gradeHistory")},
+            //{"filters.xml",new Pair(typeof(models.filters.Filters),"Filters")},
+            //{"completion.xml",new Pair(typeof(models.completion.Completions),"Completion")},
+            //{"competencies.xml",new Pair(typeof(models.competencies.Competencies),"Competencies")},
+            //{"comments.xml",new Pair(typeof(models.comments.Comments),"Comments")},
+            {"calendar.xml",new TypeAndName(typeof(models.calendar.Events),"Calendar")},
+
+            {"assign.xml",new TypeAndName(typeof(models.activities.activityTypes.Activity),"ActivityType")},
+            {"grading.xml",new TypeAndName(typeof(models.grading.Areas),"Grading")}
+        };
+
+        private static Dictionary<string, TypeAndName> CourseTypeMap = new Dictionary<string, TypeAndName>()
+        {
+            {"logstores.xml",new TypeAndName(typeof(models.logstores.Logstores),"Logstores")},
+            //{"logs.xml",new Pair(typeof(models.logs.Logs),"Logs")},
+            {"inforef.xml",new TypeAndName(typeof(models.inforef.Inforef),"Inforef")},
+            //{"filters.xml",new Pair(typeof(models.filters.Filters),"Filters")},
+            //{"competencies.xml",new Pair(typeof(models.competencies.Competencies),"Competencies")},
+            //{"comments.xml",new Pair(typeof(models.comments.Comments),"Comments")},
+            //{"course.xml",new Pair(typeof(models.course.Course),"Course")},
+            //{"contentbank.xml",new Pair(typeof(models.contentbank.Contentbank),"Contentbank")},
+            //{"compeltiondefaults.xml",new Pair(typeof(models.completiondefaults.Completiondefaults),"Completiondefaults")},
+            {"enrolments.xml",new TypeAndName(typeof(models.enrolments.Enrolments),"Enrolments")},
+            {"loglastaccess.xml",new TypeAndName(typeof(models.loglastaccess.Lastaccesses),"LastAccess")},
+            {"calendar.xml",new TypeAndName(typeof(models.calendar.Events),"Calendar")}
+        };
+
+        private static Dictionary<string, TypeAndName> SectionTypeMap = new Dictionary<string, TypeAndName>()
+        {
+            {"inforef.xml",new TypeAndName(typeof(models.inforef.Inforef),"Inforef")},
+            {"section.xml",new TypeAndName(typeof(models.section.Section),"Section")}
+        };
 
         public static FullCourse Extract(string path)
         {
             FullCourse fullCourse = new FullCourse();
-            Pair pair;
+            TypeAndName pair;
             using (Stream stream = File.OpenRead(path))
             {
                 var reader = ReaderFactory.Open(stream);
@@ -53,28 +82,81 @@ namespace Moodle_Ofline_Browser_Core
                 {
                     if (!reader.Entry.IsDirectory)
                     {
-                        /*
-                        ExtractionOptions opt = new ExtractionOptions
-                        {
-                            ExtractFullPath = true,
-                            Overwrite = true
-                        };
-                        reader.WriteEntryToDirectory(@"C:\Users\Adam\Downloads\test", opt);
-                        */
+                        //  reader.WriteEntryToDirectory(@"C:\Users\Adam\Downloads\test", new ExtractionOptions { ExtractFullPath = true, Overwrite = true });
 
-                        if(TypeMap.TryGetValue(reader.Entry.Key,out pair))
+
+                        if (TypeMap.TryGetValue(reader.Entry.Key, out pair))
                         {
                             using (EntryStream entryStream = reader.OpenEntryStream())
                             {
-                                try
+                                XmlSerializer serializer = new XmlSerializer(pair.Type);
+                                var test = serializer.Deserialize(entryStream);
+                                fullCourse.GetType().GetProperty(pair.propertyName, pair.Type).SetValue(fullCourse, test);
+                            }
+                        }
+                        else if (reader.Entry.Key.Contains("activities/"))
+                        {
+                            int id =Convert.ToInt32(reader.Entry.Key.Substring(reader.Entry.Key.IndexOf('_')+1,((reader.Entry.Key.IndexOf('/',reader.Entry.Key.IndexOf('_') + 1))-(reader.Entry.Key.IndexOf('_') + 1))));
+                            string name = reader.Entry.Key.Substring(reader.Entry.Key.LastIndexOf('/') + 1);
+                            models.activities.ActivityFolder activityFolder;
+                            if(fullCourse.Activities.ContainsKey(id))
+                            {
+                                activityFolder = fullCourse.Activities[id];
+                            }
+                            else
+                            {
+                                activityFolder = new models.activities.ActivityFolder();
+                                fullCourse.Activities.Add(id, activityFolder);
+                            }
+                            if (ActivitiesTypeMap.TryGetValue(name, out pair))
+                            {
+                                using (EntryStream entryStream = reader.OpenEntryStream())
                                 {
                                     XmlSerializer serializer = new XmlSerializer(pair.Type);
-                                    var test = Convert.ChangeType(serializer.Deserialize(entryStream), pair.Type);
-                                    fullCourse.GetType().GetProperty(pair.propertyName, pair.Type).SetValue(fullCourse, test);
+                                    var test = serializer.Deserialize(entryStream);
+                                    activityFolder.GetType().GetProperty(pair.propertyName, pair.Type).SetValue(activityFolder, test);
                                 }
-                                catch (Exception e)
+                            }
+                        }
+                        else if (reader.Entry.Key.Contains("course/"))
+                        {
+                            string name = reader.Entry.Key.Substring(reader.Entry.Key.LastIndexOf('/') + 1);
+                            models.course.CourseFolder courseFolder = fullCourse.Course;
+                            if (CourseTypeMap.TryGetValue(name, out pair))
+                            {
+                                using (EntryStream entryStream = reader.OpenEntryStream())
                                 {
+                                    XmlSerializer serializer = new XmlSerializer(pair.Type);
+                                    var test = serializer.Deserialize(entryStream);
+                                    courseFolder.GetType().GetProperty(pair.propertyName, pair.Type).SetValue(courseFolder, test);
+                                }
+                            }
+                        }
+                        else if (reader.Entry.Key.Contains("files/"))
+                        {
 
+                        }
+                        else if (reader.Entry.Key.Contains("sections/section_"))
+                        {
+                            int id = Convert.ToInt32(reader.Entry.Key.Substring(reader.Entry.Key.IndexOf('_') + 1, ((reader.Entry.Key.IndexOf('/', reader.Entry.Key.IndexOf('_') + 1)) - (reader.Entry.Key.IndexOf('_') + 1))));
+                            string name = reader.Entry.Key.Substring(reader.Entry.Key.LastIndexOf('/') + 1);
+                            models.section.SectionFolder sectionFolder;
+                            if (fullCourse.Sections.ContainsKey(id))
+                            {
+                                sectionFolder = fullCourse.Sections[id];
+                            }
+                            else
+                            {
+                                sectionFolder = new models.section.SectionFolder();
+                                fullCourse.Sections.Add(id, sectionFolder);
+                            }
+                            if (SectionTypeMap.TryGetValue(name, out pair))
+                            {
+                                using (EntryStream entryStream = reader.OpenEntryStream())
+                                {
+                                    XmlSerializer serializer = new XmlSerializer(pair.Type);
+                                    var test = serializer.Deserialize(entryStream);
+                                    sectionFolder.GetType().GetProperty(pair.propertyName, pair.Type).SetValue(sectionFolder, test);
                                 }
                             }
                         }
