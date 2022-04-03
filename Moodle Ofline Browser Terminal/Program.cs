@@ -11,10 +11,9 @@ namespace Moodle_Ofline_Browser_Terminal
 {
     class Program
     {
-
         static void Main(string[] args)
         {
-               MbzDecompressor.Extract(@"C:\Users\Adam\Downloads\test2.mbz");
+            MbzDecompressor.Extract(@"C:\Users\Adam\Downloads\test2.mbz");
         }
     }
 

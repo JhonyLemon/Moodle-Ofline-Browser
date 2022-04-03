@@ -127,10 +127,15 @@
     <Compile Include="models\inforef\Group.cs" />
     <Compile Include="models\inforef\Groupref.cs" />
     <Compile Include="models\inforef\Inforef.cs" />
+    <Compile Include="models\inforef\type\attendance\Attendance.cs" />
+    <Compile Include="models\inforef\type\assign\Assign.cs" />
+    <Compile Include="models\inforef\type\course\Course.cs" />
     <Compile Include="models\inforef\Question_category.cs" />
     <Compile Include="models\inforef\Question_categoryref.cs" />
     <Compile Include="models\inforef\Role.cs" />
     <Compile Include="models\inforef\Roleref.cs" />
+    <Compile Include="models\inforef\type\folder\Folder.cs" />
+    <Compile Include="models\inforef\type\quiz\Quiz.cs" />
     <Compile Include="models\inforef\User.cs" />
     <Compile Include="models\inforef\Userref.cs" />
     <Compile Include="models\loglastaccess\Lastaccess.cs" />

@@ -14,7 +14,7 @@ namespace Moodle_Ofline_Browser_Core
 {
     public static class MbzDecompressor
     {
-        private static Dictionary<string, TypeAndName> TypeMap = new Dictionary<string, TypeAndName>()
+        private static Dictionary<string, TypeAndName> GlobalsTypeMap = new Dictionary<string, TypeAndName>()
         {
             {"badges.xml",new TypeAndName(typeof(models.badges.Badges),"Badges")},
             {"completion.xml",new TypeAndName(typeof(models.completion.Course_completion),"Completion")},
@@ -46,7 +46,9 @@ namespace Moodle_Ofline_Browser_Core
             {"calendar.xml",new TypeAndName(typeof(models.calendar.Events),"Calendar")},
 
             {"assign.xml",new TypeAndName(typeof(models.activities.activityTypes.Activity),"ActivityType")},
-            {"grading.xml",new TypeAndName(typeof(models.grading.Areas),"Grading")}
+            {"grading.xml",new TypeAndName(typeof(models.grading.Areas),"Grading")},
+
+            {"attendance.xml",new TypeAndName(typeof(models.activities.activityTypes.Activity),"ActivityType")}
         };
 
         private static Dictionary<string, TypeAndName> CourseTypeMap = new Dictionary<string, TypeAndName>()
@@ -71,10 +73,18 @@ namespace Moodle_Ofline_Browser_Core
             {"section.xml",new TypeAndName(typeof(models.section.Section),"Section")}
         };
 
+        private static Dictionary<string, TypeAndName> InfoRefTypeMap = new Dictionary<string, TypeAndName>()
+        {
+            {"course",new TypeAndName(typeof(models.inforef.type.course.Course),"Inforef")},
+            {"attendance",new TypeAndName(typeof(models.inforef.type.attendance.Attendance),"Inforef")},
+            {"folder",new TypeAndName(typeof(models.inforef.type.folder.Folder),"Inforef")},
+            {"quiz",new TypeAndName(typeof(models.inforef.type.quiz.Quiz),"Inforef")},
+            {"assign",new TypeAndName(typeof(models.inforef.type.assign.Assign),"Inforef")}
+        };
+
         public static FullCourse Extract(string path)
         {
             FullCourse fullCourse = new FullCourse();
-            TypeAndName pair;
             using (Stream stream = File.OpenRead(path))
             {
                 var reader = ReaderFactory.Open(stream);
@@ -83,53 +93,18 @@ namespace Moodle_Ofline_Browser_Core
                     if (!reader.Entry.IsDirectory)
                     {
                         //  reader.WriteEntryToDirectory(@"C:\Users\Adam\Downloads\test", new ExtractionOptions { ExtractFullPath = true, Overwrite = true });
-
-
-                        if (TypeMap.TryGetValue(reader.Entry.Key, out pair))
+                        if (reader.Entry.Key.Contains("activities/"))
                         {
-                            using (EntryStream entryStream = reader.OpenEntryStream())
+                            using (EntryStream entry = reader.OpenEntryStream())
                             {
-                                XmlSerializer serializer = new XmlSerializer(pair.Type);
-                                var test = serializer.Deserialize(entryStream);
-                                fullCourse.GetType().GetProperty(pair.propertyName, pair.Type).SetValue(fullCourse, test);
-                            }
-                        }
-                        else if (reader.Entry.Key.Contains("activities/"))
-                        {
-                            int id =Convert.ToInt32(reader.Entry.Key.Substring(reader.Entry.Key.IndexOf('_')+1,((reader.Entry.Key.IndexOf('/',reader.Entry.Key.IndexOf('_') + 1))-(reader.Entry.Key.IndexOf('_') + 1))));
-                            string name = reader.Entry.Key.Substring(reader.Entry.Key.LastIndexOf('/') + 1);
-                            models.activities.ActivityFolder activityFolder;
-                            if(fullCourse.Activities.ContainsKey(id))
-                            {
-                                activityFolder = fullCourse.Activities[id];
-                            }
-                            else
-                            {
-                                activityFolder = new models.activities.ActivityFolder();
-                                fullCourse.Activities.Add(id, activityFolder);
-                            }
-                            if (ActivitiesTypeMap.TryGetValue(name, out pair))
-                            {
-                                using (EntryStream entryStream = reader.OpenEntryStream())
-                                {
-                                    XmlSerializer serializer = new XmlSerializer(pair.Type);
-                                    var test = serializer.Deserialize(entryStream);
-                                    activityFolder.GetType().GetProperty(pair.propertyName, pair.Type).SetValue(activityFolder, test);
-                                }
+                                ParseActivities(reader.Entry.Key, entry, fullCourse);
                             }
                         }
                         else if (reader.Entry.Key.Contains("course/"))
                         {
-                            string name = reader.Entry.Key.Substring(reader.Entry.Key.LastIndexOf('/') + 1);
-                            models.course.CourseFolder courseFolder = fullCourse.Course;
-                            if (CourseTypeMap.TryGetValue(name, out pair))
+                            using (EntryStream entry = reader.OpenEntryStream())
                             {
-                                using (EntryStream entryStream = reader.OpenEntryStream())
-                                {
-                                    XmlSerializer serializer = new XmlSerializer(pair.Type);
-                                    var test = serializer.Deserialize(entryStream);
-                                    courseFolder.GetType().GetProperty(pair.propertyName, pair.Type).SetValue(courseFolder, test);
-                                }
+                                ParseCourse(reader.Entry.Key, entry, fullCourse);
                             }
                         }
                         else if (reader.Entry.Key.Contains("files/"))
@@ -138,32 +113,101 @@ namespace Moodle_Ofline_Browser_Core
                         }
                         else if (reader.Entry.Key.Contains("sections/section_"))
                         {
-                            int id = Convert.ToInt32(reader.Entry.Key.Substring(reader.Entry.Key.IndexOf('_') + 1, ((reader.Entry.Key.IndexOf('/', reader.Entry.Key.IndexOf('_') + 1)) - (reader.Entry.Key.IndexOf('_') + 1))));
-                            string name = reader.Entry.Key.Substring(reader.Entry.Key.LastIndexOf('/') + 1);
-                            models.section.SectionFolder sectionFolder;
-                            if (fullCourse.Sections.ContainsKey(id))
+                            using (EntryStream entry = reader.OpenEntryStream())
                             {
-                                sectionFolder = fullCourse.Sections[id];
+                                ParseSections(reader.Entry.Key, entry, fullCourse);
                             }
-                            else
+                        }
+                        else
+                        {
+                            using(EntryStream entry = reader.OpenEntryStream())
                             {
-                                sectionFolder = new models.section.SectionFolder();
-                                fullCourse.Sections.Add(id, sectionFolder);
-                            }
-                            if (SectionTypeMap.TryGetValue(name, out pair))
-                            {
-                                using (EntryStream entryStream = reader.OpenEntryStream())
-                                {
-                                    XmlSerializer serializer = new XmlSerializer(pair.Type);
-                                    var test = serializer.Deserialize(entryStream);
-                                    sectionFolder.GetType().GetProperty(pair.propertyName, pair.Type).SetValue(sectionFolder, test);
-                                }
+                                ParseGlobals(reader.Entry.Key, entry,fullCourse);
                             }
                         }
                     }
                 }
             }
             return fullCourse;
+        }
+
+        private static void ParseActivities(string key, Stream stream, FullCourse fullCourse)
+        {
+            TypeAndName pair;
+            int id = Convert.ToInt32(key.Substring(key.IndexOf('_') + 1, ((key.IndexOf('/', key.IndexOf('_') + 1)) - (key.IndexOf('_') + 1))));
+            string name = key.Substring(key.LastIndexOf('/') + 1);
+            string activityType = key.Substring((key.IndexOf('/', 1) + 1), (key.IndexOf('_')) - (key.IndexOf('/', 1) + 1));
+            models.activities.ActivityFolder activityFolder;
+            if (fullCourse.Activities.ContainsKey(id))
+            {
+                activityFolder = fullCourse.Activities[id];
+            }
+            else
+            {
+                activityFolder = new models.activities.ActivityFolder();
+                fullCourse.Activities.Add(id, activityFolder);
+            }
+            if (ActivitiesTypeMap.TryGetValue(name, out pair))
+            {
+                if (name == "inforef.xml" && !InfoRefTypeMap.TryGetValue(activityType, out pair))
+                    return;
+                XmlSerializer serializer = new XmlSerializer(pair.Type);
+                var test = serializer.Deserialize(stream);
+                activityFolder.GetType().GetProperty(pair.propertyName).SetValue(activityFolder, test);
+            }
+        }
+        private static void ParseCourse(string key, Stream stream, FullCourse fullCourse)
+        {
+            TypeAndName pair;
+            string name = key.Substring(key.LastIndexOf('/') + 1);
+            models.course.CourseFolder courseFolder = fullCourse.Course;
+            if (CourseTypeMap.TryGetValue(name, out pair))
+            {
+                if (name == "inforef.xml" && !InfoRefTypeMap.TryGetValue("course", out pair))
+                    return;
+                XmlSerializer serializer = new XmlSerializer(pair.Type);
+                var test = serializer.Deserialize(stream);
+                courseFolder.GetType().GetProperty(pair.propertyName).SetValue(courseFolder, test);
+            }
+        }
+        private static void ParseSections(string key, Stream stream, FullCourse fullCourse)
+        {
+            TypeAndName pair;
+            int id = Convert.ToInt32(key.Substring(key.IndexOf('_') + 1, ((key.IndexOf('/', key.IndexOf('_') + 1)) - (key.IndexOf('_') + 1))));
+            string name = key.Substring(key.LastIndexOf('/') + 1);
+            models.section.SectionFolder sectionFolder;
+            if (fullCourse.Sections.ContainsKey(id))
+            {
+                sectionFolder = fullCourse.Sections[id];
+            }
+            else
+            {
+                sectionFolder = new models.section.SectionFolder();
+                fullCourse.Sections.Add(id, sectionFolder);
+            }
+            if (SectionTypeMap.TryGetValue(name, out pair))
+            {
+                if (name == "inforef.xml" && !InfoRefTypeMap.TryGetValue("section", out pair))
+                    return;
+                XmlSerializer serializer = new XmlSerializer(pair.Type);
+                var test = serializer.Deserialize(stream);
+                sectionFolder.GetType().GetProperty(pair.propertyName, pair.Type).SetValue(sectionFolder, test);
+            }
+        }
+        private static void ParseFiles(string key, Stream stream, FullCourse fullCourse)
+        {
+
+        }
+        private static void ParseGlobals(string key,Stream stream,FullCourse fullCourse)
+        {
+            TypeAndName pair;
+            if (GlobalsTypeMap.TryGetValue(key, out pair))
+            {
+                XmlSerializer serializer = new XmlSerializer(pair.Type);
+                var test = serializer.Deserialize(stream);
+                fullCourse.GetType().GetProperty(pair.propertyName, pair.Type).SetValue(fullCourse, test);
+            }
+
         }
 
     }
