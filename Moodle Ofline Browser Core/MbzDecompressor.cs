@@ -109,7 +109,10 @@ namespace Moodle_Ofline_Browser_Core
                         }
                         else if (reader.Entry.Key.Contains("files/"))
                         {
-
+                            using (EntryStream entry = reader.OpenEntryStream())
+                            {
+                                ParseFiles(reader.Entry.Key, entry, fullCourse);
+                            }
                         }
                         else if (reader.Entry.Key.Contains("sections/section_"))
                         {
@@ -138,14 +141,14 @@ namespace Moodle_Ofline_Browser_Core
             string name = key.Substring(key.LastIndexOf('/') + 1);
             string activityType = key.Substring((key.IndexOf('/', 1) + 1), (key.IndexOf('_')) - (key.IndexOf('/', 1) + 1));
             models.activities.ActivityFolder activityFolder;
-            if (fullCourse.Activities.ContainsKey(id))
+            if (fullCourse.ActivitiesFolder.ContainsKey(id))
             {
-                activityFolder = fullCourse.Activities[id];
+                activityFolder = fullCourse.ActivitiesFolder[id];
             }
             else
             {
                 activityFolder = new models.activities.ActivityFolder();
-                fullCourse.Activities.Add(id, activityFolder);
+                fullCourse.ActivitiesFolder.Add(id, activityFolder);
             }
             if (ActivitiesTypeMap.TryGetValue(name, out pair))
             {
@@ -176,14 +179,14 @@ namespace Moodle_Ofline_Browser_Core
             int id = Convert.ToInt32(key.Substring(key.IndexOf('_') + 1, ((key.IndexOf('/', key.IndexOf('_') + 1)) - (key.IndexOf('_') + 1))));
             string name = key.Substring(key.LastIndexOf('/') + 1);
             models.section.SectionFolder sectionFolder;
-            if (fullCourse.Sections.ContainsKey(id))
+            if (fullCourse.SectionsFolder.ContainsKey(id))
             {
-                sectionFolder = fullCourse.Sections[id];
+                sectionFolder = fullCourse.SectionsFolder[id];
             }
             else
             {
                 sectionFolder = new models.section.SectionFolder();
-                fullCourse.Sections.Add(id, sectionFolder);
+                fullCourse.SectionsFolder.Add(id, sectionFolder);
             }
             if (SectionTypeMap.TryGetValue(name, out pair))
             {
@@ -196,7 +199,11 @@ namespace Moodle_Ofline_Browser_Core
         }
         private static void ParseFiles(string key, Stream stream, FullCourse fullCourse)
         {
-
+            string name = key.Substring(key.LastIndexOf('/') + 1);
+            if (!fullCourse.FilesFolder.ContainsKey(name))
+            {
+                fullCourse.FilesFolder.Add(name, stream);
+            }
         }
         private static void ParseGlobals(string key,Stream stream,FullCourse fullCourse)
         {

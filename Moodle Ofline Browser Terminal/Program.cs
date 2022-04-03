@@ -13,7 +13,8 @@ namespace Moodle_Ofline_Browser_Terminal
     {
         static void Main(string[] args)
         {
-            MbzDecompressor.Extract(@"C:\Users\Adam\Downloads\test2.mbz");
+            Moodle_Ofline_Browser_Core.models.FullCourse fullCourse=MbzDecompressor.Extract(@"C:\Users\Adam\Downloads\test2.mbz");
+
         }
     }
 

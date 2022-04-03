@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,14 +21,16 @@ namespace Moodle_Ofline_Browser_Core.models
         public files.Files Files { get; set; }
         public completion.Course_completion Completion { get; set; }
         public badges.Badges Badges { get; set; }
-        public Dictionary<int, activities.ActivityFolder> Activities { get; set; }
+        public Dictionary<int, activities.ActivityFolder> ActivitiesFolder { get; set; }
         public course.CourseFolder Course { get; set; }
-        public Dictionary<int, section.SectionFolder> Sections { get; set; }
+        public Dictionary<int, section.SectionFolder> SectionsFolder { get; set; }
+        public Dictionary<string, Stream> FilesFolder { get; set; }
         public FullCourse()
         {
-            this.Activities = new Dictionary<int, activities.ActivityFolder>();
-            this.Sections = new Dictionary<int, section.SectionFolder>();
+            this.ActivitiesFolder = new Dictionary<int, activities.ActivityFolder>();
+            this.SectionsFolder = new Dictionary<int, section.SectionFolder>();
             this.Course = new course.CourseFolder();
+            this.FilesFolder = new Dictionary<string, Stream>();
         }
     }
 }
