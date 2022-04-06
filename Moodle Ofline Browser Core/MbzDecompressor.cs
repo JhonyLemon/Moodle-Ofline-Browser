@@ -92,42 +92,42 @@ namespace Moodle_Ofline_Browser_Core
                 {
                     if (!reader.Entry.IsDirectory)
                     {
-                        //  reader.WriteEntryToDirectory(@"C:\Users\Adam\Downloads\test", new ExtractionOptions { ExtractFullPath = true, Overwrite = true });
-                        if (reader.Entry.Key.Contains("activities/"))
-                        {
-                            using (EntryStream entry = reader.OpenEntryStream())
-                            {
-                                ParseActivities(reader.Entry.Key, entry, fullCourse);
-                            }
-                        }
-                        else if (reader.Entry.Key.Contains("course/"))
-                        {
-                            using (EntryStream entry = reader.OpenEntryStream())
-                            {
-                                ParseCourse(reader.Entry.Key, entry, fullCourse);
-                            }
-                        }
-                        else if (reader.Entry.Key.Contains("files/"))
-                        {
-                            using (EntryStream entry = reader.OpenEntryStream())
-                            {
-                                ParseFiles(reader.Entry.Key, entry, fullCourse);
-                            }
-                        }
-                        else if (reader.Entry.Key.Contains("sections/section_"))
-                        {
-                            using (EntryStream entry = reader.OpenEntryStream())
-                            {
-                                ParseSections(reader.Entry.Key, entry, fullCourse);
-                            }
-                        }
-                        else
-                        {
-                            using(EntryStream entry = reader.OpenEntryStream())
-                            {
-                                ParseGlobals(reader.Entry.Key, entry,fullCourse);
-                            }
-                        }
+                          reader.WriteEntryToDirectory(@"C:\Users\Adam\Downloads\test", new ExtractionOptions { ExtractFullPath = true, Overwrite = true });
+                        //if (reader.Entry.Key.Contains("activities/"))
+                        //{
+                        //    using (EntryStream entry = reader.OpenEntryStream())
+                        //    {
+                        //        ParseActivities(reader.Entry.Key, entry, fullCourse);
+                        //    }
+                        //}
+                        //else if (reader.Entry.Key.Contains("course/"))
+                        //{
+                        //    using (EntryStream entry = reader.OpenEntryStream())
+                        //    {
+                        //        ParseCourse(reader.Entry.Key, entry, fullCourse);
+                        //    }
+                        //}
+                        //else if (reader.Entry.Key.Contains("files/"))
+                        //{
+                        //    using (EntryStream entry = reader.OpenEntryStream())
+                        //    {
+                        //        ParseFiles(reader.Entry.Key, entry, fullCourse);
+                        //    }
+                        //}
+                        //else if (reader.Entry.Key.Contains("sections/section_"))
+                        //{
+                        //    using (EntryStream entry = reader.OpenEntryStream())
+                        //    {
+                        //        ParseSections(reader.Entry.Key, entry, fullCourse);
+                        //    }
+                        //}
+                        //else
+                        //{
+                        //    using(EntryStream entry = reader.OpenEntryStream())
+                        //    {
+                        //        ParseGlobals(reader.Entry.Key, entry,fullCourse);
+                        //    }
+                        //}
                     }
                 }
             }
