@@ -18,6 +18,7 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
@@ -25,5 +26,9 @@
 
         <TextBlock  Grid.Column="1" FontSize="18" Grid.Row="2" Grid.ColumnSpan="2" Margin="10 75 10 10">Wybierz plik</TextBlock>
         <Button x:Name="ChooseFile" Grid.Column="1" FontSize="18" Grid.Row="2" Grid.ColumnSpan="2" Margin="10 100 10 10">Wybierz</Button>
+        
+        <TextBlock  Grid.Column="1" FontSize="18" Grid.Row="3" Grid.ColumnSpan="2" Margin="10 65 10 10">Wybierz folder</TextBlock>
+        <Button x:Name="ChooseFolder" Grid.Column="1" FontSize="18" Grid.Row="3" Grid.ColumnSpan="2" Margin="10 90 10 10">Wybierz</Button>
+        
     </Grid>
 </UserControl>
