@@ -82,17 +82,17 @@ namespace Moodle_Ofline_Browser_Core
             {"assign",new TypeAndName(typeof(models.inforef.type.assign.Assign),"Inforef")}
         };
 
-        public static FullCourse Extract(string path)
+        public static FullCourse Extract(string filePath, string folderPath)
         {
             FullCourse fullCourse = new FullCourse();
-            using (Stream stream = File.OpenRead(path))
+            using (Stream stream = File.OpenRead(filePath))
             {
                 var reader = ReaderFactory.Open(stream);
                 while (reader.MoveToNextEntry())
                 {
                     if (!reader.Entry.IsDirectory)
                     {
-                          reader.WriteEntryToDirectory(@"C:\Users\Adam\Downloads\test", new ExtractionOptions { ExtractFullPath = true, Overwrite = true });
+                        reader.WriteEntryToDirectory(folderPath, new ExtractionOptions { ExtractFullPath = true, Overwrite = true });
                         //if (reader.Entry.Key.Contains("activities/"))
                         //{
                         //    using (EntryStream entry = reader.OpenEntryStream())
