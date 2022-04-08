@@ -7,10 +7,10 @@ using System.Xml.Serialization;
 
 namespace Moodle_Ofline_Browser_Core.models.activities.activityTypes.assign
 {
-	[XmlRoot(ElementName = "submissions")]
-	public class Submissions
+	[XmlRoot(ElementName = "feedback_editpdf_files")]
+	public class Feedback_editpdf_files
 	{
-		[XmlElement(ElementName = "submission")]
-		public List<Submission> Submission { get; set; }
+		[XmlElement(ElementName = "gradeid")]
+		public string Gradeid { get; set; }
 	}
 }

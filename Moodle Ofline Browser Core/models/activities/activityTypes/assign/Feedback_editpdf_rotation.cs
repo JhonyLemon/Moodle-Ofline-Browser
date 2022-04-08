@@ -7,10 +7,10 @@ using System.Xml.Serialization;
 
 namespace Moodle_Ofline_Browser_Core.models.activities.activityTypes.assign
 {
-	[XmlRoot(ElementName = "submissions")]
-	public class Submissions
+	[XmlRoot(ElementName = "feedback_editpdf_rotation")]
+	public class Feedback_editpdf_rotation
 	{
-		[XmlElement(ElementName = "submission")]
-		public List<Submission> Submission { get; set; }
+		[XmlElement(ElementName = "pagerotation")]
+		public Pagerotation Pagerotation { get; set; }
 	}
 }

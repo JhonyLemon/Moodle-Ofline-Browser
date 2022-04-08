@@ -7,10 +7,10 @@ using System.Xml.Serialization;
 
 namespace Moodle_Ofline_Browser_Core.models.activities.activityTypes.assign
 {
-	[XmlRoot(ElementName = "submissions")]
-	public class Submissions
+	[XmlRoot(ElementName = "grades")]
+	public class Grades
 	{
-		[XmlElement(ElementName = "submission")]
-		public List<Submission> Submission { get; set; }
+		[XmlElement(ElementName = "grade")]
+		public Grade Grade { get; set; }
 	}
 }

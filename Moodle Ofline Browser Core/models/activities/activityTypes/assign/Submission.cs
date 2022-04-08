@@ -24,11 +24,11 @@ namespace Moodle_Ofline_Browser_Core.models.activities.activityTypes.assign
 		public string Attemptnumber { get; set; }
 		[XmlElement(ElementName = "latest")]
 		public string Latest { get; set; }
-		[XmlElement(ElementName = "subplugin_assignsubmission_file_submission")]
-		public string Subplugin_assignsubmission_file_submission { get; set; }
 		[XmlElement(ElementName = "subplugin_assignsubmission_onlinetext_submission")]
 		public string Subplugin_assignsubmission_onlinetext_submission { get; set; }
 		[XmlAttribute(AttributeName = "id")]
 		public string Id { get; set; }
+		[XmlElement(ElementName = "subplugin_assignsubmission_file_submission")]
+		public Subplugin_assignsubmission_file_submission Subplugin_assignsubmission_file_submission { get; set; }
 	}
 }

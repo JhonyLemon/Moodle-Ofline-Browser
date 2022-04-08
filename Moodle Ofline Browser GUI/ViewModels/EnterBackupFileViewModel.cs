@@ -77,7 +77,7 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
 
         public async void Extract()
         {
-            await Moodle_Ofline_Browser_Core.MoodleBackupParser.Parse(Progress, @"C:\Users\Adam\Downloads\test");
+            FullCourse fullCourse=await Moodle_Ofline_Browser_Core.MoodleBackupParser.Parse(Progress, @"C:\Users\Adam\Downloads\test");
             if (FilePath.Length == 0 || FolderPath.Length == 0)
             {
                 MessageBox.Show("Wybierz obie sciezki", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
