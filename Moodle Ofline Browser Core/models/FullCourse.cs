@@ -24,13 +24,13 @@ namespace Moodle_Ofline_Browser_Core.models
         public Dictionary<int, activities.ActivityFolder> ActivitiesFolder { get; set; }
         public course.CourseFolder Course { get; set; }
         public Dictionary<int, section.SectionFolder> SectionsFolder { get; set; }
-        public Dictionary<string, Stream> FilesFolder { get; set; }
+        public Dictionary<string, string> FilesFolder { get; set; }
         public FullCourse()
         {
             this.ActivitiesFolder = new Dictionary<int, activities.ActivityFolder>();
             this.SectionsFolder = new Dictionary<int, section.SectionFolder>();
             this.Course = new course.CourseFolder();
-            this.FilesFolder = new Dictionary<string, Stream>();
+            this.FilesFolder = new Dictionary<string, string>();
         }
     }
 }

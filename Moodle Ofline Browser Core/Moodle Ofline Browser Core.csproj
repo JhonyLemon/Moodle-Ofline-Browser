@@ -159,6 +159,7 @@
     <Compile Include="models\moodle_backup\Setting.cs" />
     <Compile Include="models\moodle_backup\Settings.cs" />
     <Compile Include="models\outcomes\Outcomes.cs" />
+    <Compile Include="models\Progress.cs" />
     <Compile Include="models\questions\Ddmarker.cs" />
     <Compile Include="models\questions\Plugin_qtype_ddmarker_question.cs" />
     <Compile Include="models\questions\Question.cs" />
@@ -179,6 +180,7 @@
     <Compile Include="models\users\Roles.cs" />
     <Compile Include="models\users\User.cs" />
     <Compile Include="models\users\Users.cs" />
+    <Compile Include="MoodleBackupParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

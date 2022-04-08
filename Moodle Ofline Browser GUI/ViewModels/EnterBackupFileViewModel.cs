@@ -19,6 +19,7 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
         private string _path1 = "";
         private string _path2 = "";
         private FullCourse fullCourse;
+        Progress<Progress> Progress { get; set; }
 
         public string Path1
         {
@@ -43,8 +44,14 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
         public EnterBackupFileViewModel(IEventAggregator eventAggregator)
         {
             _eventAggregator = eventAggregator;
+            Progress = new Progress<Progress>();
+            Progress.ProgressChanged += ReportProgress;
         }
 
+        private void ReportProgress(object sender, Progress e)
+        {
+            Console.WriteLine(e.Percentage);
+        }
 
         public void ChooseFile()
         {
@@ -68,15 +75,17 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
             }
         }
 
-        public void Extract()
+        public async void Extract()
         {
+            await Moodle_Ofline_Browser_Core.MoodleBackupParser.Parse(Progress, @"C:\Users\Adam\Downloads\test");
             if (FilePath.Length == 0 || FolderPath.Length == 0)
             {
                 MessageBox.Show("Wybierz obie sciezki", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else 
             {
-                fullCourse = Moodle_Ofline_Browser_Core.MbzDecompressor.Extract(FilePath, FolderPath);
+                  int i = await Moodle_Ofline_Browser_Core.MbzDecompressor.Extract(FilePath, FolderPath,Progress);
+                //  fullCourse = Moodle_Ofline_Browser_Core.MbzDecompressor.Extract(FilePath, FolderPath);
             }
         }
     }
