@@ -81,70 +81,6 @@ namespace Moodle_Ofline_Browser_Core
 
         public event EventHandler<ProgressReportEventArgs> ProgressReport;
 
-        public static async Task<FullCourse> ParseAsync(string path, IProgress<ProgressReportEventArgs> progress)
-        {
-            FullCourse fullCourse = new FullCourse();
-            int completion = 0;
-            List<string> files = new List<string>(Directory.GetFiles(path, "*", SearchOption.AllDirectories));
-
-            foreach (string file in files)
-            {
-                completion++;
-                using (Stream stream = new FileStream(file, FileMode.Open))
-                {
-                    ProgressReportEventArgs result = new ProgressReportEventArgs();
-                    result.CallerTask = "Parser";
-                    result.Percentage = completion*100 / files.Count;
-                    if (result.Percentage > 100)
-                        result.Percentage = 100;
-                    string shortName = file.Replace(path+'\\', "");
-                    try
-                    {
-                        if (file.Contains(@"activities\"))
-                        {
-                            if (ParseActivities(shortName, stream, fullCourse))
-                                result.Message = "File: " + shortName + " parsed";
-                            else
-                                result.Message = "File: " + shortName + " not parsed";
-                        }
-                        else if (file.Contains(@"course\"))
-                        {
-                            if(ParseCourse(shortName, stream, fullCourse))
-                                result.Message = "File: " + shortName + " parsed";
-                            else
-                                result.Message = "File: " + shortName + " not parsed";
-                        }
-                        else if (file.Contains(@"files\"))
-                        {
-                            if(ParseFiles(shortName, file, fullCourse))
-                                result.Message = "File: " + shortName + " parsed";
-                            else
-                                result.Message = "File: " + shortName + " not parsed";
-
-                        }
-                        else if (file.Contains(@"sections\section_"))
-                        {
-                            if (ParseSections(shortName, stream, fullCourse))
-                                result.Message = "File: " + shortName + " parsed";
-                            else
-                                result.Message = "File: " + shortName + " not parsed";
-                        }
-                        else
-                        {
-                            if (ParseGlobals(shortName, stream, fullCourse))
-                                result.Message = "File: " + shortName + " parsed";
-                            else
-                                result.Message = "File: " + shortName + " not parsed";
-                        }
-                    }catch(Exception e)
-                    {
-                        result.Message = "File: " + shortName + " not parsed";
-                    }
-                    progress.Report(result);
-                }
-            }
-            return fullCourse;
-        }
 
         public FullCourse Parse(string path)
         {
@@ -202,7 +138,7 @@ namespace Moodle_Ofline_Browser_Core
                                 result.Message = "File: " + shortName + " not parsed";
                         }
                     }
-                    catch (Exception e)
+                    catch (Exception)
                     {
                         result.Message = "File: " + shortName + " not parsed";
                     }

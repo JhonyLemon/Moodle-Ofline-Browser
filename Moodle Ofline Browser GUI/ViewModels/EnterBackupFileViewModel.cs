@@ -112,7 +112,7 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
         private static async Task<FullCourse> GetDataAsync(DataProviderHelper helper)
         {
             FullCourse fullCourse=null;
-            fullCourse=helper.GetFullCourse();
+            fullCourse= await helper.GetFullCourse();
             return fullCourse;
         }
 

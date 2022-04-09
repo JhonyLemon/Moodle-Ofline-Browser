@@ -71,19 +71,18 @@ namespace Moodle_Ofline_Browser_GUI.Helpers
             progress.Report(result);
         }
 
-        public FullCourse GetFullCourse()
+        public async Task<FullCourse> GetFullCourse()
         {
             FullCourse fullCourse = null;
-
             if (PathFrom == "")
             {
                 CompletionDecompression = 100;
             }
             else
             {
-               mbzDecompressor.Extract(PathFrom, PathTo);
+                await Task.Run(() => mbzDecompressor.Extract(PathFrom, PathTo));
             }
-            fullCourse=backupParser.Parse(PathTo);
+            await Task.Run(() => fullCourse = backupParser.Parse(PathTo));
             return fullCourse;
         }
         private void UpdateCompletion(ProgressReportEventArgs e)
