@@ -28,12 +28,13 @@
         <TextBlock  Grid.Column="1" FontSize="18" Grid.Row="2" Grid.ColumnSpan="2" Margin="10 75 10 10" HorizontalAlignment="Center">Wybierz plik</TextBlock>
         <Button x:Name="ChooseFile" Grid.Column="1" FontSize="18" Grid.Row="2" Grid.ColumnSpan="2" Margin="10 100 10 10" Width="100">Wybierz</Button>
         <TextBlock Text="{Binding Path=Path1, Mode=OneWay}" Grid.Column="3" FontSize="18" Grid.Row="2" Margin="10 100 10 10" HorizontalAlignment="Center"></TextBlock>
-        
+
         <TextBlock  Grid.Column="1" FontSize="18" Grid.Row="3" Grid.ColumnSpan="2" Margin="10 65 10 10" HorizontalAlignment="Center">Wybierz folder</TextBlock>
         <Button x:Name="ChooseFolder" Grid.Column="1" FontSize="18" Grid.Row="3" Grid.ColumnSpan="2" Margin="10 90 10 10" Width="100">Wybierz</Button>
         <TextBlock Text="{Binding Path=Path2, Mode=OneWay}" Grid.Column="3" FontSize="18" Grid.Row="3" Margin="10 90 10 10" HorizontalAlignment="Center"></TextBlock>
-        
+
         <Button x:Name="Extract" Grid.Column="1" FontSize="18" Grid.Row="4" Grid.ColumnSpan="3" Margin="250 30 250 10">Wypakuj</Button>
+        <ProgressBar x:Name="ProgressBar" Grid.Column="2" HorizontalAlignment="Left" Height="10" Margin="83,10,0,0" Grid.Row="5" VerticalAlignment="Top" Width="100" Grid.ColumnSpan="2" Maximum="100"/>
 
     </Grid>
 </UserControl>

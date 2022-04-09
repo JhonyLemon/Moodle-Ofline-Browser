@@ -80,7 +80,7 @@ namespace Moodle_Ofline_Browser_Core
         };
 
 
-        public static async Task<FullCourse> Parse(IProgress<Progress> progress, string path)
+        public static async Task<FullCourse> Parse(string path, IProgress<Progress> progress)
         {
             FullCourse fullCourse = new FullCourse();
             int completion = 0;
@@ -94,44 +94,61 @@ namespace Moodle_Ofline_Browser_Core
                     Progress result = new Progress();
                     result.CallerTask = "Parser";
                     result.Percentage = completion*100 / files.Count;
-                    result.Filename = file;
+                    if (result.Percentage > 100)
+                        result.Percentage = 100;
                     string shortName = file.Replace(path+'\\', "");
                     try
                     {
                         if (file.Contains(@"activities\"))
                         {
-                            ParseActivities(shortName, stream, fullCourse);
+                            if (ParseActivities(shortName, stream, fullCourse))
+                                result.Message = "File: " + shortName + " parsed";
+                            else
+                                result.Message = "File: " + shortName + " not parsed";
                         }
                         else if (file.Contains(@"course\"))
                         {
-                            ParseCourse(shortName, stream, fullCourse);
+                            if(ParseCourse(shortName, stream, fullCourse))
+                                result.Message = "File: " + shortName + " parsed";
+                            else
+                                result.Message = "File: " + shortName + " not parsed";
                         }
                         else if (file.Contains(@"files\"))
                         {
-                            ParseFiles(shortName, file, fullCourse);
+                            if(ParseFiles(shortName, file, fullCourse))
+                                result.Message = "File: " + shortName + " parsed";
+                            else
+                                result.Message = "File: " + shortName + " not parsed";
+
                         }
                         else if (file.Contains(@"sections\section_"))
                         {
-                            ParseSections(shortName, stream, fullCourse);
+                            if (ParseSections(shortName, stream, fullCourse))
+                                result.Message = "File: " + shortName + " parsed";
+                            else
+                                result.Message = "File: " + shortName + " not parsed";
                         }
                         else
                         {
-                            ParseGlobals(shortName, stream, fullCourse);
+                            if (ParseGlobals(shortName, stream, fullCourse))
+                                result.Message = "File: " + shortName + " parsed";
+                            else
+                                result.Message = "File: " + shortName + " not parsed";
                         }
                     }catch(Exception e)
                     {
-                        result.ErrorMessage = e.Message;
+                        result.Message = "File: " + shortName + " not parsed";
                     }
                     progress.Report(result);
                 }
             }
-
             return fullCourse;
         }
 
 
-        private static void ParseActivities(string key, Stream stream, FullCourse fullCourse)
+        private static bool ParseActivities(string key, Stream stream, FullCourse fullCourse)
         {
+            bool isParsed = false;
             TypeAndName pair;
             int id = Convert.ToInt32(key.Substring(key.IndexOf('_') + 1, ((key.IndexOf('\\', key.IndexOf('_') + 1)) - (key.IndexOf('_') + 1))));
             string name = key.Substring(key.LastIndexOf('\\') + 1);
@@ -149,28 +166,34 @@ namespace Moodle_Ofline_Browser_Core
             if (ActivitiesTypeMap.TryGetValue(name, out pair))
             {
                 if (name == "inforef.xml" && !InfoRefTypeMap.TryGetValue(activityType, out pair))
-                    return;
+                    return isParsed;
                 XmlSerializer serializer = new XmlSerializer(pair.Type);
                 var test = serializer.Deserialize(stream);
                 activityFolder.GetType().GetProperty(pair.propertyName).SetValue(activityFolder, test);
+                isParsed = true;
             }
+            return isParsed;
         }
-        private static void ParseCourse(string key, Stream stream, FullCourse fullCourse)
+        private static bool ParseCourse(string key, Stream stream, FullCourse fullCourse)
         {
+            bool isParsed = false;
             TypeAndName pair;
             string name = key.Substring(key.LastIndexOf('\\') + 1);
             models.course.CourseFolder courseFolder = fullCourse.Course;
             if (CourseTypeMap.TryGetValue(name, out pair))
             {
                 if (name == "inforef.xml" && !InfoRefTypeMap.TryGetValue("course", out pair))
-                    return;
+                    return isParsed;
                 XmlSerializer serializer = new XmlSerializer(pair.Type);
                 var test = serializer.Deserialize(stream);
                 courseFolder.GetType().GetProperty(pair.propertyName).SetValue(courseFolder, test);
+                isParsed = true;
             }
+            return isParsed;
         }
-        private static void ParseSections(string key, Stream stream, FullCourse fullCourse)
+        private static bool ParseSections(string key, Stream stream, FullCourse fullCourse)
         {
+            bool isParsed = false;
             TypeAndName pair;
             int id = Convert.ToInt32(key.Substring(key.IndexOf('_') + 1, ((key.IndexOf('\\', key.IndexOf('_') + 1)) - (key.IndexOf('_') + 1))));
             string name = key.Substring(key.LastIndexOf('\\') + 1);
@@ -187,30 +210,42 @@ namespace Moodle_Ofline_Browser_Core
             if (SectionTypeMap.TryGetValue(name, out pair))
             {
                 if (name == "inforef.xml" && !InfoRefTypeMap.TryGetValue("section", out pair))
-                    return;
+                    return isParsed;
                 XmlSerializer serializer = new XmlSerializer(pair.Type);
                 var test = serializer.Deserialize(stream);
                 sectionFolder.GetType().GetProperty(pair.propertyName, pair.Type).SetValue(sectionFolder, test);
+                isParsed = true;
             }
+            return isParsed;
         }
-        private static void ParseFiles(string key, string path, FullCourse fullCourse)
+        private static bool ParseFiles(string key, string path, FullCourse fullCourse)
         {
+            bool isParsed = false;
             string name = key.Substring(key.LastIndexOf('\\') + 1);
             if (!fullCourse.FilesFolder.ContainsKey(name))
             {
                 fullCourse.FilesFolder.Add(name, path);
+                isParsed = true;
             }
+            return isParsed;
         }
-        private static void ParseGlobals(string key, Stream stream, FullCourse fullCourse)
+        private static bool ParseGlobals(string key, Stream stream, FullCourse fullCourse)
         {
+            bool isParsed = false;
             TypeAndName pair;
             if (GlobalsTypeMap.TryGetValue(key, out pair))
             {
                 XmlSerializer serializer = new XmlSerializer(pair.Type);
                 var test = serializer.Deserialize(stream);
                 fullCourse.GetType().GetProperty(pair.propertyName, pair.Type).SetValue(fullCourse, test);
+                isParsed = true;
             }
+            return isParsed;
+        }
 
+        public static IDisposable Subscribe(IObserver<Progress> observer)
+        {
+            throw new NotImplementedException();
         }
     }
 }

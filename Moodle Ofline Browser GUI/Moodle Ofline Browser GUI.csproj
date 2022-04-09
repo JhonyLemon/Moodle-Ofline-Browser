@@ -72,6 +72,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Helpers\DataProviderHelper.cs" />
+    <Compile Include="Models\ReportProgressEventArgs.cs" />
     <Compile Include="ViewModels\EnterBackupFileViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="Views\EnterBackupFileView.xaml.cs">
@@ -110,7 +111,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\" />
+    <Folder Include="Interfaces\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Moodle Ofline Browser Core\Moodle Ofline Browser Core.csproj">

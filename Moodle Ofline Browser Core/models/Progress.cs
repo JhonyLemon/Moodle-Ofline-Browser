@@ -8,15 +8,13 @@ namespace Moodle_Ofline_Browser_Core.models
 {
     public class Progress
     {
-        public string Filename { get; set; }
-        public string ErrorMessage { get; set; }
+        public string Message { get; set; }
         public int Percentage { get; set; }
         public string CallerTask { get; set; }
 
-        public Progress(string filename, string errorMessage, int percentage, string callerTask)
+        public Progress(string message, int percentage, string callerTask)
         {
-            Filename = filename;
-            ErrorMessage = errorMessage;
+            Message = message;
             Percentage = percentage;
             CallerTask = callerTask;
         }

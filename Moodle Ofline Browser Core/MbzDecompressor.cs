@@ -27,9 +27,9 @@ namespace Moodle_Ofline_Browser_Core
                 {
                     if (!reader.Entry.IsDirectory)
                     {
+                        string shortName = reader.Entry.Key.Replace('/', '\\');
                         Progress result = new Progress();
                         result.CallerTask = "Decompressor";
-                        result.Filename = reader.Entry.Key;
                         try
                         {
                             reader.WriteEntryToDirectory(folderPath, new ExtractionOptions { ExtractFullPath = true, Overwrite = true });
@@ -38,16 +38,16 @@ namespace Moodle_Ofline_Browser_Core
                             result.Percentage = (int)((100 * filesSize) / fileSize);
                             if (result.Percentage > 100)
                                 result.Percentage = 100;
-                           numberOfFiles++;
+                            numberOfFiles++;
+                            result.Message = "File decompressed: " + shortName;
                         }
                         catch (Exception e)
                         {
-                            result.ErrorMessage = "Something went wrong while decompressing";
+                            result.Message = "File cannot be decompressed: " + shortName;
                         }
                         progress.Report(result);
                     }
                 }
-
             }
             return numberOfFiles;
         }
