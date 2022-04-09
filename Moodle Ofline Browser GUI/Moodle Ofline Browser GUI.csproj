@@ -72,7 +72,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Helpers\DataProviderHelper.cs" />
-    <Compile Include="Models\ReportProgressEventArgs.cs" />
+    <Compile Include="Models\ReportDataProviderProgress.cs" />
     <Compile Include="ViewModels\EnterBackupFileViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="Views\EnterBackupFileView.xaml.cs">

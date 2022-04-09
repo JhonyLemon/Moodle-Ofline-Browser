@@ -167,7 +167,7 @@
     <Compile Include="models\moodle_backup\Setting.cs" />
     <Compile Include="models\moodle_backup\Settings.cs" />
     <Compile Include="models\outcomes\Outcomes.cs" />
-    <Compile Include="models\Progress.cs" />
+    <Compile Include="models\ProgressReportEventArgs.cs" />
     <Compile Include="models\questions\Ddmarker.cs" />
     <Compile Include="models\questions\Plugin_qtype_ddmarker_question.cs" />
     <Compile Include="models\questions\Question.cs" />

@@ -34,7 +34,7 @@
         <TextBlock Text="{Binding Path=Path2, Mode=OneWay}" Grid.Column="3" FontSize="18" Grid.Row="3" Margin="10 90 10 10" HorizontalAlignment="Center"></TextBlock>
 
         <Button x:Name="Extract" Grid.Column="1" FontSize="18" Grid.Row="4" Grid.ColumnSpan="3" Margin="250 30 250 10">Wypakuj</Button>
-        <ProgressBar x:Name="ProgressBar" Grid.Column="2" HorizontalAlignment="Left" Height="10" Margin="83,10,0,0" Grid.Row="5" VerticalAlignment="Top" Width="100" Grid.ColumnSpan="2" Maximum="100"/>
+        <ProgressBar x:Name="ProgressBar" Grid.Column="2" HorizontalAlignment="Left" Height="10" Margin="83,10,0,0" Grid.Row="5" VerticalAlignment="Top" Width="100" Grid.ColumnSpan="2" Maximum="200"/>
 
     </Grid>
 </UserControl>

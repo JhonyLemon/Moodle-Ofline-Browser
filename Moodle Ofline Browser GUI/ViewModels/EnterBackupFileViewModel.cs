@@ -2,6 +2,7 @@
 using Microsoft.Win32;
 using Moodle_Ofline_Browser_Core.models;
 using Moodle_Ofline_Browser_GUI.Helpers;
+using Moodle_Ofline_Browser_GUI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,7 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
         private string _path1 = "";
         private string _path2 = "";
         private int progressBar;
+        private Progress<Models.ReportDataProviderProgress> progress;
         private Helpers.DataProviderHelper providerHelper;
         private FullCourse fullCourse;
         public string Path1
@@ -60,13 +62,14 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
         public EnterBackupFileViewModel(IEventAggregator eventAggregator)
         {
             _eventAggregator = eventAggregator;
-            providerHelper = new DataProviderHelper();
-            providerHelper.ReportProgress += ProviderHelper_ReportProgress;
+            progress = new Progress<Models.ReportDataProviderProgress>();
+            providerHelper = new DataProviderHelper(progress);
+            progress.ProgressChanged += ProviderHelper_ReportProgress;
         }
 
-        private void ProviderHelper_ReportProgress(object sender, Models.ReportProgressEventArgs e)
+        private void ProviderHelper_ReportProgress(object sender, ReportDataProviderProgress e)
         {
-            Console.WriteLine(e.Percentage+"% "+e.Progress.Message);
+            Console.WriteLine(e.Percentage + "% " + e.Progress.Message);
             ProgressBar = e.Percentage;
         }
 
@@ -92,7 +95,7 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
             }
         }
 
-        public void Extract()
+        public async void Extract()
         {
             if (FilePath.Length == 0 || FolderPath.Length == 0)
             {
@@ -102,13 +105,16 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
             {
                 providerHelper.PathFrom = FilePath;
                 providerHelper.PathTo = FolderPath;
-                fullCourse = providerHelper.GetFullCourse().Result;
+                fullCourse = await GetDataAsync(providerHelper);
             }
         }
 
-        public virtual void OnCompleted()
+        private static async Task<FullCourse> GetDataAsync(DataProviderHelper helper)
         {
-            Console.WriteLine("Additional temperature data will not be transmitted.");
+            FullCourse fullCourse=null;
+            fullCourse=helper.GetFullCourse();
+            return fullCourse;
         }
+
     }
 }

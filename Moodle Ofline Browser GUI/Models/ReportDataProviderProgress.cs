@@ -7,9 +7,9 @@ using Moodle_Ofline_Browser_Core.models;
 
 namespace Moodle_Ofline_Browser_GUI.Models
 {
-    public class ReportProgressEventArgs:EventArgs
+    public class ReportDataProviderProgress
     {
         public int Percentage { get; set; }
-        public Progress Progress { get; set; }
+        public ProgressReportEventArgs Progress { get; set; }
     }
 }

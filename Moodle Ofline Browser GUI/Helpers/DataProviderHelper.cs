@@ -12,46 +12,66 @@ namespace Moodle_Ofline_Browser_GUI.Helpers
     {
         public string PathFrom { get; set; }
         public string PathTo { get; set; }
-        public List<Progress> Progresses { get; private set; }
+        public List<ProgressReportEventArgs> Progresses { get; private set; }
         public int Completion { get; private set; }
         public int CompletionDecompression { get; private set; }
         public int CompletionParsing { get; private set; }
-        private Progress<Progress> progress;
-        public event EventHandler<Models.ReportProgressEventArgs> ReportProgress;
+        private IProgress<Models.ReportDataProviderProgress> progress;
+        private MbzDecompressor mbzDecompressor;
+        private MoodleBackupParser backupParser;
 
 
-        public DataProviderHelper(string pathFrom, string pathTo)
+        public DataProviderHelper(string pathFrom, string pathTo, IProgress<Models.ReportDataProviderProgress> progress)
         {
             PathFrom = pathFrom;
             PathTo = pathTo;
-            Progresses = new List<Progress>();
-            progress = new Progress<Progress>();
-            progress.ProgressChanged += OnReportProgress;
+            Progresses = new List<ProgressReportEventArgs>();
             CompletionDecompression = 0;
             CompletionParsing = 0;
+            backupParser = new MoodleBackupParser();
+            mbzDecompressor = new MbzDecompressor();
+            backupParser.ProgressReport += ProgressReport;
+            mbzDecompressor.ProgressReport += ProgressReport;
+            this.progress = progress;
         }
 
-        public DataProviderHelper(string pathTo)
+        public DataProviderHelper(string pathTo, IProgress<Models.ReportDataProviderProgress> progress)
         {
             PathTo = pathTo;
             PathTo = "";
-            Progresses = new List<Progress>();
-            progress = new Progress<Progress>();
-            progress.ProgressChanged += OnReportProgress;
+            Progresses = new List<ProgressReportEventArgs>();
             CompletionDecompression = 100;
+            backupParser = new MoodleBackupParser();
+            mbzDecompressor = new MbzDecompressor();
+            backupParser.ProgressReport += ProgressReport;
+            mbzDecompressor.ProgressReport += ProgressReport;
+            this.progress = progress;
         }
-        public DataProviderHelper()
+        public DataProviderHelper(IProgress<Models.ReportDataProviderProgress> progress)
         {
             PathFrom = "";
             PathTo = "";
-            Progresses = new List<Progress>();
-            progress = new Progress<Progress>();
-            progress.ProgressChanged += OnReportProgress;
+            Progresses = new List<ProgressReportEventArgs>();
             CompletionDecompression = 0;
             CompletionParsing = 0;
+            backupParser = new MoodleBackupParser();
+            mbzDecompressor = new MbzDecompressor();
+            backupParser.ProgressReport += ProgressReport;
+            mbzDecompressor.ProgressReport += ProgressReport;
+            this.progress = progress;
         }
 
-        public async Task<FullCourse> GetFullCourse()
+        private void ProgressReport(object sender, ProgressReportEventArgs e)
+        {
+            Progresses.Add(e);
+            UpdateCompletion(e);
+            Models.ReportDataProviderProgress result = new Models.ReportDataProviderProgress();
+            result.Percentage = Completion;
+            result.Progress = e;
+            progress.Report(result);
+        }
+
+        public FullCourse GetFullCourse()
         {
             FullCourse fullCourse = null;
 
@@ -61,22 +81,12 @@ namespace Moodle_Ofline_Browser_GUI.Helpers
             }
             else
             {
-               await MbzDecompressor.Extract(PathFrom, PathTo, progress);
+               mbzDecompressor.Extract(PathFrom, PathTo);
             }
-            fullCourse=await Moodle_Ofline_Browser_Core.MoodleBackupParser.Parse(PathTo,progress);
+            fullCourse=backupParser.Parse(PathTo);
             return fullCourse;
         }
-        private void OnReportProgress(object sender, Progress e)
-        {
-            Progresses.Add(e);
-            UpdateCompletion(e);
-            Models.ReportProgressEventArgs eventArgs = new Models.ReportProgressEventArgs();
-            eventArgs.Percentage = Completion / 2;
-            eventArgs.Progress = e;
-            OnResportProgress(eventArgs);
-        }
-
-        private void UpdateCompletion(Progress e)
+        private void UpdateCompletion(ProgressReportEventArgs e)
         {
             if(e.CallerTask=="Parser" && CompletionParsing!=100)
             {
@@ -87,15 +97,6 @@ namespace Moodle_Ofline_Browser_GUI.Helpers
                 CompletionDecompression = e.Percentage;
             }
             Completion = CompletionDecompression + CompletionParsing;
-        }
-
-        protected virtual void OnResportProgress(Models.ReportProgressEventArgs e)
-        {
-            EventHandler<Models.ReportProgressEventArgs> handler = ReportProgress;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
         }
     }
 }
