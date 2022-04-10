@@ -7,6 +7,12 @@
         mc:Ignorable="d"
         Title="ShellView" Height="650" Width="800">
     <Grid>
-        <ContentControl x:Name="ActiveItem"/>
+        <Menu VerticalAlignment="Top" Height="20">
+            <MenuItem Header="Plik">
+                <MenuItem Header="Otwórz"/>
+                <MenuItem Header="Zamknij"/>
+            </MenuItem>
+        </Menu>
+        <ContentControl x:Name="ActiveItem" Margin="0,20,0,0"/>
     </Grid>
 </Window>
