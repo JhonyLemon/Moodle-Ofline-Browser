@@ -78,6 +78,9 @@
     <Compile Include="Views\EnterBackupFileView.xaml.cs">
       <DependentUpon>EnterBackupFileView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ShellView.xaml.cs">
       <DependentUpon>ShellView.xaml</DependentUpon>
     </Compile>
@@ -121,6 +124,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\EnterBackupFileView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
