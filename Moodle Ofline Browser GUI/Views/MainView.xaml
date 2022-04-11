@@ -15,7 +15,6 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <ProgressBar Margin="10,425,10,10"/>
         <TreeView HorizontalAlignment="Left" Height="330" Margin="10,50,0,0" VerticalAlignment="Top" Width="128"/>
     </Grid>
 </UserControl>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Moodle_Ofline_Browser_GUI.Views"
         mc:Ignorable="d"
-        Title="ShellView" Height="650" Width="800">
+        Title="MoodleOfflineBrowser" Height="650" Width="800">
     <Grid>
         <Menu VerticalAlignment="Top" Height="20">
             <MenuItem Header="Plik">

@@ -10,37 +10,37 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Media;
+using Moodle_Ofline_Browser_GUI.EventModels;
+using System.IO;
 
 namespace Moodle_Ofline_Browser_GUI.ViewModels
 {
     class EnterBackupFileViewModel : Caliburn.Micro.Screen
     {
         private IEventAggregator _eventAggregator;
-        private string FilePath = "";
-        private string FolderPath = "";
-        private string _path1 = "";
-        private string _path2 = "";
+        private string _filePath = "";
+        private string _folderPath = "";
         private int progressBar;
         private Progress<Models.ReportDataProviderProgress> progress;
         private Helpers.DataProviderHelper providerHelper;
         private FullCourse fullCourse;
-        public string Path1
+        public string FilePath
         {
-            get { return _path1; }
+            get { return _filePath; }
             set 
             { 
-                _path1 = value;
-                NotifyOfPropertyChange(() => Path1);
+                _filePath = value;
+                NotifyOfPropertyChange(() => FilePath);
             }
         }
 
-        public string Path2
+        public string FolderPath
         {
-            get { return _path2; }
+            get { return _folderPath; }
             set 
             { 
-                _path2 = value;
-                NotifyOfPropertyChange(() => Path2);
+                _folderPath = value;
+                NotifyOfPropertyChange(() => FolderPath);
             }
         }
 
@@ -71,6 +71,10 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
         {
             Console.WriteLine(e.Percentage + "% " + e.Progress.Message);
             ProgressBar = e.Percentage;
+            if(ProgressBar == 200)
+            {
+                _eventAggregator.PublishOnUIThread(new MainOnEvent(1));
+            }
         }
 
         public void ChooseFile()
@@ -80,7 +84,6 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
             if(dialog.ShowDialog() == true)
             {
                 FilePath = dialog.FileName;
-                Path1 = FilePath;
             }
         }
 
@@ -91,15 +94,24 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
             if(dialog.ShowDialog() == DialogResult.OK)
             {
                 FolderPath = dialog.SelectedPath;
-                Path2 = FolderPath;
             }
         }
 
         public async void Extract()
         {
+            string ext;
+            ext = Path.GetExtension(FilePath);
             if (FilePath.Length == 0 || FolderPath.Length == 0)
             {
                 MessageBox.Show("Wybierz obie sciezki", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if(ext != ".mbz")
+            {
+                MessageBox.Show("Nieprawidłowy plik", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if(!System.IO.Directory.Exists(FolderPath))
+            {
+                MessageBox.Show("Nieprawidłowa ścieżki do pliku", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else 
             {
@@ -115,6 +127,5 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
             fullCourse= await helper.GetFullCourse();
             return fullCourse;
         }
-
     }
 }
