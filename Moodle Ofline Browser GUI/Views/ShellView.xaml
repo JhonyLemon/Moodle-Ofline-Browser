@@ -5,14 +5,70 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Moodle_Ofline_Browser_GUI.Views"
         mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
         Title="MoodleOfflineBrowser" Height="650" Width="800">
     <Grid>
-        <Menu VerticalAlignment="Top" Height="20">
-            <MenuItem Header="Plik">
-                <MenuItem Header="Otwórz"/>
-                <MenuItem Header="Zamknij"/>
-            </MenuItem>
-        </Menu>
-        <ContentControl x:Name="ActiveItem" Margin="0,20,0,0"/>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="45"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0" Background="DimGray">
+            <Button 
+                Visibility="{Binding GoBackVisibility,Mode=OneWay}" 
+                x:Name="GoBack"
+                Height="30" 
+                Width="30" 
+                Padding="0"
+                HorizontalAlignment="Center"
+                HorizontalContentAlignment="Center"
+                VerticalContentAlignment="Center"
+                Background="Transparent"
+                BorderThickness="0"
+                Margin="0 3 0 0"
+                BorderBrush="{x:Null}"
+                VerticalAlignment="Center">
+                <materialDesign:PackIcon
+                    Width="30"
+                    Height="30"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Foreground="Black"
+                    Kind="ArrowBack" />
+            </Button>
+            <ListView Margin="0 20 0 0 " x:Name="MenuItems" SelectedIndex="{Binding MenuIndex,Mode=TwoWay}">
+                <ListViewItem Height="45" HorizontalContentAlignment="Center">
+                    <StackPanel Orientation="Horizontal" >
+                        <materialDesign:PackIcon Kind="File" Width="25" Height="25"/>
+                    </StackPanel>
+                </ListViewItem>
+                <ListViewItem Height="45" HorizontalContentAlignment="Center">
+                    <StackPanel Orientation="Horizontal" >
+                        <materialDesign:PackIcon Kind="ViewList" Width="25" Height="25"/>
+                    </StackPanel>
+                </ListViewItem>
+            </ListView>
+        </StackPanel>
+        <materialDesign:DialogHost 
+            Grid.Column="1" 
+            DialogBackground="Transparent"
+            CloseOnClickAway="True"
+            IsOpen="{Binding DialogIsOpen, Mode=TwoWay}">
+            <materialDesign:DialogHost.DialogContent>
+                <local:EnterBackupFileView/>
+            </materialDesign:DialogHost.DialogContent>
+            <ContentControl  
+            x:Name="ActiveItem" 
+            Margin="0,0,0,0"/>
+        </materialDesign:DialogHost>
+
     </Grid>
 </Window>
