@@ -62,7 +62,7 @@
             CloseOnClickAway="True"
             IsOpen="{Binding DialogIsOpen, Mode=TwoWay}">
             <materialDesign:DialogHost.DialogContent>
-                <local:EnterBackupFileView/>
+                <local:DialogView/>
             </materialDesign:DialogHost.DialogContent>
             <ContentControl  
             x:Name="ActiveItem" 

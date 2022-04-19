@@ -11,6 +11,7 @@ using Moodle_Ofline_Browser_Core.models;
 using Moodle_Ofline_Browser_GUI.Helpers;
 using Moodle_Ofline_Browser_GUI.Models;
 using System.Windows.Forms;
+using System.Collections.ObjectModel;
 
 namespace Moodle_Ofline_Browser_GUI.ViewModels
 {
@@ -24,20 +25,22 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
         private bool dialogIsOpen;
         private int menuIndex;
 
-        private Progress<Models.ReportDataProviderProgress> progress;
+        private ObservableCollection<ReportDataProviderProgress> logs;
+        private Progress<ReportDataProviderProgress> progress;
         private Helpers.DataProviderHelper providerHelper;
         private FullCourse fullCourse;
-
-
 
         private bool backupRadio = false;
         private bool folderRadio = false;
 
+        private Visibility logsVisibility;
         private Visibility goBackVisibility;
         private Visibility backupVisibility;
         private Visibility folderVisibility;
         private Visibility progresVisibility;
         private Visibility startLoadingVisibility;
+        private Visibility backupRadioVisibility;
+        private Visibility folderRadioVisibility;
 
         private string selectCompressedFilePath;
         private string selectDecompresionOutputFolderPath;
@@ -57,14 +60,20 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
 
             BackupRadio = false;
             FolderRadio = false;
+            SelectCompressedFilePath = "";
+            SelectDecompresionOutputFolderPath = "";
+            SelectCourseFolderPath = "";
 
             BackupVisibility = Visibility.Collapsed;
             FolderVisibility = Visibility.Collapsed;
             ProgresVisibility = Visibility.Collapsed;
             StartLoadingVisibility = Visibility.Collapsed;
+            LogsVisibility = Visibility.Collapsed;
 
             progress = new Progress<ReportDataProviderProgress>();
             progress.ProgressChanged += ProviderHelper_ReportProgress;
+
+            Logs = new ObservableCollection<ReportDataProviderProgress>();
     }
 
         public void Handle(MainOnEvent message)
@@ -78,6 +87,16 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
 
         #region Get&Set
 
+        public ObservableCollection<ReportDataProviderProgress> Logs
+        {
+            get { return logs; }
+            set
+            {
+                logs = value;
+                NotifyOfPropertyChange(() => Logs);
+            }
+        }
+
         public bool DialogIsOpen
         {
             get { return dialogIsOpen; }
@@ -85,6 +104,27 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
             {
                 dialogIsOpen = value;
                 NotifyOfPropertyChange(() => DialogIsOpen);
+                if(!dialogIsOpen)
+                {
+                    BackupRadioVisibility = Visibility.Visible;
+                    FolderRadioVisibility = Visibility.Visible;
+
+                    BackupRadio = false;
+                    FolderRadio = false;
+
+                    BackupVisibility = Visibility.Collapsed;
+                    FolderVisibility = Visibility.Collapsed;
+                    ProgresVisibility = Visibility.Collapsed;
+                    StartLoadingVisibility = Visibility.Collapsed;
+                    LogsVisibility = Visibility.Collapsed;
+
+                    Logs.Clear();
+                    ProgressBar = 0;
+
+                    SelectCompressedFilePath = "";
+                    SelectDecompresionOutputFolderPath = "";
+                    SelectCourseFolderPath = "";
+                }
                 MenuIndex = 1;
             }
         }
@@ -124,6 +164,15 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
                 NotifyOfPropertyChange(() => folderRadio);
             }
         }
+        public Visibility LogsVisibility
+        {
+            get { return logsVisibility; }
+            set
+            {
+                logsVisibility = value;
+                NotifyOfPropertyChange(() => LogsVisibility);
+            }
+        }
         public Visibility GoBackVisibility
         {
             get { return goBackVisibility; }
@@ -149,6 +198,24 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
             {
                 folderVisibility = value;
                 NotifyOfPropertyChange(() => FolderVisibility);
+            }
+        }
+        public Visibility BackupRadioVisibility
+        {
+            get { return backupRadioVisibility; }
+            set
+            {
+                backupRadioVisibility = value;
+                NotifyOfPropertyChange(() => BackupRadioVisibility);
+            }
+        }
+        public Visibility FolderRadioVisibility
+        {
+            get { return folderRadioVisibility; }
+            set
+            {
+                folderRadioVisibility = value;
+                NotifyOfPropertyChange(() => FolderRadioVisibility);
             }
         }
         public Visibility ProgresVisibility
@@ -219,7 +286,6 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
                     DialogIsOpen = true;
             }
         }
-
         #endregion
 
         #region Button Handlers
@@ -306,7 +372,12 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
             {
                 providerHelper = new DataProviderHelper(SelectCourseFolderPath, progress);
             }
-            fullCourse= await Task.Run(()=>providerHelper.GetFullCourse());
+            BackupRadioVisibility = Visibility.Collapsed;
+            LogsVisibility = Visibility.Visible;
+            BackupVisibility = Visibility.Collapsed;
+            FolderRadioVisibility = Visibility.Collapsed;
+            FolderVisibility = Visibility.Collapsed;
+            fullCourse = await Task.Run(()=>providerHelper.GetFullCourse());
         }
 
         #endregion
@@ -340,6 +411,8 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
         {
            // Console.WriteLine(e.Percentage + "% " + e.Progress.Message);
             ProgressBar = e.Percentage;
+            Logs.Add(e);
+            NotifyOfPropertyChange(() => Logs);
         }
     }
 }

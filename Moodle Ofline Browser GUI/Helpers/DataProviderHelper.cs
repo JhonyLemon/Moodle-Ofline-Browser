@@ -67,6 +67,7 @@ namespace Moodle_Ofline_Browser_GUI.Helpers
             UpdateCompletion(e);
             Models.ReportDataProviderProgress result = new Models.ReportDataProviderProgress();
             result.Percentage = Completion;
+            result.Message = e.Message;
             result.Progress = e;
             progress.Report(result);
         }

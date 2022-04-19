@@ -11,5 +11,6 @@ namespace Moodle_Ofline_Browser_GUI.Models
     {
         public int Percentage { get; set; }
         public ProgressReportEventArgs Progress { get; set; }
+        public string Message { get; set; }
     }
 }
