@@ -34,7 +34,6 @@
                 Background="Transparent"
                 BorderThickness="0"
                 Margin="0 3 0 0"
-                BorderBrush="{x:Null}"
                 VerticalAlignment="Center">
                 <materialDesign:PackIcon
                     Width="30"

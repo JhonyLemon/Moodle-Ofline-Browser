@@ -127,8 +127,7 @@
                     Height="6"
                     Style="{DynamicResource MaterialDesignLinearProgressBar}"
                     Margin="10 10 10 10"
-                    Value="0"
-                    x:Name="ProgressBar">
+                    Value="{Binding ProgressBar,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}">
             </ProgressBar>
         </StackPanel>
     </materialDesign:Card>

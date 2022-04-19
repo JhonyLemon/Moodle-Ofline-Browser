@@ -82,6 +82,7 @@
     <Compile Include="EventModels\MainOnEvent.cs" />
     <Compile Include="Helpers\DataProviderHelper.cs" />
     <Compile Include="Helpers\PathChecker.cs" />
+    <Compile Include="Models\Category.cs" />
     <Compile Include="Models\ReportDataProviderProgress.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />

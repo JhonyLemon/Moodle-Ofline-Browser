@@ -29,6 +29,7 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
         private FullCourse fullCourse;
 
 
+
         private bool backupRadio = false;
         private bool folderRadio = false;
 
@@ -50,6 +51,7 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
             _mainViewModel = mainViewModel;
             _eventAggregator.Subscribe(this);
             ActivateItem(_mainViewModel);
+
             MenuIndex = 1;
             GoBackVisibility = Visibility.Hidden;
 
@@ -60,6 +62,9 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
             FolderVisibility = Visibility.Collapsed;
             ProgresVisibility = Visibility.Collapsed;
             StartLoadingVisibility = Visibility.Collapsed;
+
+            progress = new Progress<ReportDataProviderProgress>();
+            progress.ProgressChanged += ProviderHelper_ReportProgress;
     }
 
         public void Handle(MainOnEvent message)
@@ -293,12 +298,15 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
 
         public async void StartLoading()
         {
-            providerHelper.PathFrom = SelectCompressedFilePath;
             if (BackupRadio)
-                providerHelper.PathTo = SelectDecompresionOutputFolderPath;
+            {
+                providerHelper = new DataProviderHelper(SelectCompressedFilePath,SelectDecompresionOutputFolderPath,progress);
+            }
             else if (FolderRadio)
-                providerHelper.PathTo = SelectCourseFolderPath;
-            fullCourse = await GetDataAsync(providerHelper);
+            {
+                providerHelper = new DataProviderHelper(SelectCourseFolderPath, progress);
+            }
+            fullCourse= await Task.Run(()=>providerHelper.GetFullCourse());
         }
 
         #endregion
@@ -330,20 +338,8 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
 
         private void ProviderHelper_ReportProgress(object sender, ReportDataProviderProgress e)
         {
-            Console.WriteLine(e.Percentage + "% " + e.Progress.Message);
+           // Console.WriteLine(e.Percentage + "% " + e.Progress.Message);
             ProgressBar = e.Percentage;
-            if (ProgressBar == 200)
-            {
-                _eventAggregator.PublishOnUIThread(new MainOnEvent(1));
-            }
         }
-
-        private static async Task<FullCourse> GetDataAsync(DataProviderHelper helper)
-        {
-            FullCourse fullCourse = null;
-            fullCourse = await helper.GetFullCourse();
-            return fullCourse;
-        }
-
     }
 }

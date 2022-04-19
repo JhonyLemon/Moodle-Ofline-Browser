@@ -10,8 +10,8 @@ namespace Moodle_Ofline_Browser_GUI.Helpers
 {
     public class DataProviderHelper
     {
-        public string PathFrom { get; set; }
-        public string PathTo { get; set; }
+        private string File;
+        private string Folder;
         public List<ProgressReportEventArgs> Progresses { get; private set; }
         public int Completion { get; private set; }
         public int CompletionDecompression { get; private set; }
@@ -21,10 +21,10 @@ namespace Moodle_Ofline_Browser_GUI.Helpers
         private MoodleBackupParser backupParser;
 
 
-        public DataProviderHelper(string pathFrom, string pathTo, IProgress<Models.ReportDataProviderProgress> progress)
+        public DataProviderHelper(string file, string folder, IProgress<Models.ReportDataProviderProgress> progress)
         {
-            PathFrom = pathFrom;
-            PathTo = pathTo;
+            File = file;
+            Folder = folder;
             Progresses = new List<ProgressReportEventArgs>();
             CompletionDecompression = 0;
             CompletionParsing = 0;
@@ -35,10 +35,10 @@ namespace Moodle_Ofline_Browser_GUI.Helpers
             this.progress = progress;
         }
 
-        public DataProviderHelper(string pathTo, IProgress<Models.ReportDataProviderProgress> progress)
+        public DataProviderHelper(string folder, IProgress<Models.ReportDataProviderProgress> progress)
         {
-            PathTo = pathTo;
-            PathTo = "";
+            File = "";
+            Folder = folder;
             Progresses = new List<ProgressReportEventArgs>();
             CompletionDecompression = 100;
             backupParser = new MoodleBackupParser();
@@ -49,8 +49,8 @@ namespace Moodle_Ofline_Browser_GUI.Helpers
         }
         public DataProviderHelper(IProgress<Models.ReportDataProviderProgress> progress)
         {
-            PathFrom = "";
-            PathTo = "";
+            File = "";
+            Folder = "";
             Progresses = new List<ProgressReportEventArgs>();
             CompletionDecompression = 0;
             CompletionParsing = 0;
@@ -74,15 +74,15 @@ namespace Moodle_Ofline_Browser_GUI.Helpers
         public async Task<FullCourse> GetFullCourse()
         {
             FullCourse fullCourse = null;
-            if (PathFrom == "")
+            if (File == "")
             {
                 CompletionDecompression = 100;
             }
             else
             {
-                await Task.Run(() => mbzDecompressor.Extract(PathFrom, PathTo));
+                await Task.Run(() => mbzDecompressor.Extract(File, Folder));
             }
-            await Task.Run(() => fullCourse = backupParser.Parse(PathTo));
+            await Task.Run(() => fullCourse = backupParser.Parse(Folder));
             return fullCourse;
         }
         private void UpdateCompletion(ProgressReportEventArgs e)
