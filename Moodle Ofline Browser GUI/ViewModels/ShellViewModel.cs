@@ -75,7 +75,6 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
                         _eventAggregator.PublishOnUIThread(new CourseParsed(fullCourse));
                         ActivateItem(_mainViewModel);
                     }
-                    else
                     _dialogViewModel.ClearDialogBox();
                 }
             }

@@ -256,6 +256,7 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
 
         public void SelectCompressedFile()
         {
+            _eventAggregator.PublishOnUIThread(new CanClickAway(false));
             var dialog = new Microsoft.Win32.OpenFileDialog();
 
             if (dialog.ShowDialog() == true)
@@ -263,6 +264,7 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
                 SelectCompressedFilePath = dialog.FileName;
                 CheckIfPathValid();
             }
+            Task.Delay(1000).ContinueWith(t => _eventAggregator.PublishOnUIThread(new CanClickAway(true)));
         }
 
         public void SelectDecompresionOutputFolder()
