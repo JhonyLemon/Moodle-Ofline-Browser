@@ -3,10 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:cal="http://www.caliburnproject.org"
              xmlns:local="clr-namespace:Moodle_Ofline_Browser_GUI.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="755"
+        xmlns:cal="http://www.caliburnproject.org"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -115,7 +115,13 @@
                             Width="240">
                     </TextBox>
                 </StackPanel>
+                
             </StackPanel>
+            <CheckBox 
+                Style="{DynamicResource MaterialDesignFilterChipAccentOutlineCheckBox}"
+                Visibility="{Binding LogCheckBoxVisibility,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
+                IsChecked="{Binding LogCheckBox,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                Content="Czy chcesz aby został wygenerowany plik z logami"/>
             <Button
                 cal:Message.Attach="[Event Click] = [Action StartLoading()]" 
                 Visibility="{Binding StartLoadingVisibility,Mode=OneWay}"

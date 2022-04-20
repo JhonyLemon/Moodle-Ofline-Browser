@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="Moodle_Ofline_Browser_GUI.Views.FilesListView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Moodle_Ofline_Browser_GUI.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="440" d:DesignWidth="595"
+                     xmlns:cal="http://www.caliburnproject.org"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        FontFamily="{DynamicResource MaterialDesignFont}">
+    <materialDesign:Card
+        Padding="3"
+        UniformCornerRadius="10">
+        <ListView
+            SelectedItem="{Binding File}"
+            cal:Message.Attach="[Event MouseDoubleClick] = [Action FileSelection()]" 
+            ItemsSource="{Binding Files}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" />
+                    <GridViewColumn Header="Użytkownik" DisplayMemberBinding="{Binding User}" />
+                    <GridViewColumn Header="Nazwa pliku" DisplayMemberBinding="{Binding FileName}" />
+                    <GridViewColumn Header="Data dodania" DisplayMemberBinding="{Binding Date}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </materialDesign:Card>
+</UserControl>

@@ -20,8 +20,10 @@
             <ColumnDefinition Width="45"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-
-        <StackPanel Grid.Column="0" Background="DimGray">
+        
+        <StackPanel 
+            Grid.Column="0" 
+            Background="DimGray">
             <Button 
                 Visibility="{Binding GoBackVisibility,Mode=OneWay}" 
                 x:Name="GoBack"
@@ -43,7 +45,7 @@
                     Foreground="Black"
                     Kind="ArrowBack" />
             </Button>
-            <ListView Margin="0 20 0 0 " x:Name="MenuItems" SelectedIndex="{Binding MenuIndex,Mode=TwoWay}">
+            <ListView Margin="0 3 0 0 " x:Name="MenuItems" SelectedIndex="{Binding MenuIndex,Mode=TwoWay}">
                 <ListViewItem Height="45" HorizontalContentAlignment="Center">
                     <StackPanel Orientation="Horizontal" >
                         <materialDesign:PackIcon Kind="File" Width="25" Height="25"/>
@@ -59,10 +61,10 @@
         <materialDesign:DialogHost 
             Grid.Column="1" 
             DialogBackground="Transparent"
-            CloseOnClickAway="True"
+            CloseOnClickAway="{Binding CanCloseOnClickAway,Mode=OneWay}"
             IsOpen="{Binding DialogIsOpen, Mode=TwoWay}">
             <materialDesign:DialogHost.DialogContent>
-                <local:DialogView/>
+                <ContentControl/>
             </materialDesign:DialogHost.DialogContent>
             <ContentControl  
             x:Name="ActiveItem" 

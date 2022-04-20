@@ -9,7 +9,7 @@ using Moodle_Ofline_Browser_Core.models;
 
 namespace Moodle_Ofline_Browser_Core
 {
-    public class MoodleBackupParser
+    public class MoodleBackupParser : CoreModule
     {
         private static Dictionary<string, TypeAndName> GlobalsTypeMap = new Dictionary<string, TypeAndName>()
         {
@@ -51,14 +51,14 @@ namespace Moodle_Ofline_Browser_Core
         private static Dictionary<string, TypeAndName> CourseTypeMap = new Dictionary<string, TypeAndName>()
         {
             {"logstores.xml",new TypeAndName(typeof(models.logstores.Logstores),"Logstores")},
-            //{"logs.xml",new Pair(typeof(models.logs.Logs),"Logs")},
+            //{"logs.xml",new TypeAndName(typeof(models.logs.Logs),"Logs")},
             {"inforef.xml",new TypeAndName(typeof(models.inforef.Inforef),"Inforef")},
-            //{"filters.xml",new Pair(typeof(models.filters.Filters),"Filters")},
-            //{"competencies.xml",new Pair(typeof(models.competencies.Competencies),"Competencies")},
-            //{"comments.xml",new Pair(typeof(models.comments.Comments),"Comments")},
-            //{"course.xml",new Pair(typeof(models.course.Course),"Course")},
-            //{"contentbank.xml",new Pair(typeof(models.contentbank.Contentbank),"Contentbank")},
-            //{"compeltiondefaults.xml",new Pair(typeof(models.completiondefaults.Completiondefaults),"Completiondefaults")},
+            //{"filters.xml",new TypeAndName(typeof(models.filters.Filters),"Filters")},
+            //{"competencies.xml",new TypeAndName(typeof(models.competencies.Competencies),"Competencies")},
+            //{"comments.xml",new TypeAndName(typeof(models.comments.Comments),"Comments")},
+            {"course.xml",new TypeAndName(typeof(models.course.Course),"Course")},
+            //{"contentbank.xml",new TypeAndName(typeof(models.contentbank.Contentbank),"Contentbank")},
+            //{"compeltiondefaults.xml",new TypeAndName(typeof(models.completiondefaults.Completiondefaults),"Completiondefaults")},
             {"enrolments.xml",new TypeAndName(typeof(models.enrolments.Enrolments),"Enrolments")},
             {"loglastaccess.xml",new TypeAndName(typeof(models.loglastaccess.Lastaccesses),"LastAccess")},
             {"calendar.xml",new TypeAndName(typeof(models.calendar.Events),"Calendar")}
@@ -79,82 +79,59 @@ namespace Moodle_Ofline_Browser_Core
             {"assign",new TypeAndName(typeof(models.inforef.type.assign.Assign),"Inforef")}
         };
 
-        public event EventHandler<ProgressReportEventArgs> ProgressReport;
+        private int completion = 0;
+        private List<string> files;
 
+        public static readonly string CALLER_NAME = "PARSER";
 
-        public FullCourse Parse(string path)
+        public FullCourse Parse(string path, string logFileName)
         {
             FullCourse fullCourse = new FullCourse();
-            int completion = 0;
-            List<string> files = new List<string>(Directory.GetFiles(path, "*", SearchOption.AllDirectories));
+            files = new List<string>(Directory.GetFiles(path, "*", SearchOption.AllDirectories));
+            completion = 0;
 
             foreach (string file in files)
             {
                 completion++;
-                using (Stream stream = new FileStream(file, FileMode.Open))
-                {
-                    ProgressReportEventArgs result = new ProgressReportEventArgs();
-                    result.CallerTask = "Parser";
-                    result.Percentage = completion * 100 / files.Count;
-                    if (result.Percentage > 100)
-                        result.Percentage = 100;
-                    string shortName = file.Replace(path + '\\', "");
-                    try
+                if (!file.Equals(path + '\\' + logFileName))
+                    using (Stream stream = new FileStream(file, FileMode.Open))
                     {
-                        if (file.Contains(@"activities\"))
+                        ProgressReportEventArgs result = null;
+                        string shortName = file.Replace(path + '\\', "");
+                        try
                         {
-                            if (ParseActivities(shortName, stream, fullCourse))
-                                result.Message = "File: " + shortName + " parsed";
+                            if (file.Contains(@"activities\"))
+                            {
+                                result = MakeResult(shortName, ParseActivities(shortName, stream, fullCourse));
+                            }
+                            else if (file.Contains(@"course\"))
+                            {
+                                result = MakeResult(shortName, ParseCourse(shortName, stream, fullCourse));
+                            }
+                            else if (file.Contains(@"files\"))
+                            {
+                                result = MakeResult(shortName, ParseFiles(shortName, file, fullCourse));
+                            }
+                            else if (file.Contains(@"sections\section_"))
+                            {
+                                result = MakeResult(shortName, ParseSections(shortName, stream, fullCourse));
+                            }
                             else
-                                result.Message = "File: " + shortName + " not parsed";
+                            {
+                                result = MakeResult(shortName, ParseGlobals(shortName, stream, fullCourse));
+                            }
                         }
-                        else if (file.Contains(@"course\"))
+                        catch (Exception)
                         {
-                            if (ParseCourse(shortName, stream, fullCourse))
-                                result.Message = "File: " + shortName + " parsed";
-                            else
-                                result.Message = "File: " + shortName + " not parsed";
+                            result = MakeResult(shortName, false);
                         }
-                        else if (file.Contains(@"files\"))
-                        {
-                            if (ParseFiles(shortName, file, fullCourse))
-                                result.Message = "File: " + shortName + " parsed";
-                            else
-                                result.Message = "File: " + shortName + " not parsed";
-
-                        }
-                        else if (file.Contains(@"sections\section_"))
-                        {
-                            if (ParseSections(shortName, stream, fullCourse))
-                                result.Message = "File: " + shortName + " parsed";
-                            else
-                                result.Message = "File: " + shortName + " not parsed";
-                        }
-                        else
-                        {
-                            if (ParseGlobals(shortName, stream, fullCourse))
-                                result.Message = "File: " + shortName + " parsed";
-                            else
-                                result.Message = "File: " + shortName + " not parsed";
-                        }
+                        if(logFileName != null)
+                            WriteLogToFile(path + '\\' + logFileName, result.Message);
+                        OnProgressReport(result);
                     }
-                    catch (Exception)
-                    {
-                        result.Message = "File: " + shortName + " not parsed";
-                    }
-                    OnProgressReport(result);
-                }
             }
+
             return fullCourse;
-        }
-
-        protected virtual void OnProgressReport(ProgressReportEventArgs e)
-        {
-            EventHandler<ProgressReportEventArgs> handler = ProgressReport;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
         }
 
         private static bool ParseActivities(string key, Stream stream, FullCourse fullCourse)
@@ -252,6 +229,23 @@ namespace Moodle_Ofline_Browser_Core
                 isParsed = true;
             }
             return isParsed;
+        }
+
+        protected override ProgressReportEventArgs MakeResult(string shortName, bool isOk)
+        {
+            ProgressReportEventArgs result = null;
+            result = base.MakeResult(shortName, isOk);
+            if (isOk)
+                    shortName = "Plik " + shortName + " zostal poprawnie wczytany";
+                else
+                    shortName = "Plik " + shortName + " nie zostal poprawnie wczytany";
+            int percentage = completion * 100 / files.Count;
+            if (percentage > 100)
+                percentage = 100;
+            result.Percentage = percentage;
+            result.Message = shortName;
+            result.CallerTask = CALLER_NAME;
+            return result;
         }
     }
 }

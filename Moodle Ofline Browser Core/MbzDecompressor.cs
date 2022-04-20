@@ -12,17 +12,22 @@ using Moodle_Ofline_Browser_Core.models;
 
 namespace Moodle_Ofline_Browser_Core
 {
-    public class MbzDecompressor
+    public class MbzDecompressor : CoreModule
     {
-        public event EventHandler<ProgressReportEventArgs> ProgressReport;
 
+        private int numberOfFiles = 0;
+        private long fileSize = 0;
+        private long currentFileSize = 0;
+        private long filesSize = 0;
+        public static readonly string CALLER_NAME = "DECOMPRESSOR";
 
-        public int Extract(string filePath, string folderPath)
+        public int Extract(string filePath, string folderPath, string logFileName)
         {
 
-            int numberOfFiles = 0;
-            long fileSize = new FileInfo(filePath).Length;
-            long filesSize = 0;
+            numberOfFiles = 0;
+            fileSize = new FileInfo(filePath).Length;
+            filesSize = 0;
+
             using (Stream stream = File.OpenRead(filePath))
             {
                 var reader = ReaderFactory.Open(stream);
@@ -30,24 +35,20 @@ namespace Moodle_Ofline_Browser_Core
                 {
                     if (!reader.Entry.IsDirectory)
                     {
+                        currentFileSize = reader.Entry.CompressedSize;
                         string shortName = reader.Entry.Key.Replace('/', '\\');
-                        ProgressReportEventArgs result = new ProgressReportEventArgs();
-                        result.CallerTask = "Decompressor";
+                        ProgressReportEventArgs result = null;
                         try
                         {
                             reader.WriteEntryToDirectory(folderPath, new ExtractionOptions { ExtractFullPath = true, Overwrite = true });
-
-                            filesSize += reader.Entry.CompressedSize;
-                            result.Percentage = (int)((100 * filesSize) / fileSize);
-                            if (result.Percentage > 100)
-                                result.Percentage = 100;
-                            numberOfFiles++;
-                            result.Message = "File decompressed: " + shortName;
+                            result = MakeResult(shortName, true);
                         }
                         catch (Exception)
                         {
-                            result.Message = "File cannot be decompressed: " + shortName;
+                            result = MakeResult(shortName, false);
                         }
+                        if (logFileName!=null)
+                            WriteLogToFile(folderPath + '\\' + logFileName, result.Message);
                         OnProgressReport(result);
                     }
                 }
@@ -55,13 +56,23 @@ namespace Moodle_Ofline_Browser_Core
             return numberOfFiles;
         }
 
-        protected virtual void OnProgressReport(ProgressReportEventArgs e)
+        protected override ProgressReportEventArgs MakeResult(string shortName, bool isOk)
         {
-            EventHandler<ProgressReportEventArgs> handler = ProgressReport;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            ProgressReportEventArgs result = null;
+            result = base.MakeResult(shortName, isOk);
+            if (isOk)
+                    shortName = "Plik " + shortName + " zostal zdekompresowany";
+                else
+                    shortName = "Plik " + shortName + " nie zostal zdekompresowany";
+            filesSize += currentFileSize;
+            int percentage = (int)((100 * filesSize) / fileSize);
+            if (percentage > 100)
+                percentage = 100;
+            numberOfFiles++;
+            result.CallerTask = CALLER_NAME;
+            result.Message = shortName;
+            result.Percentage = percentage;
+            return result;
         }
     }
 }

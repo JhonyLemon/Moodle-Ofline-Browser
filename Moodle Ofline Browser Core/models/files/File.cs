@@ -33,9 +33,9 @@ namespace Moodle_Ofline_Browser_Core.models.files
 		[XmlElement(ElementName = "status")]
 		public string Status { get; set; }
 		[XmlElement(ElementName = "timecreated")]
-		public string Timecreated { get; set; }
+		public long Timecreated { get; set; }
 		[XmlElement(ElementName = "timemodified")]
-		public string Timemodified { get; set; }
+		public long Timemodified { get; set; }
 		[XmlElement(ElementName = "source")]
 		public string Source { get; set; }
 		[XmlElement(ElementName = "author")]

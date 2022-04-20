@@ -65,6 +65,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CoreModule.cs" />
     <Compile Include="MbzDecompressor.cs" />
     <Compile Include="models\activities\ActivityFolder.cs" />
     <Compile Include="models\activities\activityTypes\Activity.cs" />

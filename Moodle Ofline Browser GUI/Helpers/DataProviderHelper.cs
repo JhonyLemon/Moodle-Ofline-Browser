@@ -12,10 +12,13 @@ namespace Moodle_Ofline_Browser_GUI.Helpers
     {
         private string File;
         private string Folder;
+
+        private static readonly string LogFileName = "MoodleOflineBrowser.log";
         public List<ProgressReportEventArgs> Progresses { get; private set; }
         public int Completion { get; private set; }
         public int CompletionDecompression { get; private set; }
         public int CompletionParsing { get; private set; }
+        public bool GenerateLogFile { get; set; }
         private IProgress<Models.ReportDataProviderProgress> progress;
         private MbzDecompressor mbzDecompressor;
         private MoodleBackupParser backupParser;
@@ -30,6 +33,7 @@ namespace Moodle_Ofline_Browser_GUI.Helpers
             CompletionParsing = 0;
             backupParser = new MoodleBackupParser();
             mbzDecompressor = new MbzDecompressor();
+            GenerateLogFile = true;
             backupParser.ProgressReport += ProgressReport;
             mbzDecompressor.ProgressReport += ProgressReport;
             this.progress = progress;
@@ -42,6 +46,7 @@ namespace Moodle_Ofline_Browser_GUI.Helpers
             Progresses = new List<ProgressReportEventArgs>();
             CompletionDecompression = 100;
             backupParser = new MoodleBackupParser();
+            GenerateLogFile = false;
             mbzDecompressor = new MbzDecompressor();
             backupParser.ProgressReport += ProgressReport;
             mbzDecompressor.ProgressReport += ProgressReport;
@@ -54,6 +59,7 @@ namespace Moodle_Ofline_Browser_GUI.Helpers
             Progresses = new List<ProgressReportEventArgs>();
             CompletionDecompression = 0;
             CompletionParsing = 0;
+            GenerateLogFile = true;
             backupParser = new MoodleBackupParser();
             mbzDecompressor = new MbzDecompressor();
             backupParser.ProgressReport += ProgressReport;
@@ -81,18 +87,24 @@ namespace Moodle_Ofline_Browser_GUI.Helpers
             }
             else
             {
-                await Task.Run(() => mbzDecompressor.Extract(File, Folder));
-            }
-            await Task.Run(() => fullCourse = backupParser.Parse(Folder));
+                if(GenerateLogFile)
+                    await Task.Run(() => mbzDecompressor.Extract(File, Folder,LogFileName));
+                else
+                    await Task.Run(() => mbzDecompressor.Extract(File, Folder, null));
+            };
+            if (GenerateLogFile)
+                await Task.Run(() => fullCourse = backupParser.Parse(Folder, LogFileName));
+            else
+                await Task.Run(() => fullCourse = backupParser.Parse(Folder, null));
             return fullCourse;
         }
         private void UpdateCompletion(ProgressReportEventArgs e)
         {
-            if(e.CallerTask=="Parser" && CompletionParsing!=100)
+            if(e.CallerTask==MoodleBackupParser.CALLER_NAME && CompletionParsing!=100)
             {
                 CompletionParsing = e.Percentage;
             }
-            else if(e.CallerTask == "Decompressor" && CompletionDecompression != 100)
+            else if(e.CallerTask == MbzDecompressor.CALLER_NAME && CompletionDecompression != 100)
             {
                 CompletionDecompression = e.Percentage;
             }

@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Moodle_Ofline_Browser_GUI.EventModels
 {
-    class MainOnEvent
+    class CanClickAway
     {
-        public int State { get; set; }
+        public bool CanClickAwayToClose { get; set; }
 
-        public MainOnEvent(int state)
+        public CanClickAway(bool canClickAwayToClose)
         {
-            State = state;
+            CanClickAwayToClose = canClickAwayToClose;
         }
     }
 }
