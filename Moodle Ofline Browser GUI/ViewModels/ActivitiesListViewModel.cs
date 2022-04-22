@@ -48,8 +48,8 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
 
         public void Handle(InformSubView message)
         {
-            Activities.Clear();
-            Activities = message.Category.SubCategories;
+            if (message.Category.FieldInfo.FieldType == typeof(ActivitiesListViewModel))
+                Activities = message.Category.SubCategories;
         }
 
         public void ActivitySelection()

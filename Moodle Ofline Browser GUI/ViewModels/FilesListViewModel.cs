@@ -50,8 +50,8 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
 
         public void Handle(InformSubView message)
         {
-            Files.Clear();
-            Files = message.Category.SubCategories;
+            if (message.Category.FieldInfo.FieldType == typeof(FilesListViewModel))
+                Files = message.Category.SubCategories;
         }
 
         public void FileSelection()

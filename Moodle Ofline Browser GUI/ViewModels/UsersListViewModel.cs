@@ -48,8 +48,8 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
 
         public void Handle(InformSubView message)
         {
-            Users.Clear();
-            Users = message.Category.SubCategories;
+            if(message.Category.FieldInfo.FieldType==typeof(UsersListViewModel))
+                Users = message.Category.SubCategories;
         }
 
         public void UserSelection()

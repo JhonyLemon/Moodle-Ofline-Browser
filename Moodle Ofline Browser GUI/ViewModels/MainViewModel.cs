@@ -100,6 +100,7 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
 
         public void SetSelectedType(ModelCategory item)
         {
+
             ActiveList = (Screen)item.FieldInfo.GetValue(this);
             _eventAggregator.PublishOnUIThread(new InformSubView(item));
         }
@@ -123,6 +124,7 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
         public void Handle(SubItemSelected message)
         {
             SetSelectedType(message.Category);
+            message.Category.IsSelected = true;
         }
     }
 }
