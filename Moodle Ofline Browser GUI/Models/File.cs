@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Moodle_Ofline_Browser_GUI.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Moodle_Ofline_Browser_GUI.Models
 {
-    class File
+    class File : ModelCategory
     {
         public File()
         {

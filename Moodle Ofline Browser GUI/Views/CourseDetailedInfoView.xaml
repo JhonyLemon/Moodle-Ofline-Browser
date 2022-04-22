@@ -19,7 +19,6 @@
         UniformCornerRadius="10">
         <ListView
             SelectedItem="{Binding CourseInfo}"
-            cal:Message.Attach="[Event MouseDoubleClick] = [Action CourseInfoSelection()]" 
             ItemsSource="{Binding CourseInfos}">
             <ListView.ItemTemplate>
                 <DataTemplate>

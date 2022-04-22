@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:Moodle_Ofline_Browser_GUI.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="755"
+             xmlns:cal="http://www.caliburnproject.org"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -13,40 +14,48 @@
         TextOptions.TextFormattingMode="Ideal" 
         TextOptions.TextRenderingMode="Auto"        
         FontFamily="{DynamicResource MaterialDesignFont}">
-    <Grid>
 
+    <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="180"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <ListView 
-            SelectedItem="{Binding CategoryItem}"
-            ItemsSource="{Binding CategoryItems}"
-            VerticalAlignment="Center"
+        <materialDesign:Card 
+            VerticalAlignment="Stretch"
             HorizontalContentAlignment="Stretch"
             VerticalContentAlignment="Center"
-            Margin="5 5 5 5"
+            UniformCornerRadius="0"
+            Margin="0 0 0 0"
             Padding="5"
-            Grid.Row="0"
-            Grid.RowSpan="2"
+            Grid.Row="1"
+            Grid.RowSpan="1"
             Grid.Column="0">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <materialDesign:Card
-                        Margin="2 2 2 2"
-                        UniformCornerRadius="5">
-                        <TextBlock 
-                            TextAlignment="Center"
-                            Style="{DynamicResource MaterialDesignTextBlock}"
-                            Text="{Binding CategoryItemName}"/>
-                    </materialDesign:Card>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+            <TreeView 
+                cal:Message.Attach="[Event SelectedItemChanged] = [Action SetSelectedType($this.SelectedItem)]"
+                Style="{DynamicResource MaterialDesignTreeView}"
+                ItemsSource="{Binding CategoryItems}">
+                <TreeView.Resources>
+                    <Style TargetType="{x:Type TreeViewItem}" BasedOn="{StaticResource MaterialDesignTreeViewItem}">
+                        <Setter Property="IsExpanded"
+                        Value="{Binding IsExpanded, Mode=TwoWay}" />
+                        <Setter Property="IsSelected"
+                        Value="{Binding IsSelected, Mode=TwoWay}" />
+                        <Style.Resources>
+                            
+                        </Style.Resources>
+                    </Style>
+                </TreeView.Resources>
+                <TreeView.ItemTemplate>
+                    <HierarchicalDataTemplate ItemsSource="{Binding SubCategories}">
+                        <TextBlock Text="{Binding CategoryName}"/>
+                    </HierarchicalDataTemplate>
+                </TreeView.ItemTemplate>
+            </TreeView>
+        </materialDesign:Card>
         <TextBlock 
             HorizontalAlignment="Center"
             VerticalAlignment="Center"

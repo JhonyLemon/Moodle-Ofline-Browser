@@ -26,6 +26,7 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
         private bool folderRadio = false;
         private bool logCheckBox;
         public bool IsNewData { get; set; } = false;
+        private bool IsPathValid { get; set; } = false;
 
         private Visibility logsVisibility;
         private Visibility goBackVisibility;
@@ -46,25 +47,11 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
         public DialogViewModel(IEventAggregator eventAggregator)
         {
             _eventAggregator = eventAggregator;
-
-            BackupRadio = false;
-            FolderRadio = false;
-            LogCheckBox = true;
-            SelectCompressedFilePath = "";
-            SelectDecompresionOutputFolderPath = "";
-            SelectCourseFolderPath = "";
-
-            BackupVisibility = Visibility.Collapsed;
-            LogCheckBoxVisibility = Visibility.Collapsed;
-            FolderVisibility = Visibility.Collapsed;
-            ProgresVisibility = Visibility.Collapsed;
-            StartLoadingVisibility = Visibility.Collapsed;
-            LogsVisibility = Visibility.Collapsed;
-
+            Logs = new ObservableCollection<ReportDataProviderProgress>();
+            DefaultVisibility();
+            ClearFields();
             progress = new Progress<ReportDataProviderProgress>();
             progress.ProgressChanged += ProviderHelper_ReportProgress;
-
-            Logs = new ObservableCollection<ReportDataProviderProgress>();
         }
 
         #region Get&Set
@@ -79,26 +66,14 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
             }
         }
 
-       
-
          public bool BackupRadio
         {
             get { return backupRadio; }
             set
             {
-                if (value)
-                {
-                    BackupVisibility = Visibility.Visible;
-                }
-                else if (!value)
-                {
-                    BackupVisibility = Visibility.Collapsed;
-                }
                 backupRadio = value;
+                BackupRadioSelection();
                 NotifyOfPropertyChange(() => BackupRadio);
-
-       
-
             }
         }
         public bool LogCheckBox
@@ -115,15 +90,8 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
             get { return folderRadio; }
             set
             {
-                if (value)
-                {
-                    FolderVisibility = Visibility.Visible;
-                }
-                else if (!value)
-                {
-                    FolderVisibility = Visibility.Collapsed;
-                }
                 folderRadio = value;
+                FolderRadioSelection();
                 NotifyOfPropertyChange(() => folderRadio);
             }
         }
@@ -217,6 +185,7 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
                 selectCompressedFilePath = value;
                 NotifyOfPropertyChange(() => SelectCompressedFilePath);
                 CheckIfPathValid();
+                PrepareToLoadVisibility();
             }
         }
         public string SelectDecompresionOutputFolderPath
@@ -227,6 +196,7 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
                 selectDecompresionOutputFolderPath = value;
                 NotifyOfPropertyChange(() => SelectDecompresionOutputFolderPath);
                 CheckIfPathValid();
+                PrepareToLoadVisibility();
             }
         }
         public string SelectCourseFolderPath
@@ -237,6 +207,7 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
                 selectCourseFolderPath = value;
                 NotifyOfPropertyChange(() => SelectCourseFolderPath);
                 CheckIfPathValid();
+                PrepareToLoadVisibility();
             }
         }
         public int ProgressBar
@@ -256,42 +227,23 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
 
         public void SelectCompressedFile()
         {
-            _eventAggregator.PublishOnUIThread(new CanClickAway(false));
-            var dialog = new Microsoft.Win32.OpenFileDialog();
-
-            if (dialog.ShowDialog() == true)
-            {
-                SelectCompressedFilePath = dialog.FileName;
-                CheckIfPathValid();
-            }
-            Task.Delay(1000).ContinueWith(t => _eventAggregator.PublishOnUIThread(new CanClickAway(true)));
+            DisableDialogClosing();
+            SelectCompressedFilePath = OpenFileDialog();
+            Task.Delay(1000).ContinueWith(t => EnableDialogClosing());
         }
 
         public void SelectDecompresionOutputFolder()
         {
-            var dialog = new FolderBrowserDialog();
-
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                SelectDecompresionOutputFolderPath = dialog.SelectedPath;
-                CheckIfPathValid();
-            }
+            DisableDialogClosing();
+            SelectDecompresionOutputFolderPath = OpenFolderDialog();
+            Task.Delay(1000).ContinueWith(t => EnableDialogClosing());
         }
 
         public void SelectCourseFolder()
         {
-            var dialog = new FolderBrowserDialog();
-
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                SelectCourseFolderPath = dialog.SelectedPath;
-                CheckIfPathValid();
-            }
-        }
-
-        public bool CanStartLoading(bool val)
-        {
-            return val;
+            DisableDialogClosing();
+            SelectCourseFolderPath = OpenFolderDialog();
+            Task.Delay(1000).ContinueWith(t => EnableDialogClosing());
         }
 
         public async void StartLoading()
@@ -304,6 +256,61 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
             {
                 providerHelper = new DataProviderHelper(SelectCourseFolderPath, progress);
             }
+            LoadingVisibility();
+            FullCourse = await Task.Run(() => providerHelper.GetFullCourse());
+            IsNewData = true;
+            _eventAggregator.PublishOnUIThread(new CourseParsed(FullCourse));
+        }
+
+        #endregion
+
+        public void CheckIfPathValid()
+        {
+            if (BackupRadio)
+            {
+                IsPathValid = PathChecker.CheckCompressedFilePath(SelectCompressedFilePath) && PathChecker.CheckOutputFolder(SelectDecompresionOutputFolderPath);
+            }
+            else if (FolderRadio)
+            {
+                IsPathValid = PathChecker.CheckCourseFolder(SelectCourseFolderPath);
+            }
+        }
+
+        private void ProviderHelper_ReportProgress(object sender, ReportDataProviderProgress e)
+        {
+            ProgressBar = e.Percentage;
+            Logs.Add(e);
+            NotifyOfPropertyChange(() => Logs);
+        }
+
+        public void BackupRadioSelection()
+        {
+            if (backupRadio)
+            {
+                BackupVisibility = Visibility.Visible;
+                LogCheckBox = true;
+            }
+            else if (!backupRadio)
+            {
+                BackupVisibility = Visibility.Collapsed;
+            }
+        }
+
+        public void FolderRadioSelection()
+        {
+            if (folderRadio)
+            {
+                FolderVisibility = Visibility.Visible;
+                LogCheckBox = false;
+            }
+            else if (!folderRadio)
+            {
+                FolderVisibility = Visibility.Collapsed;
+            }
+        }
+
+        public void LoadingVisibility()
+        {
             providerHelper.GenerateLogFile = LogCheckBox;
             BackupRadioVisibility = Visibility.Collapsed;
             LogsVisibility = Visibility.Visible;
@@ -313,26 +320,11 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
             FolderRadioVisibility = Visibility.Collapsed;
             FolderVisibility = Visibility.Collapsed;
             StartLoadingVisibility = Visibility.Collapsed;
-            _eventAggregator.PublishOnUIThread(new CanClickAway(false));
-            FullCourse = await Task.Run(() => providerHelper.GetFullCourse());
-            _eventAggregator.PublishOnUIThread(new CanClickAway(true));
-            IsNewData = true;
         }
 
-        #endregion
-
-        public bool CheckIfPathValid()
+        public void PrepareToLoadVisibility()
         {
-            bool isValid = false;
-            if (BackupRadio)
-            {
-                isValid = PathChecker.CheckCompressedFilePath(SelectCompressedFilePath) && PathChecker.CheckOutputFolder(SelectDecompresionOutputFolderPath);
-            }
-            else if (FolderRadio)
-            {
-                isValid = PathChecker.CheckCourseFolder(SelectCourseFolderPath);
-            }
-            if (isValid)
+            if (IsPathValid)
             {
                 StartLoadingVisibility = Visibility.Visible;
                 LogCheckBoxVisibility = Visibility.Visible;
@@ -342,26 +334,12 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
                 StartLoadingVisibility = Visibility.Collapsed;
                 LogCheckBoxVisibility = Visibility.Collapsed;
             }
-            CanStartLoading(isValid);
-            return isValid;
         }
 
-        private void ProviderHelper_ReportProgress(object sender, ReportDataProviderProgress e)
-        {
-            // Console.WriteLine(e.Percentage + "% " + e.Progress.Message);
-            ProgressBar = e.Percentage;
-            Logs.Add(e);
-            NotifyOfPropertyChange(() => Logs);
-        }
-
-        public void ClearDialogBox()
+        public void DefaultVisibility()
         {
             BackupRadioVisibility = Visibility.Visible;
             FolderRadioVisibility = Visibility.Visible;
-
-            BackupRadio = false;
-            FolderRadio = false;
-            logCheckBox = true;
 
             BackupVisibility = Visibility.Collapsed;
             FolderVisibility = Visibility.Collapsed;
@@ -369,6 +347,14 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
             StartLoadingVisibility = Visibility.Collapsed;
             LogsVisibility = Visibility.Collapsed;
             LogCheckBoxVisibility = Visibility.Collapsed;
+        }
+
+        public void ClearFields()
+        {
+            BackupRadio = false;
+            FolderRadio = false;
+            logCheckBox = true;
+
             Logs.Clear();
             IsNewData = false;
             ProgressBar = 0;
@@ -377,5 +363,36 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
             SelectDecompresionOutputFolderPath = "";
             SelectCourseFolderPath = "";
         }
+
+        public void DisableDialogClosing()
+        {
+            _eventAggregator.PublishOnUIThread(new CanClickAway(false));  
+        }
+        public void EnableDialogClosing()
+        {
+            _eventAggregator.PublishOnUIThread(new CanClickAway(true));
+        }
+
+        public string OpenFolderDialog()
+        {
+            string path = "";
+            FolderBrowserDialog dialog = new FolderBrowserDialog();
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                path = dialog.SelectedPath;
+            }
+            return path;
+        }
+        public string OpenFileDialog()
+        {
+            string path = "";
+            Microsoft.Win32.OpenFileDialog dialog = new Microsoft.Win32.OpenFileDialog();
+            if (dialog.ShowDialog() == true)
+            {
+                path = dialog.FileName;
+            }
+            return path;
+        }
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Caliburn.Micro;
 using Moodle_Ofline_Browser_GUI.EventModels;
+using Moodle_Ofline_Browser_GUI.Interfaces;
 using Moodle_Ofline_Browser_GUI.Models;
 using System;
 using System.Collections.Generic;
@@ -10,24 +11,25 @@ using System.Threading.Tasks;
 
 namespace Moodle_Ofline_Browser_GUI.ViewModels
 {
-    class FilesListViewModel : Screen, IHandle<CourseParsed>
+    class FilesListViewModel : Screen, IHandle<InformSubView>
     {
+        private ObservableCollection<ModelCategory> categories;
+        private int index=0;
 
         private IEventAggregator _eventAggregator;
 
-        private ObservableCollection<File> files;
-        private Moodle_Ofline_Browser_Core.models.FullCourse fullCourse;
+        private ObservableCollection<ModelCategory> files;
         File file;
 
         public FilesListViewModel(IEventAggregator eventAggregator)
         {
             _eventAggregator = eventAggregator;
-            this._eventAggregator.Subscribe(this);
-            files = new ObservableCollection<File>();
+            _eventAggregator.Subscribe(this);
+            files = new ObservableCollection<ModelCategory>();
             file = null;
         }
 
-        public ObservableCollection<File> Files
+        public ObservableCollection<ModelCategory> Files
         {
             get { return files; }
             set
@@ -36,15 +38,6 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
                 NotifyOfPropertyChange(() => Files);
             }
         }
-
-        public Moodle_Ofline_Browser_Core.models.FullCourse FullCourse
-        {
-            set
-            {
-                fullCourse = value;
-            }
-        }
-
         public File File
         {
             get { return file; }
@@ -55,31 +48,15 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
             }
         }
 
-        public void Handle(CourseParsed message)
+        public void Handle(InformSubView message)
         {
-            FullCourse = message.FullCourse;
             Files.Clear();
-            foreach (Moodle_Ofline_Browser_Core.models.files.File file in fullCourse.Files.File)
-            {
-                File _file = new File();
-                _file.Id = file.Id;
-                _file.FileName = file.Filename;
-                foreach (Moodle_Ofline_Browser_Core.models.users.User user in fullCourse.Users.User)
-                {
-                   if(user.Id==file.Userid)
-                    {
-                        _file.User = user.Firstname + " " + user.Lastname;
-                        break;
-                    }
-                }
-                _file.Date=DateTimeOffset.FromUnixTimeSeconds(file.Timecreated).ToString("G");
-                Files.Add(_file);
-            }
+            Files = message.Category.SubCategories;
         }
 
         public void FileSelection()
         {
-
+            _eventAggregator.PublishOnUIThread(new SubItemSelected(File));
         }
 
     }

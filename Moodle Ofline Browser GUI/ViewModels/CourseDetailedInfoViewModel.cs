@@ -1,5 +1,6 @@
 ﻿using Caliburn.Micro;
 using Moodle_Ofline_Browser_GUI.EventModels;
+using Moodle_Ofline_Browser_GUI.Interfaces;
 using Moodle_Ofline_Browser_GUI.Models;
 using System;
 using System.Collections.Generic;
@@ -10,24 +11,23 @@ using System.Threading.Tasks;
 
 namespace Moodle_Ofline_Browser_GUI.ViewModels
 {
-    class CourseDetailedInfoViewModel : Screen,IHandle<CourseParsed>
+    class CourseDetailedInfoViewModel : Screen,IHandle<InformSubView>
     {
 
         private IEventAggregator _eventAggregator;
 
-        private ObservableCollection<CourseInfo> courseInfos;
-        private Moodle_Ofline_Browser_Core.models.FullCourse fullCourse;
-        CourseInfo courseInfo;
+        private ObservableCollection<ModelCategory> courseInfos;
+        NameValuePair courseInfo;
 
         public CourseDetailedInfoViewModel(IEventAggregator eventAggregator)
         {
             _eventAggregator = eventAggregator;
             this._eventAggregator.Subscribe(this);
-            courseInfos = new ObservableCollection<CourseInfo>();
+            courseInfos = new ObservableCollection<ModelCategory>();
             courseInfo = null;
         }
 
-        public ObservableCollection<CourseInfo> CourseInfos
+        public ObservableCollection<ModelCategory> CourseInfos
         {
             get { return courseInfos; }
             set
@@ -37,15 +37,7 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
             }
         }
 
-        public Moodle_Ofline_Browser_Core.models.FullCourse FullCourse
-        {
-            set
-            {
-                fullCourse = value;
-            }
-        }
-
-        public CourseInfo CourseInfo
+        public NameValuePair CourseInfo
         {
             get { return courseInfo; }
             set
@@ -55,22 +47,10 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
             }
         }
 
-        public void Handle(CourseParsed message)
+        public void Handle(InformSubView message)
         {
-            FullCourse = message.FullCourse;
             CourseInfos.Clear();
-            
-            foreach (System.Reflection.PropertyInfo prop in typeof(Moodle_Ofline_Browser_Core.models.course.Course).GetProperties())
-            {
-
-                if(prop.GetValue(fullCourse.Course.Course, null) is string)
-                    CourseInfos.Add(new CourseInfo(prop.Name, (string)prop.GetValue(fullCourse.Course.Course, null)));
-            }
+            CourseInfos = message.Category.SubCategories;
         }
-        public void CourseInfoSelection()
-        {
-
-        }
-
     }
 }

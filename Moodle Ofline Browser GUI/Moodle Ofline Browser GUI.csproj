@@ -86,19 +86,25 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="EventModels\CanClickAway.cs" />
+    <Compile Include="EventModels\InformSubView.cs" />
+    <Compile Include="EventModels\CategorySelected.cs" />
     <Compile Include="EventModels\CourseParsed.cs" />
+    <Compile Include="EventModels\SubItemSelected.cs" />
+    <Compile Include="Helpers\CategoriesCreatorHelper.cs" />
     <Compile Include="Helpers\DataProviderHelper.cs" />
     <Compile Include="Helpers\PathChecker.cs" />
+    <Compile Include="Interfaces\ICoreCategory.cs" />
+    <Compile Include="Interfaces\ICoreDataItem.cs" />
     <Compile Include="Models\Activity.cs" />
-    <Compile Include="Models\Category.cs" />
-    <Compile Include="Models\CourseInfo.cs" />
-    <Compile Include="Models\DetailedUser.cs" />
+    <Compile Include="Models\ModelCategory.cs" />
+    <Compile Include="Models\NameValuePair.cs" />
     <Compile Include="Models\File.cs" />
     <Compile Include="Models\ReportDataProviderProgress.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="ViewModels\ActivitiesListViewModel.cs" />
     <Compile Include="ViewModels\CourseDetailedInfoViewModel.cs" />
     <Compile Include="ViewModels\DialogViewModel.cs" />
+    <Compile Include="ViewModels\FileInfoViewModel.cs" />
     <Compile Include="ViewModels\FilesListViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
@@ -172,7 +178,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Interfaces\" />
+    <Folder Include="CustomViews\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Moodle Ofline Browser Core\Moodle Ofline Browser Core.csproj">

@@ -16,12 +16,11 @@ using MaterialDesignThemes.Wpf;
 
 namespace Moodle_Ofline_Browser_GUI.ViewModels
 {
-    class ShellViewModel : Conductor<object>, IHandle<CanClickAway>
+    class ShellViewModel : Conductor<object>, IHandle<CanClickAway>,IHandle<CourseParsed>
     {
         private IEventAggregator _eventAggregator;
         private MainViewModel _mainViewModel;
         private DialogViewModel _dialogViewModel;
-        private Caliburn.Micro.Screen previouslyActive;
 
         private bool dialogIsOpen;
         private bool canCloseOnClickAway;
@@ -66,17 +65,8 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
             {
                 dialogIsOpen = value;
                 NotifyOfPropertyChange(() => DialogIsOpen);
-                if(!dialogIsOpen)
-                {
+                if (!DialogIsOpen)
                     MenuIndex = 1;
-                    if (_dialogViewModel.IsNewData)
-                    {
-                        fullCourse = _dialogViewModel.FullCourse;
-                        _eventAggregator.PublishOnUIThread(new CourseParsed(fullCourse));
-                        ActivateItem(_mainViewModel);
-                    }
-                    _dialogViewModel.ClearDialogBox();
-                }
             }
         }
  
@@ -97,31 +87,31 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
             {
                 menuIndex = value;
                 NotifyOfPropertyChange(() => MenuIndex);
-                if (menuIndex == 0)
-                {
-                    UIElement uiElement = ViewLocator.LocateForModel(_dialogViewModel, null, null);
-                    ViewModelBinder.Bind(_dialogViewModel, uiElement, null);
-                    DialogHost.Show(uiElement);
-                }
-                    
-            }
-        }
-
-        public bool CanGoBack
-        {
-            get
-            {
-                bool check = false;
-                if (previouslyActive != null)
-                    check = true;
-                return check;
+                switch (MenuIndex)
+                { 
+                    case 0://dialog
+                        UIElement uiElement = ViewLocator.LocateForModel(_dialogViewModel, null, null);
+                        ViewModelBinder.Bind(_dialogViewModel, uiElement, null);
+                        DialogHost.Show(uiElement);
+                        break;
+                    case 1://lista
+                        break;
+                }                    
             }
         }
 
         public void GoBack()
         {
-            ActivateItem(previouslyActive);
+            
         }
 
+        public void Handle(CourseParsed message)
+        {
+            DialogIsOpen = false;
+            fullCourse = message.FullCourse;
+            _dialogViewModel.ClearFields();
+            _dialogViewModel.DefaultVisibility();
+            ActivateItem(_mainViewModel);
+        }
     }
 }

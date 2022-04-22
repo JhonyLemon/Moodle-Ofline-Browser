@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Moodle_Ofline_Browser_GUI.Models
+namespace Moodle_Ofline_Browser_GUI.Interfaces
 {
-    public class DetailedUser : User
+    internal class ICoreDataItem
     {
-
     }
 }

@@ -51,9 +51,9 @@ namespace Moodle_Ofline_Browser_Core.models.course
 			[XmlElement(ElementName = "theme")]
 			public string Theme { get; set; }
 			[XmlElement(ElementName = "timecreated")]
-			public string Timecreated { get; set; }
+			public long Timecreated { get; set; }
 			[XmlElement(ElementName = "timemodified")]
-			public string Timemodified { get; set; }
+			public long Timemodified { get; set; }
 			[XmlElement(ElementName = "requested")]
 			public string Requested { get; set; }
 			[XmlElement(ElementName = "showactivitydates")]
