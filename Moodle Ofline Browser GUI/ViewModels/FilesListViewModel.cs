@@ -50,7 +50,7 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
 
         public void Handle(InformSubView message)
         {
-            if (message.Category.FieldInfo.FieldType == typeof(FilesListViewModel))
+            if (message.Category.FieldInfo.FieldType == typeof(FilesListViewModel) && Files != message.Category.SubCategories)
                 Files = message.Category.SubCategories;
         }
 

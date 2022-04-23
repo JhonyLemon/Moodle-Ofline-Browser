@@ -48,7 +48,7 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
 
         public void Handle(InformSubView message)
         {
-            if(message.Category.FieldInfo.FieldType==typeof(UsersListViewModel))
+            if(message.Category.FieldInfo.FieldType==typeof(UsersListViewModel) && Users != message.Category.SubCategories)
                 Users = message.Category.SubCategories;
         }
 

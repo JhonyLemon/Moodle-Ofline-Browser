@@ -36,13 +36,15 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
 
         public void FileOpen()
         {
-
+            System.Diagnostics.Process.Start(((NameValuePair)(FileInfo.Last())).Value);
         }
 
         public void Handle(InformSubView message)
         {
-            if (message.Category.FieldInfo.FieldType == typeof(FileInfoViewModel))
+            if (message.Category.FieldInfo.FieldType == typeof(FileInfoViewModel) && FileInfo != message.Category.SubCategories)
                 FileInfo = message.Category.SubCategories;
         }
+
+
     }
 }

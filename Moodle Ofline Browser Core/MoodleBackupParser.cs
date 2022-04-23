@@ -212,7 +212,7 @@ namespace Moodle_Ofline_Browser_Core
             string name = key.Substring(key.LastIndexOf('\\') + 1);
             if (!fullCourse.FilesFolder.ContainsKey(name))
             {
-                fullCourse.FilesFolder.Add(name, path);
+                fullCourse.FilesFolder.Add(Path.GetFileNameWithoutExtension(name), path);
                 isParsed = true;
             }
             return isParsed;

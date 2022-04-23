@@ -13,6 +13,7 @@ using Moodle_Ofline_Browser_GUI.Models;
 using System.Windows.Forms;
 using System.Collections.ObjectModel;
 using MaterialDesignThemes.Wpf;
+using System.Windows.Media;
 
 namespace Moodle_Ofline_Browser_GUI.ViewModels
 {
@@ -24,11 +25,7 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
 
         private bool dialogIsOpen;
         private bool canCloseOnClickAway;
-        private int menuIndex;
-
-        private FullCourse fullCourse;
-
-        private Visibility goBackVisibility;
+        private Brush treeViewIconColor;
 
 
         public ShellViewModel(IEventAggregator eventAggregator, MainViewModel mainViewModel,DialogViewModel dialogViewModel)
@@ -39,8 +36,7 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
             _eventAggregator.Subscribe(this);
             ActivateItem(_mainViewModel);
 
-            MenuIndex = 1;
-            GoBackVisibility = Visibility.Collapsed;
+            TreeViewIconColor = Brushes.Black;
             CanCloseOnClickAway = true;
     }
 
@@ -65,53 +61,49 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
             {
                 dialogIsOpen = value;
                 NotifyOfPropertyChange(() => DialogIsOpen);
-                if (!DialogIsOpen)
-                    MenuIndex = 1;
             }
         }
  
-        public Visibility GoBackVisibility
+        public Brush TreeViewIconColor
         {
-            get { return goBackVisibility; }
+            get { return treeViewIconColor; }
             set
             {
-                goBackVisibility = value;
-                NotifyOfPropertyChange(() => GoBackVisibility);
+                treeViewIconColor = value;
+                NotifyOfPropertyChange(() => TreeViewIconColor);                  
             }
         }
 
-        public int MenuIndex
+        public void OpenDialog()
         {
-            get { return menuIndex; }
-            set
+            if (!DialogIsOpen)
             {
-                menuIndex = value;
-                NotifyOfPropertyChange(() => MenuIndex);
-                switch (MenuIndex)
-                { 
-                    case 0://dialog
-                        UIElement uiElement = ViewLocator.LocateForModel(_dialogViewModel, null, null);
-                        ViewModelBinder.Bind(_dialogViewModel, uiElement, null);
-                        DialogHost.Show(uiElement);
-                        break;
-                    case 1://lista
-                        break;
-                }                    
+                UIElement uiElement = ViewLocator.LocateForModel(_dialogViewModel, null, null);
+                ViewModelBinder.Bind(_dialogViewModel, uiElement, null);
+                DialogHost.Show(uiElement);
             }
         }
 
-        public void GoBack()
+        public void TreeViewVisibility()
         {
-            
+            if(treeViewIconColor == Brushes.Black)
+            {
+                TreeViewIconColor = Brushes.White;
+                _mainViewModel.TreeViewVisibility = Visibility.Collapsed;
+            }
+            else if(treeViewIconColor == Brushes.White)
+            {
+                TreeViewIconColor = Brushes.Black;
+                _mainViewModel.TreeViewVisibility = Visibility.Visible;
+            }
         }
 
+        
         public void Handle(CourseParsed message)
         {
             DialogIsOpen = false;
-            fullCourse = message.FullCourse;
             _dialogViewModel.ClearFields();
             _dialogViewModel.DefaultVisibility();
-            ActivateItem(_mainViewModel);
         }
     }
 }

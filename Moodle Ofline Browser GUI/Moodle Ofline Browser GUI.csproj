@@ -108,6 +108,7 @@
     <Compile Include="ViewModels\FilesListViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
+    <Compile Include="ViewModels\SinglePropertyListViewModel.cs" />
     <Compile Include="ViewModels\UsersListViewModel.cs" />
     <Compile Include="Views\ActivitiesListView.xaml.cs">
       <DependentUpon>ActivitiesListView.xaml</DependentUpon>
@@ -135,6 +136,9 @@
     </Compile>
     <Compile Include="Views\ShellView.xaml.cs">
       <DependentUpon>ShellView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SinglePropertyListView.xaml.cs">
+      <DependentUpon>SinglePropertyListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserFileListView.xaml.cs">
       <DependentUpon>UserFileListView.xaml</DependentUpon>
@@ -220,6 +224,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ShellView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SinglePropertyListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

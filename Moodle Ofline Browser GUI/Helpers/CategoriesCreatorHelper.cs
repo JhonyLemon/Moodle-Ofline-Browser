@@ -15,11 +15,13 @@ namespace Moodle_Ofline_Browser_GUI.Helpers
     {
         private ObservableCollection<ModelCategory> categoryItems;
         private FullCourse fullCourse;
+        private Dictionary<string, Moodle_Ofline_Browser_Core.models.users.User> Users;
 
         public CategoriesCreatorHelper(FullCourse fullCourse)
         {
             FullCourse = fullCourse;
             categoryItems = new ObservableCollection<ModelCategory>();
+            Users = new Dictionary<string, Moodle_Ofline_Browser_Core.models.users.User>();
         }
 
         public ObservableCollection<ModelCategory> CategoryItems
@@ -40,10 +42,19 @@ namespace Moodle_Ofline_Browser_GUI.Helpers
 
         public void LoadToCategories()
         {
+            CreateUsersDictionary();
             LoadUsers();
             LoadActivities();
             LoadFiles();
             LoadCourseDetails();
+        }
+
+        public void CreateUsersDictionary()
+        {
+            foreach (Moodle_Ofline_Browser_Core.models.users.User user in fullCourse.Users.User)
+            {
+                Users.Add(user.Id, user);
+            }
         }
 
         private void LoadCourseDetails()
@@ -56,8 +67,8 @@ namespace Moodle_Ofline_Browser_GUI.Helpers
             foreach (System.Reflection.PropertyInfo prop in typeof(Moodle_Ofline_Browser_Core.models.course.Course).GetProperties())
             {
                 ModelCategory courseInfo = new NameValuePair();
-                courseInfo.CategoryName = prop.Name;
-                courseInfo.FieldInfo = course.FieldInfo;
+                courseInfo.CategoryName = prop.Name; 
+                courseInfo.FieldInfo = typeof(MainViewModel).GetField("_singlePropertyListViewModel", BindingFlags.Instance | BindingFlags.NonPublic);
                 ((NameValuePair)courseInfo).Name = prop.Name;
                 if (prop.GetValue(fullCourse.Course.Course, null) is string)
                 {
@@ -91,14 +102,9 @@ namespace Moodle_Ofline_Browser_GUI.Helpers
                     fileSubItem.CategoryName = file.Filename;
                     ((File)fileSubItem).Id = file.Id;
                     ((File)fileSubItem).FileName = file.Filename;
-                    foreach (Moodle_Ofline_Browser_Core.models.users.User user in fullCourse.Users.User)
-                    {
-                        if (user.Id == file.Userid)
-                        {
-                            ((File)fileSubItem).FileName = user.Firstname + " " + user.Lastname;
-                            break;
-                        }
-                    }
+                    Moodle_Ofline_Browser_Core.models.users.User user;
+                    if(Users.TryGetValue(file.Userid,out user))
+                        ((File)fileSubItem).User = user.Firstname+" "+ user.Lastname;
                     ((File)fileSubItem).Date = DateTimeOffset.FromUnixTimeSeconds(file.Timecreated).ToString("G");
 
                     ModelCategory fileDetails=null;
@@ -108,7 +114,7 @@ namespace Moodle_Ofline_Browser_GUI.Helpers
                         fileDetails = new NameValuePair();
 
                         fileDetails.CategoryName = prop.Name;
-                        fileDetails.FieldInfo = typeof(MainViewModel).GetField("_fileInfoViewModel", BindingFlags.Instance | BindingFlags.NonPublic);
+                        fileDetails.FieldInfo = typeof(MainViewModel).GetField("_singlePropertyListViewModel", BindingFlags.Instance | BindingFlags.NonPublic);
 
                         ((NameValuePair)fileDetails).Name = prop.Name;
 
@@ -120,7 +126,7 @@ namespace Moodle_Ofline_Browser_GUI.Helpers
                     }
                     fileDetails = new NameValuePair();
                     fileDetails.CategoryName = "Path";
-                    fileDetails.FieldInfo = typeof(MainViewModel).GetField("_fileInfoViewModel", BindingFlags.Instance | BindingFlags.NonPublic);
+                    fileDetails.FieldInfo = typeof(MainViewModel).GetField("_singlePropertyListViewModel", BindingFlags.Instance | BindingFlags.NonPublic);
                     ((NameValuePair)fileDetails).Name = "Path";
                     ((NameValuePair)fileDetails).Value = path;
                     fileSubItem.SubCategories.Add(fileDetails);
@@ -182,7 +188,7 @@ namespace Moodle_Ofline_Browser_GUI.Helpers
             foreach (Moodle_Ofline_Browser_Core.models.users.User user in fullCourse.Users.User)
             {
                 ModelCategory usersSubItem = new User();
-                users.CategoryName = "Użytkownicy";
+                usersSubItem.CategoryName = user.Firstname+" "+user.Lastname;
                 users.FieldInfo = typeof(MainViewModel).GetField("_usersListViewModel", BindingFlags.Instance | BindingFlags.NonPublic);
 
                 ((User)usersSubItem).Id = user.Id;

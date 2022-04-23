@@ -22,10 +22,12 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
         private FileInfoViewModel _fileInfoViewModel;
         private CourseDetailedInfoViewModel _courseDetailedInfoViewModel;
         private ActivitiesListViewModel _activitiesListViewModel;
+        private SinglePropertyListViewModel _singlePropertyListViewModel;
 
         private Screen activeList;
 
         private Visibility noDataVisibility;
+        private Visibility treeViewVisibility;
         private string currentlyLoadedCourse;
         private FullCourse fullCourse;
 
@@ -34,6 +36,7 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
             ActivitiesListViewModel activitiesListViewModel,
             CourseDetailedInfoViewModel courseDetailedInfoViewModel,
             FileInfoViewModel fileInfoViewModel,
+            SinglePropertyListViewModel singlePropertyListViewModel,
             FilesListViewModel filesListViewModel)
         {
             _eventAggregator = eventAggregator;
@@ -41,6 +44,7 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
             _activitiesListViewModel = activitiesListViewModel;
             _filesListViewModel = filesListViewModel;
             _fileInfoViewModel = fileInfoViewModel;
+            _singlePropertyListViewModel = singlePropertyListViewModel;
             _courseDetailedInfoViewModel = courseDetailedInfoViewModel;
 
             this._eventAggregator.Subscribe(this);
@@ -98,11 +102,26 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
             }
         }
 
+        public Visibility TreeViewVisibility
+        {
+            get { return treeViewVisibility; }
+            set
+            {
+                treeViewVisibility = value;
+                NotifyOfPropertyChange(() => TreeViewVisibility);
+            }
+        }
+
         public void SetSelectedType(ModelCategory item)
         {
-
-            ActiveList = (Screen)item.FieldInfo.GetValue(this);
-            _eventAggregator.PublishOnUIThread(new InformSubView(item));
+            if (item == null)
+                ActiveList = null;
+            else
+                if (item.FieldInfo != null)
+                { 
+                    ActiveList = (Screen)item.FieldInfo.GetValue(this);
+                    _eventAggregator.PublishOnUIThread(new InformSubView(item));
+                }
         }
 
         public void Handle(CourseParsed message)
@@ -123,8 +142,8 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
 
         public void Handle(SubItemSelected message)
         {
-            SetSelectedType(message.Category);
             message.Category.IsSelected = true;
+            SetSelectedType(message.Category);
         }
     }
 }

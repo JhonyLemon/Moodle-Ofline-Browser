@@ -49,7 +49,7 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
 
         public void Handle(InformSubView message)
         {
-            if (message.Category.FieldInfo.FieldType == typeof(CourseDetailedInfoViewModel))
+            if (message.Category.FieldInfo.FieldType == typeof(CourseDetailedInfoViewModel) && CourseInfos != message.Category.SubCategories)
                 CourseInfos = message.Category.SubCategories;
         }
     }

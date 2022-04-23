@@ -27,9 +27,9 @@ namespace Moodle_Ofline_Browser_Core.models.course
 			[XmlElement(ElementName = "newsitems")]
 			public string Newsitems { get; set; }
 			[XmlElement(ElementName = "startdate")]
-			public string Startdate { get; set; }
+			public long Startdate { get; set; }
 			[XmlElement(ElementName = "enddate")]
-			public string Enddate { get; set; }
+			public long Enddate { get; set; }
 			[XmlElement(ElementName = "marker")]
 			public string Marker { get; set; }
 			[XmlElement(ElementName = "maxbytes")]
