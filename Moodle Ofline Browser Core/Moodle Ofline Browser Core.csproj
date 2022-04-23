@@ -69,7 +69,8 @@
     <Compile Include="MbzDecompressor.cs" />
     <Compile Include="models\activities\ActivityFolder.cs" />
     <Compile Include="models\activities\activityTypes\Activity.cs" />
-    <Compile Include="models\activities\activityTypes\assign\Assign.cs" />
+    <Compile Include="models\activities\activityTypes\Assign.cs" />
+    <Compile Include="models\activities\activityTypes\assign\Feedback_comments.cs" />
     <Compile Include="models\activities\activityTypes\assign\Feedback_editpdf_files.cs" />
     <Compile Include="models\activities\activityTypes\assign\Feedback_editpdf_rotation.cs" />
     <Compile Include="models\activities\activityTypes\assign\Grade.cs" />
@@ -81,9 +82,12 @@
     <Compile Include="models\activities\activityTypes\assign\Submissions.cs" />
     <Compile Include="models\activities\activityTypes\ActivityType.cs" />
     <Compile Include="models\activities\activityTypes\assign\Submission_file.cs" />
+    <Compile Include="models\activities\activityTypes\assign\Subplugin_assignfeedback_comments_grade.cs" />
     <Compile Include="models\activities\activityTypes\assign\Subplugin_assignfeedback_editpdf_grade.cs" />
     <Compile Include="models\activities\activityTypes\assign\Subplugin_assignsubmission_file_submission.cs" />
-    <Compile Include="models\activities\activityTypes\attendance\Attendance.cs" />
+    <Compile Include="models\activities\activityTypes\assign\Userflag.cs" />
+    <Compile Include="models\activities\activityTypes\assign\Userflags.cs" />
+    <Compile Include="models\activities\activityTypes\Attendance.cs" />
     <Compile Include="models\activities\activityTypes\attendance\Log.cs" />
     <Compile Include="models\activities\activityTypes\attendance\Logs.cs" />
     <Compile Include="models\activities\activityTypes\attendance\Session.cs" />
@@ -197,6 +201,19 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="models\activities\activityTypes\bigbluebuttonbn\" />
+    <Folder Include="models\activities\activityTypes\book\" />
+    <Folder Include="models\activities\activityTypes\chat\" />
+    <Folder Include="models\activities\activityTypes\checklist\" />
+    <Folder Include="models\activities\activityTypes\choice\" />
+    <Folder Include="models\activities\activityTypes\customcert\" />
+    <Folder Include="models\activities\activityTypes\folder\" />
+    <Folder Include="models\activities\activityTypes\forum\" />
+    <Folder Include="models\activities\activityTypes\page\" />
+    <Folder Include="models\activities\activityTypes\quiz\" />
+    <Folder Include="models\activities\activityTypes\survey\" />
+    <Folder Include="models\activities\activityTypes\url\" />
+    <Folder Include="models\activities\activityTypes\wiki\" />
     <Folder Include="models\comments\" />
     <Folder Include="models\competencies\" />
     <Folder Include="models\completiondefaults\" />

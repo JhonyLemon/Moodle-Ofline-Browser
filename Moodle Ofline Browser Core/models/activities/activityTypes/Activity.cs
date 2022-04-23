@@ -10,8 +10,8 @@ namespace Moodle_Ofline_Browser_Core.models.activities.activityTypes
 	[XmlRoot(ElementName = "activity")]
 	public class Activity
 	{
-        [XmlElement(ElementName = "attendance", Type = typeof(attendance.Attendance))]
-        [XmlElement(ElementName = "assign", Type = typeof(assign.Assign))]
+        [XmlElement(ElementName = "attendance", Type = typeof(Attendance))]
+        [XmlElement(ElementName = "assign", Type = typeof(Assign))]
 		public ActivityType ActivityType { get; set; }
 
         [XmlAttribute(AttributeName = "id")]

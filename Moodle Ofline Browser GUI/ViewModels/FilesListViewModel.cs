@@ -13,9 +13,6 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
 {
     class FilesListViewModel : Screen, IHandle<InformSubView>
     {
-        private ObservableCollection<ModelCategory> categories;
-        private int index=0;
-
         private IEventAggregator _eventAggregator;
 
         private ObservableCollection<ModelCategory> files;

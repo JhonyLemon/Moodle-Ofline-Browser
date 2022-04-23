@@ -67,13 +67,13 @@ namespace Moodle_Ofline_Browser_Core.models.users
         [XmlElement(ElementName = "timezone")]
         public string Timezone { get; set; }
         [XmlElement(ElementName = "firstaccess")]
-        public string Firstaccess { get; set; }
+        public long Firstaccess { get; set; }
         [XmlElement(ElementName = "lastaccess")]
-        public string Lastaccess { get; set; }
+        public long Lastaccess { get; set; }
         [XmlElement(ElementName = "lastlogin")]
-        public string Lastlogin { get; set; }
+        public long Lastlogin { get; set; }
         [XmlElement(ElementName = "currentlogin")]
-        public string Currentlogin { get; set; }
+        public long Currentlogin { get; set; }
         [XmlElement(ElementName = "mailformat")]
         public string Mailformat { get; set; }
         [XmlElement(ElementName = "maildigest")]
@@ -85,9 +85,9 @@ namespace Moodle_Ofline_Browser_Core.models.users
         [XmlElement(ElementName = "trackforums")]
         public string Trackforums { get; set; }
         [XmlElement(ElementName = "timecreated")]
-        public string Timecreated { get; set; }
+        public long Timecreated { get; set; }
         [XmlElement(ElementName = "timemodified")]
-        public string Timemodified { get; set; }
+        public long Timemodified { get; set; }
         [XmlElement(ElementName = "trustbitmask")]
         public string Trustbitmask { get; set; }
         [XmlElement(ElementName = "custom_fields")]

@@ -15,6 +15,7 @@ namespace Moodle_Ofline_Browser_GUI.Models
 
         public string Id { get; set; }
         public string User { get; set; }
+        public string UserId { get; set; }
         public string FileName { get; set; }
         public string Date { get; set; }
 
@@ -23,6 +24,7 @@ namespace Moodle_Ofline_Browser_GUI.Models
             Id = id;
             User = user;
             FileName = fileName;
+            UserId = "";
             Date = date;
         }
     }

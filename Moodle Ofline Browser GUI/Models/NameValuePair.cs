@@ -13,8 +13,48 @@ namespace Moodle_Ofline_Browser_GUI.Models
         {
         }
 
-        public string Name { get; set; }
-        public string Value { get; set; }
+        private string name;
+        public string Name
+        {
+            get
+            {
+                if (this.value != null && this.value != "")
+                    return this.name + ":";
+                return this.name;
+            }
+            set
+            {
+                if (value != this.name)
+                {
+                    this.name = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+        private string value;
+        public string Value
+        {
+            get
+            {
+                return this.value;
+            }
+            set
+            {
+                if (value != this.value)
+                {
+                    this.value = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        public string NameAndValue
+        {
+            get
+            {
+                return Name+" "+Value;
+            }
+        }
 
         public NameValuePair(string name, string value)
         {

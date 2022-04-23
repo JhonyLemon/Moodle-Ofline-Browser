@@ -19,7 +19,6 @@
         UniformCornerRadius="10">
         <ListView
             SelectedItem="{Binding User}"
-            
             cal:Message.Attach="[Event MouseDoubleClick] = [Action UserSelection()]" 
             ItemsSource="{Binding Users}">
             <ListView.View>

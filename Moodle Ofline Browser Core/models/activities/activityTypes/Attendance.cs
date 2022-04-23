@@ -1,24 +1,13 @@
-﻿using System;
+﻿using Moodle_Ofline_Browser_Core.models.activities.activityTypes.attendance;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace Moodle_Ofline_Browser_Core.models.activities.activityTypes.attendance
+namespace Moodle_Ofline_Browser_Core.models.activities.activityTypes
 {
-
-
-
-
-
-
-
-
-
-
-
-
 		[XmlRoot(ElementName = "attendance")]
 		public class Attendance: ActivityType
 		{

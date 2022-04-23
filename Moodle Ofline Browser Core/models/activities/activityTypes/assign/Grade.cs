@@ -19,16 +19,16 @@ namespace Moodle_Ofline_Browser_Core.models.activities.activityTypes.assign
 		[XmlElement(ElementName = "grader")]
 		public string Grader { get; set; }
 		[XmlElement(ElementName = "grade")]
-		public string GradeValue { get; set; }
+		public string _Grade { get; set; }
 		[XmlElement(ElementName = "attemptnumber")]
 		public string Attemptnumber { get; set; }
-		[XmlElement(ElementName = "subplugin_assignfeedback_comments_grade")]
-		public string Subplugin_assignfeedback_comments_grade { get; set; }
 		[XmlElement(ElementName = "subplugin_assignfeedback_editpdf_grade")]
 		public Subplugin_assignfeedback_editpdf_grade Subplugin_assignfeedback_editpdf_grade { get; set; }
 		[XmlElement(ElementName = "subplugin_assignfeedback_file_grade")]
 		public string Subplugin_assignfeedback_file_grade { get; set; }
 		[XmlAttribute(AttributeName = "id")]
 		public string Id { get; set; }
+		[XmlElement(ElementName = "subplugin_assignfeedback_comments_grade")]
+		public Subplugin_assignfeedback_comments_grade Subplugin_assignfeedback_comments_grade { get; set; }
 	}
 }

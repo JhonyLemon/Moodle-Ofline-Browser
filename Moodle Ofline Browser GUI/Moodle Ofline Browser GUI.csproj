@@ -102,13 +102,11 @@
     <Compile Include="Models\ReportDataProviderProgress.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="ViewModels\ActivitiesListViewModel.cs" />
-    <Compile Include="ViewModels\CourseDetailedInfoViewModel.cs" />
     <Compile Include="ViewModels\DialogViewModel.cs" />
-    <Compile Include="ViewModels\FileInfoViewModel.cs" />
     <Compile Include="ViewModels\FilesListViewModel.cs" />
+    <Compile Include="ViewModels\InfoViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
-    <Compile Include="ViewModels\SinglePropertyListViewModel.cs" />
     <Compile Include="ViewModels\UsersListViewModel.cs" />
     <Compile Include="Views\ActivitiesListView.xaml.cs">
       <DependentUpon>ActivitiesListView.xaml</DependentUpon>
@@ -119,26 +117,20 @@
     <Compile Include="Views\ActivityView.xaml.cs">
       <DependentUpon>ActivityView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\CourseDetailedInfoView.xaml.cs">
-      <DependentUpon>CourseDetailedInfoView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\DialogView.xaml.cs">
       <DependentUpon>DialogView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\FileInfoView.xaml.cs">
-      <DependentUpon>FileInfoView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\FilesListView.xaml.cs">
       <DependentUpon>FilesListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\InfoView.xaml.cs">
+      <DependentUpon>InfoView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ShellView.xaml.cs">
       <DependentUpon>ShellView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\SinglePropertyListView.xaml.cs">
-      <DependentUpon>SinglePropertyListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserFileListView.xaml.cs">
       <DependentUpon>UserFileListView.xaml</DependentUpon>
@@ -148,9 +140,6 @@
     </Compile>
     <Compile Include="Views\UsersListView.xaml.cs">
       <DependentUpon>UsersListView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UserView.xaml.cs">
-      <DependentUpon>UserView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -203,19 +192,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\CourseDetailedInfoView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\DialogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\FileInfoView.xaml">
+    <Page Include="Views\FilesListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\FilesListView.xaml">
+    <Page Include="Views\InfoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -224,10 +209,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ShellView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\SinglePropertyListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -240,10 +221,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UsersListView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\UserView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

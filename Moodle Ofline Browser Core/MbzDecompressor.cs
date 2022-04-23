@@ -290,8 +290,8 @@ namespace Moodle_Ofline_Browser_Core
 {"application/json",".json"},
 {"application/vnd.joost.joda-archive",".joda"},
 {"video/jpm",".jpm"},
-{"image/jpeg",".jpeg, .jpg"},
-{"image/x-citrix-jpeg",".jpeg, .jpg"},
+{"image/jpeg",".jpeg"},
+{"image/x-citrix-jpeg",".jpeg"},
 {"image/pjpeg",".pjpeg"},
 {"video/jpeg",".jpgv"},
 {"application/vnd.kahootz",".ktz"},
@@ -739,29 +739,7 @@ namespace Moodle_Ofline_Browser_Core
                             result = MakeResult(shortName, true);
                             if (shortName.Contains("files.xml"))
                             {
-                                using (Stream fileStream = new FileStream(folderPath + "\\" + shortName, FileMode.Open))
-                                {
-
-                                    XmlSerializer serializer = new XmlSerializer(typeof(models.files.Files));
-                                    var test = serializer.Deserialize(fileStream);
-                                    models.files.Files files = (models.files.Files)test;
-                                    List<string> paths = new List<string>(Directory.GetFiles(folderPath + "\\files", "*", SearchOption.AllDirectories));
-                                    foreach (string file in paths)
-                                    {
-                                        foreach (models.files.File fileDetails in files.File)
-                                        {
-                                            if (file.Contains(fileDetails.Contenthash))
-                                            {
-                                                string extension;
-                                                if (MimeTypes.TryGetValue(fileDetails.Mimetype, out extension))
-                                                {
-                                                    File.Move(file, Path.ChangeExtension(file, extension));
-                                                }
-                                                break;
-                                            }
-                                        }
-                                    }
-                                }
+                                AddFileExtension(folderPath, shortName);
                             }
                         }
                         catch (Exception)
@@ -794,6 +772,33 @@ namespace Moodle_Ofline_Browser_Core
             result.Message = shortName;
             result.Percentage = percentage;
             return result;
+        }
+
+        private void AddFileExtension(string folderPath,string shortName)
+        {
+            using (Stream fileStream = new FileStream(folderPath + "\\" + shortName, FileMode.Open))
+            {
+
+                XmlSerializer serializer = new XmlSerializer(typeof(models.files.Files));
+                var test = serializer.Deserialize(fileStream);
+                models.files.Files files = (models.files.Files)test;
+                List<string> paths = new List<string>(Directory.GetFiles(folderPath + "\\files", "*", SearchOption.AllDirectories));
+                foreach (string file in paths)
+                {
+                    foreach (models.files.File fileDetails in files.File)
+                    {
+                        if (file.Contains(fileDetails.Contenthash))
+                        {
+                            string extension;
+                            if (MimeTypes.TryGetValue(fileDetails.Mimetype, out extension))
+                            {
+                                File.Move(file, Path.ChangeExtension(file, extension));
+                            }
+                            break;
+                        }
+                    }
+                }
+            }
         }
 
 

@@ -19,10 +19,8 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
         private IEventAggregator _eventAggregator;
         private UsersListViewModel _usersListViewModel;
         private FilesListViewModel _filesListViewModel;
-        private FileInfoViewModel _fileInfoViewModel;
-        private CourseDetailedInfoViewModel _courseDetailedInfoViewModel;
+        private InfoViewModel _infoViewModel;
         private ActivitiesListViewModel _activitiesListViewModel;
-        private SinglePropertyListViewModel _singlePropertyListViewModel;
 
         private Screen activeList;
 
@@ -34,18 +32,14 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
         public MainViewModel(IEventAggregator eventAggregator, 
             UsersListViewModel usersListViewModel, 
             ActivitiesListViewModel activitiesListViewModel,
-            CourseDetailedInfoViewModel courseDetailedInfoViewModel,
-            FileInfoViewModel fileInfoViewModel,
-            SinglePropertyListViewModel singlePropertyListViewModel,
+            InfoViewModel infoViewModel,
             FilesListViewModel filesListViewModel)
         {
             _eventAggregator = eventAggregator;
             _usersListViewModel = usersListViewModel;
             _activitiesListViewModel = activitiesListViewModel;
             _filesListViewModel = filesListViewModel;
-            _fileInfoViewModel = fileInfoViewModel;
-            _singlePropertyListViewModel = singlePropertyListViewModel;
-            _courseDetailedInfoViewModel = courseDetailedInfoViewModel;
+            _infoViewModel = infoViewModel;
 
             this._eventAggregator.Subscribe(this);
 
@@ -134,11 +128,7 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
             CategoriesCreatorHelper helper = new CategoriesCreatorHelper(FullCourse);
             helper.LoadToCategories();
             CategoryItems = helper.CategoryItems;
-
-            //_eventAggregator.PublishOnUIThread(new CategoriesCreated(CategoryItems));
         }
-
-
 
         public void Handle(SubItemSelected message)
         {

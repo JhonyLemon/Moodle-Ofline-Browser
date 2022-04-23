@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Moodle_Ofline_Browser_GUI.Views
 {
     /// <summary>
-    /// Interaction logic for FileInfoView.xaml
+    /// Interaction logic for InfoView.xaml
     /// </summary>
-    public partial class FileInfoView : UserControl
+    public partial class InfoView : UserControl
     {
-        public FileInfoView()
+        public InfoView()
         {
             InitializeComponent();
         }

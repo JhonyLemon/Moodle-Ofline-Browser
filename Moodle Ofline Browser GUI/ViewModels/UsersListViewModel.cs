@@ -54,7 +54,8 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
 
         public void UserSelection()
         {
-
+            if (User != null)
+                _eventAggregator.PublishOnUIThread(new SubItemSelected(User));
         }
 
     }
