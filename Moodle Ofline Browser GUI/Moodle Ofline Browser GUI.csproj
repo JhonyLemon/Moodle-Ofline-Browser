@@ -95,6 +95,7 @@
     <Compile Include="Helpers\PathChecker.cs" />
     <Compile Include="Interfaces\ICoreCategory.cs" />
     <Compile Include="Models\Activity.cs" />
+    <Compile Include="Models\Grade.cs" />
     <Compile Include="Models\ModelCategory.cs" />
     <Compile Include="Models\NameValuePair.cs" />
     <Compile Include="Models\File.cs" />
@@ -103,6 +104,7 @@
     <Compile Include="ViewModels\ActivitiesListViewModel.cs" />
     <Compile Include="ViewModels\DialogViewModel.cs" />
     <Compile Include="ViewModels\FilesListViewModel.cs" />
+    <Compile Include="ViewModels\GradesViewModel.cs" />
     <Compile Include="ViewModels\InfoViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
@@ -110,17 +112,14 @@
     <Compile Include="Views\ActivitiesListView.xaml.cs">
       <DependentUpon>ActivitiesListView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ActivityGradesListView.xaml.cs">
-      <DependentUpon>ActivityGradesListView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ActivityView.xaml.cs">
-      <DependentUpon>ActivityView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\DialogView.xaml.cs">
       <DependentUpon>DialogView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\FilesListView.xaml.cs">
       <DependentUpon>FilesListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GradesView.xaml.cs">
+      <DependentUpon>GradesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\InfoView.xaml.cs">
       <DependentUpon>InfoView.xaml</DependentUpon>
@@ -130,12 +129,6 @@
     </Compile>
     <Compile Include="Views\ShellView.xaml.cs">
       <DependentUpon>ShellView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UserFileListView.xaml.cs">
-      <DependentUpon>UserFileListView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UserGradesListView.xaml.cs">
-      <DependentUpon>UserGradesListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UsersListView.xaml.cs">
       <DependentUpon>UsersListView.xaml</DependentUpon>
@@ -183,19 +176,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ActivityGradesListView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\ActivityView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\DialogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\FilesListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\GradesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -208,14 +197,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ShellView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\UserFileListView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\UserGradesListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

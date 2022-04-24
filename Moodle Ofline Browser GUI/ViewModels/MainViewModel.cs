@@ -21,6 +21,7 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
         private UsersListViewModel _usersListViewModel;
         private FilesListViewModel _filesListViewModel;
         private InfoViewModel _infoViewModel;
+        private GradesViewModel _gradesViewModel;
         private ActivitiesListViewModel _activitiesListViewModel;
 
         private Screen activeList;
@@ -34,12 +35,14 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
             UsersListViewModel usersListViewModel, 
             ActivitiesListViewModel activitiesListViewModel,
             InfoViewModel infoViewModel,
+            GradesViewModel gradesViewModel,
             FilesListViewModel filesListViewModel)
         {
             _eventAggregator = eventAggregator;
             _usersListViewModel = usersListViewModel;
             _activitiesListViewModel = activitiesListViewModel;
             _filesListViewModel = filesListViewModel;
+            _gradesViewModel = gradesViewModel;
             _infoViewModel = infoViewModel;
 
             this._eventAggregator.Subscribe(this);

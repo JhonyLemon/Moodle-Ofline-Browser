@@ -55,7 +55,7 @@ namespace Moodle_Ofline_Browser_Core.models.grade_history
 		[XmlElement(ElementName = "informationformat")]
 		public string Informationformat { get; set; }
 		[XmlElement(ElementName = "timemodified")]
-		public string Timemodified { get; set; }
+		public long Timemodified { get; set; }
 		[XmlAttribute(AttributeName = "id")]
 		public string Id { get; set; }
 	}
