@@ -7,7 +7,7 @@ using System.Xml.Serialization;
 
 namespace Moodle_Ofline_Browser_Core.models.activities.activityTypes.attendance
 {
-	[XmlRoot(ElementName = "log")]
+	[XmlRoot(ElementName = "log", Namespace = "attendance")]
 	public class Log
 	{
 		[XmlElement(ElementName = "sessionid")]

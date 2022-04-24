@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace Moodle_Ofline_Browser_Core.models.activities.activityTypes
+namespace Moodle_Ofline_Browser_Core.models.activities.activityTypes.assign
 {
 		[XmlRoot(ElementName = "assign")]
 		public class Assign :ActivityType
@@ -69,7 +69,7 @@ namespace Moodle_Ofline_Browser_Core.models.activities.activityTypes
 			public Userflags Userflags { get; set; }
 			[XmlElement(ElementName = "submissions")]
 			public Submissions Submissions { get; set; }
-			[XmlElement(ElementName = "grades")]
+			[XmlElement(ElementName = "grades", Namespace = "assign")]
 			public Grades Grades { get; set; }
 			[XmlElement(ElementName = "plugin_configs")]
 			public Plugin_configs Plugin_configs { get; set; }

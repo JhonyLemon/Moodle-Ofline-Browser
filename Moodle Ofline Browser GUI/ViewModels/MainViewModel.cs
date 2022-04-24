@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Reflection;
+using System.Text;
 using System.Windows;
 
 namespace Moodle_Ofline_Browser_GUI.ViewModels
@@ -66,6 +67,7 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
         }
         
 
+
         public string CurrentlyLoadedCourse
         {
             get { return currentlyLoadedCourse; }
@@ -109,11 +111,14 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
         public void SetSelectedType(ModelCategory item)
         {
             if (item == null)
+            {
                 ActiveList = null;
+            }
             else
                 if (item.FieldInfo != null)
-                { 
-                    ActiveList = (Screen)item.FieldInfo.GetValue(this);
+                {
+                    UpdatePath(item);
+                     ActiveList = (Screen)item.FieldInfo.GetValue(this);
                     _eventAggregator.PublishOnUIThread(new InformSubView(item));
                 }
         }
@@ -134,6 +139,29 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
         {
             message.Category.IsSelected = true;
             SetSelectedType(message.Category);
+        }
+
+        private void UpdatePath(ModelCategory category)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+
+            List<string> path= new List<string>();
+            path.Add(category.CategoryName);
+            while (category.ParentCategory!=null)
+            {
+                category = category.ParentCategory;
+                path.Add(category.CategoryName);
+            }
+            path.Add(fullCourse.Course.Course.Fullname);
+
+            for(int i = path.Count-1; i >=0; i--)
+            {
+                stringBuilder.Append(path[i]+'/');
+            }
+
+            stringBuilder=stringBuilder.Remove(stringBuilder.Length - 1, 1);
+
+            CurrentlyLoadedCourse = stringBuilder.ToString();
         }
     }
 }

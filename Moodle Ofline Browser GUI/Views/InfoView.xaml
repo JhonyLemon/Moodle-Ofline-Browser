@@ -16,7 +16,7 @@
         FontFamily="{DynamicResource MaterialDesignFont}">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="45"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <materialDesign:Card
@@ -34,11 +34,15 @@
             ItemsSource="{Binding Infos}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
                             <TextBlock
-                                    Grid.Column="0"
-                            Margin="0 0 10 0"
-                            Text="{Binding NameAndValue}"/>
-                        </DataTemplate>
+                            Margin="0 0 0 0"
+                            Text="{Binding Name}"/>
+                            <TextBlock
+                            Margin="0 0 0 0"
+                            Text="{Binding Value}"/>
+                        </StackPanel>
+                    </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
         </materialDesign:Card>

@@ -71,7 +71,8 @@ namespace Moodle_Ofline_Browser_GUI.Helpers
             foreach (System.Reflection.PropertyInfo prop in typeof(Moodle_Ofline_Browser_Core.models.course.Course).GetProperties())
             {
                 ModelCategory courseInfo = new NameValuePair();
-                courseInfo.CategoryName = prop.Name; 
+                courseInfo.CategoryName = prop.Name;
+                courseInfo.ParentCategory = course;
                 courseInfo.FieldInfo = typeof(MainViewModel).GetField("_infoViewModel", BindingFlags.Instance | BindingFlags.NonPublic);
                 ((NameValuePair)courseInfo).Name = prop.Name;
                 if (prop.GetValue(fullCourse.Course.Course, null) is string)
@@ -101,7 +102,7 @@ namespace Moodle_Ofline_Browser_GUI.Helpers
                 if (fullCourse.FilesFolder.TryGetValue(file.Contenthash, out path))
                 {
                     ModelCategory fileSubItem = new File();
-
+                    fileSubItem.ParentCategory = files;
                     fileSubItem.FieldInfo = typeof(MainViewModel).GetField("_infoViewModel", BindingFlags.Instance | BindingFlags.NonPublic);
                     fileSubItem.CategoryName = file.Filename;
                     ((File)fileSubItem).Id = file.Id;
@@ -117,7 +118,7 @@ namespace Moodle_Ofline_Browser_GUI.Helpers
                     foreach (System.Reflection.PropertyInfo prop in typeof(Moodle_Ofline_Browser_Core.models.files.File).GetProperties())
                     {
                         fileDetails = new NameValuePair();
-
+                        fileDetails.ParentCategory = fileSubItem;
                         fileDetails.CategoryName = prop.Name;
                         fileDetails.FieldInfo = typeof(MainViewModel).GetField("_infoViewModel", BindingFlags.Instance | BindingFlags.NonPublic);
 
@@ -150,28 +151,123 @@ namespace Moodle_Ofline_Browser_GUI.Helpers
 
             foreach (KeyValuePair<int, Moodle_Ofline_Browser_Core.models.activities.ActivityFolder> activity in fullCourse.ActivitiesFolder)
             {
-                if (activity.Value.ActivityType != null)
+                if (activity.Value.Activity != null)
                 {
                     ModelCategory activitiesSubItem = new Models.Activity();
-
-                    activitiesSubItem.CategoryName = activity.Value.ActivityType.Modulename + "_" + activity.Value.ActivityType.Id;
+                    activitiesSubItem.ParentCategory = activities;
+                   
+                    activitiesSubItem.CategoryName = activity.Value.Activity.Modulename + "_" + activity.Value.Activity.Moduleid;
                     activitiesSubItem.FieldInfo = typeof(MainViewModel).GetField("_activitiesListViewModel", BindingFlags.Instance | BindingFlags.NonPublic);
 
+                    ((Models.Activity)activitiesSubItem).Id= activity.Value.Activity.Moduleid;
+                    ((Models.Activity)activitiesSubItem).Type = activity.Value.Activity.Modulename;
 
-                    ((Models.Activity)activitiesSubItem).Id= activity.Value.ActivityType.Id;
-                    ((Models.Activity)activitiesSubItem).Type = activity.Value.ActivityType.Modulename;
-
-                    switch (activity.Value.ActivityType.Modulename)
+                    switch (activity.Value.Activity.Modulename)
                     {
                         case "attendance":
-                            ((Models.Activity)activitiesSubItem).Name = ((Moodle_Ofline_Browser_Core.models.activities.activityTypes.Attendance)activity.Value.ActivityType.ActivityType).Name;
+                            ((Models.Activity)activitiesSubItem).Name = 
+                                (
+                                (Moodle_Ofline_Browser_Core.models.activities.activityTypes.attendance.Attendance)
+                                activity.Value.Activity.ActivityType)
+                                .Name;
                             break;
                         case "assign":
-                            ((Models.Activity)activitiesSubItem).Name = ((Moodle_Ofline_Browser_Core.models.activities.activityTypes.Assign)activity.Value.ActivityType.ActivityType).Name;
+                            ((Models.Activity)activitiesSubItem).Name = 
+                                (
+                                (Moodle_Ofline_Browser_Core.models.activities.activityTypes.assign.Assign)
+                                activity.Value.Activity.ActivityType)
+                                .Name;
+                            break;
+                        case "bigbluebuttonbn":
+                            ((Models.Activity)activitiesSubItem).Name = 
+                                (
+                                (Moodle_Ofline_Browser_Core.models.activities.activityTypes.bigbluebuttonbn.Bigbluebuttonbn)
+                                activity.Value.Activity.ActivityType)
+                                .Name;
+                            break;
+                        case "book":
+                            ((Models.Activity)activitiesSubItem).Name =
+                                (
+                                (Moodle_Ofline_Browser_Core.models.activities.activityTypes.book.Book)
+                                activity.Value.Activity.ActivityType)
+                                .Name;
                             break;
                         case "chat":
+                            ((Models.Activity)activitiesSubItem).Name =
+                                (
+                                (Moodle_Ofline_Browser_Core.models.activities.activityTypes.chat.Chat)
+                                activity.Value.Activity.ActivityType)
+                                .Name;
+                            break;
+                        case "checklist":
+                            ((Models.Activity)activitiesSubItem).Name =
+                                (
+                                (Moodle_Ofline_Browser_Core.models.activities.activityTypes.checklist.Checklist)
+                                activity.Value.Activity.ActivityType)
+                                .Name;
+                            break;
+                        case "choice":
+                            ((Models.Activity)activitiesSubItem).Name =
+                                (
+                                (Moodle_Ofline_Browser_Core.models.activities.activityTypes.choice.Choice)
+                                activity.Value.Activity.ActivityType)
+                                .Name;
+                            break;
+                        case "customcert":
+                            ((Models.Activity)activitiesSubItem).Name =
+                                (
+                                (Moodle_Ofline_Browser_Core.models.activities.activityTypes.customcert.Customcert)
+                                activity.Value.Activity.ActivityType)
+                                .Name;
+                            break;
+                        case "folder":
+                            ((Models.Activity)activitiesSubItem).Name =
+                                (
+                                (Moodle_Ofline_Browser_Core.models.activities.activityTypes.folder.Folder)
+                                activity.Value.Activity.ActivityType)
+                                .Name;
+                            break;
+                        case "forum":
+                            ((Models.Activity)activitiesSubItem).Name =
+                                (
+                                (Moodle_Ofline_Browser_Core.models.activities.activityTypes.forum.Forum)
+                                activity.Value.Activity.ActivityType)
+                                .Name;
+                            break;
+                        case "page":
+                            ((Models.Activity)activitiesSubItem).Name =
+                                (
+                                (Moodle_Ofline_Browser_Core.models.activities.activityTypes.page.Page)
+                                activity.Value.Activity.ActivityType)
+                                .Name;
                             break;
                         case "quiz":
+                            ((Models.Activity)activitiesSubItem).Name =
+                                (
+                                (Moodle_Ofline_Browser_Core.models.activities.activityTypes.quiz.Quiz)
+                                activity.Value.Activity.ActivityType)
+                                .Name;
+                            break;
+                        case "survey":
+                            ((Models.Activity)activitiesSubItem).Name =
+                                (
+                                (Moodle_Ofline_Browser_Core.models.activities.activityTypes.survey.Survey)
+                                activity.Value.Activity.ActivityType)
+                                .Name;
+                            break;
+                        case "url":
+                            ((Models.Activity)activitiesSubItem).Name =
+                                (
+                                (Moodle_Ofline_Browser_Core.models.activities.activityTypes.url.Url)
+                                activity.Value.Activity.ActivityType)
+                                .Name;
+                            break;
+                        case "wiki":
+                            ((Models.Activity)activitiesSubItem).Name =
+                                (
+                                (Moodle_Ofline_Browser_Core.models.activities.activityTypes.wiki.Wiki)
+                                activity.Value.Activity.ActivityType)
+                                .Name;
                             break;
                         default:
                             break;
@@ -194,6 +290,7 @@ namespace Moodle_Ofline_Browser_GUI.Helpers
             foreach (Moodle_Ofline_Browser_Core.models.users.User user in fullCourse.Users.User)
             {
                 ModelCategory usersSubItem = new User();
+                usersSubItem.ParentCategory = users;
                 usersSubItem.CategoryName = user.Firstname+" "+user.Lastname;
                 usersSubItem.FieldInfo = typeof(MainViewModel).GetField("_infoViewModel", BindingFlags.Instance | BindingFlags.NonPublic);
 
@@ -206,12 +303,14 @@ namespace Moodle_Ofline_Browser_GUI.Helpers
                 ModelCategory userSubSubItem;
 
                 userSubitem = new NameValuePair();
+                userSubitem.ParentCategory = usersSubItem;
                 ((NameValuePair)userSubitem).Name = "Aktywności użytkownika";
                 userSubitem.CategoryName = "Aktywności użytkownika";
                 userSubitem.FieldInfo = typeof(MainViewModel).GetField("_infoViewModel", BindingFlags.Instance | BindingFlags.NonPublic);
                 usersSubItem.SubCategories.Add(userSubitem);
 
                 userSubitem = new NameValuePair();
+                userSubitem.ParentCategory = usersSubItem;
                 ((NameValuePair)userSubitem).Name = "Pliki użytkownika";
                 userSubitem.CategoryName = "Pliki użytkownika";
                 userSubitem.FieldInfo = typeof(MainViewModel).GetField("_filesListViewModel", BindingFlags.Instance | BindingFlags.NonPublic);
@@ -219,19 +318,22 @@ namespace Moodle_Ofline_Browser_GUI.Helpers
                 {
                     if(file.UserId==user.Id)
                     {
-                        userSubitem.SubCategories.Add(file);
+                        File _file = new File(file);
+                        _file.ParentCategory = userSubitem;
+                        userSubitem.SubCategories.Add(_file);
                     }
                 }
                 usersSubItem.SubCategories.Add(userSubitem);
 
                 userSubitem = new NameValuePair();
+                userSubitem.ParentCategory = usersSubItem;
                 ((NameValuePair)userSubitem).Name = "Informacje szczegółowe";
                 userSubitem.CategoryName = "Informacje szczegółowe";
                 userSubitem.FieldInfo = typeof(MainViewModel).GetField("_infoViewModel", BindingFlags.Instance | BindingFlags.NonPublic);
                 foreach (System.Reflection.PropertyInfo prop in typeof(Moodle_Ofline_Browser_Core.models.users.User).GetProperties())
                 {
                     userSubSubItem = new NameValuePair();
-
+                    userSubSubItem.ParentCategory= userSubitem;
                     userSubSubItem.CategoryName = prop.Name;
                     userSubSubItem.FieldInfo = typeof(MainViewModel).GetField("_infoViewModel", BindingFlags.Instance | BindingFlags.NonPublic);
                     ((NameValuePair)userSubSubItem).Name = prop.Name;

@@ -7,7 +7,7 @@ using System.Xml.Serialization;
 
 namespace Moodle_Ofline_Browser_Core.models.activities.activityTypes.assign
 {
-	[XmlRoot(ElementName = "grade")]
+	[XmlRoot(ElementName = "grade", Namespace = "assign")]
 	public class Grade
 	{
 		[XmlElement(ElementName = "userid")]

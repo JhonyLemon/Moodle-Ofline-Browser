@@ -94,7 +94,6 @@
     <Compile Include="Helpers\DataProviderHelper.cs" />
     <Compile Include="Helpers\PathChecker.cs" />
     <Compile Include="Interfaces\ICoreCategory.cs" />
-    <Compile Include="Interfaces\ICoreDataItem.cs" />
     <Compile Include="Models\Activity.cs" />
     <Compile Include="Models\ModelCategory.cs" />
     <Compile Include="Models\NameValuePair.cs" />

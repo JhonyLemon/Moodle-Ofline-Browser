@@ -21,6 +21,6 @@ namespace Moodle_Ofline_Browser_Core.models.activities
         public module.Module Module { get; set; }
         public roles.Roles Roles { get; set; }
         public grading.Areas Grading { get; set; }
-        public activityTypes.Activity ActivityType { get; set; }
+        public activityTypes.Activity Activity { get; set; }
     }
 }

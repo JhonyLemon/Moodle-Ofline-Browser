@@ -42,10 +42,36 @@ namespace Moodle_Ofline_Browser_Core
             //{"comments.xml",new Pair(typeof(models.comments.Comments),"Comments")},
             {"calendar.xml",new TypeAndName(typeof(models.calendar.Events),"Calendar")},
 
-            {"assign.xml",new TypeAndName(typeof(models.activities.activityTypes.Activity),"ActivityType")},
+            {"assign.xml",new TypeAndName(typeof(models.activities.activityTypes.Activity),"Activity")},
             {"grading.xml",new TypeAndName(typeof(models.grading.Areas),"Grading")},
 
-            {"attendance.xml",new TypeAndName(typeof(models.activities.activityTypes.Activity),"ActivityType")}
+            {"attendance.xml",new TypeAndName(typeof(models.activities.activityTypes.Activity),"Activity")},
+
+            {"bigbluebuttonbn.xml",new TypeAndName(typeof(models.activities.activityTypes.Activity),"Activity")},
+
+            {"book.xml",new TypeAndName(typeof(models.activities.activityTypes.Activity),"Activity")},
+
+            {"chat.xml",new TypeAndName(typeof(models.activities.activityTypes.Activity),"Activity")},
+
+            {"checklist.xml",new TypeAndName(typeof(models.activities.activityTypes.Activity),"Activity")},
+
+            {"choice.xml",new TypeAndName(typeof(models.activities.activityTypes.Activity),"Activity")},
+
+            {"customcert.xml",new TypeAndName(typeof(models.activities.activityTypes.Activity),"Activity")},
+
+            {"folder.xml",new TypeAndName(typeof(models.activities.activityTypes.Activity),"Activity")},
+
+            {"forum.xml",new TypeAndName(typeof(models.activities.activityTypes.Activity),"Activity")},
+
+            {"page.xml",new TypeAndName(typeof(models.activities.activityTypes.Activity),"Activity")},
+
+            {"quiz.xml",new TypeAndName(typeof(models.activities.activityTypes.Activity),"Activity")},
+
+            {"survey.xml",new TypeAndName(typeof(models.activities.activityTypes.Activity),"Activity")},
+
+            {"url.xml",new TypeAndName(typeof(models.activities.activityTypes.Activity),"Activity")},
+
+            {"wiki.xml",new TypeAndName(typeof(models.activities.activityTypes.Activity),"Activity")}
         };
 
         private static Dictionary<string, TypeAndName> CourseTypeMap = new Dictionary<string, TypeAndName>()

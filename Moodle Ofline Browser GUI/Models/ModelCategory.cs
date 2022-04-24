@@ -20,6 +20,16 @@ namespace Moodle_Ofline_Browser_GUI.Models
             CategoryName = "";
             IsSelected = false;
             IsExpanded = false;
+            ParentCategory = null;
+        }
+        public ModelCategory(ModelCategory modelCategory)
+        {
+            this.SubCategories = modelCategory.SubCategories;
+            this.FieldInfo = modelCategory.FieldInfo;
+            this.IsExpanded = modelCategory.IsExpanded;
+            this.IsSelected = modelCategory.IsSelected;
+            this.ParentCategory = modelCategory.ParentCategory;
+            this.CategoryName = modelCategory.CategoryName;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -42,6 +52,23 @@ namespace Moodle_Ofline_Browser_GUI.Models
                 if (value != this.categoryName)
                 {
                     this.categoryName = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        protected ModelCategory parentCategory;
+        public ModelCategory ParentCategory
+        {
+            get
+            {
+                return this.parentCategory;
+            }
+            set
+            {
+                if (value != this.parentCategory)
+                {
+                    this.parentCategory = value;
                     NotifyPropertyChanged();
                 }
             }

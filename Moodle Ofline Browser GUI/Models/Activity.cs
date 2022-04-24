@@ -23,5 +23,11 @@ namespace Moodle_Ofline_Browser_GUI.Models
         public Activity()
         {
         }
+        public Activity(Activity activity):base(activity)
+        {
+           this.Id = activity.Id;
+           this.Name = activity.Name;
+           this.Type = activity.Type;
+        }
     }
 }

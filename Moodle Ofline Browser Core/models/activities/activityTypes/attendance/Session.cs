@@ -54,7 +54,7 @@ namespace Moodle_Ofline_Browser_Core.models.activities.activityTypes.attendance
 		public string Includeqrcode { get; set; }
 		[XmlElement(ElementName = "automarkcmid")]
 		public string Automarkcmid { get; set; }
-		[XmlElement(ElementName = "logs")]
+		[XmlElement(ElementName = "logs", Namespace = "attendance")]
 		public Logs Logs { get; set; }
 		[XmlAttribute(AttributeName = "id")]
 		public string Id { get; set; }

@@ -27,5 +27,14 @@ namespace Moodle_Ofline_Browser_GUI.Models
             UserId = "";
             Date = date;
         }
+
+        public File(File file):base(file)
+        {
+            this.Id = file.Id;
+            this.User = file.User;
+            this.UserId = file.UserId;
+            this.FileName = file.FileName;
+            this.Date = file.Date;
+        }
     }
 }

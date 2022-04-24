@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace Moodle_Ofline_Browser_Core.models.activities.activityTypes
+namespace Moodle_Ofline_Browser_Core.models.activities.activityTypes.attendance
 {
 		[XmlRoot(ElementName = "attendance")]
 		public class Attendance: ActivityType
