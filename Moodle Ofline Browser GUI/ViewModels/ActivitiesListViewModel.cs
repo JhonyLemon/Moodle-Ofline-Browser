@@ -52,9 +52,9 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
                 Activities = message.Category.SubCategories;
         }
 
-        public void ActivitySelection()
+        public void AcitivtySelection()
         {
-
+            _eventAggregator.PublishOnUIThread(new SubItemSelected(Activity));
         }
     }
 }
