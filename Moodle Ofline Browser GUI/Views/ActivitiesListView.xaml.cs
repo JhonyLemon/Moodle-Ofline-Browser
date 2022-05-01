@@ -24,5 +24,6 @@ namespace Moodle_Ofline_Browser_GUI.Views
         {
             InitializeComponent();
         }
+
     }
 }

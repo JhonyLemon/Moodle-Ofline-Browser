@@ -16,13 +16,18 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
         private IEventAggregator _eventAggregator;
 
         private ObservableCollection<ModelCategory> files;
+        private ObservableCollection<ModelCategory> filesFull;
+        private bool showMoodleFiles;
         File file;
+        private string column;
+        private string direction;
 
         public FilesListViewModel(IEventAggregator eventAggregator)
         {
             _eventAggregator = eventAggregator;
             _eventAggregator.Subscribe(this);
             files = new ObservableCollection<ModelCategory>();
+            filesFull = new ObservableCollection<ModelCategory>();
             file = null;
         }
 
@@ -44,16 +49,176 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
                 NotifyOfPropertyChange(() => File);
             }
         }
+        public bool ShowMoodleFiles
+        {
+            get { return showMoodleFiles; }
+            set
+            {
+                showMoodleFiles = value;
+                ChangeFiles(showMoodleFiles);
+            }
+        }
 
         public void Handle(InformSubView message)
         {
             if (message.Category.FieldInfo.FieldType == typeof(FilesListViewModel) && Files != message.Category.SubCategories)
-                Files = message.Category.SubCategories;
+            {
+                filesFull = message.Category.SubCategories;
+                ChangeFiles(ShowMoodleFiles);
+            }
         }
 
         public void FileSelection()
         {
             _eventAggregator.PublishOnUIThread(new SubItemSelected(File));
+        }
+
+        public void ChangeFiles(bool value)
+        {
+            if(value)
+            {
+                Files.Clear();
+                foreach (ModelCategory j in filesFull) Files.Add(j);
+            }
+            else
+            {
+                Files.Clear();
+                foreach (ModelCategory j in filesFull)
+                {
+                    if((j as File).User!="")
+                     Files.Add(j);
+                }
+            }
+        }
+
+        public void SortCol(string propName)
+        {
+            ObservableCollection<ModelCategory> temp;
+            File file = File;
+            switch (propName)
+            {
+                case "Id":
+                    {
+                        if (column == "Id")
+                        {
+                            if (direction == "asc")
+                            {
+                                direction = "desc";
+                                temp = new ObservableCollection<ModelCategory>(Files.OrderByDescending(p => (p as File).Id));
+                                Files.Clear();
+                                foreach (ModelCategory j in temp) Files.Add(j);
+
+                            }
+                            else
+                            {
+                                direction = "asc";
+                                temp = new ObservableCollection<ModelCategory>(Files.OrderBy(p => (p as File).Id));
+                                Files.Clear();
+                                foreach (ModelCategory j in temp) Files.Add(j);
+                            }
+                        }
+                        else
+                        {
+                            column = "Id";
+                            direction = "asc";
+                            temp = new ObservableCollection<ModelCategory>(Files.OrderBy(p => (p as File).Id));
+                            Files.Clear();
+                            foreach (ModelCategory j in temp) Files.Add(j);
+                        }
+                        break;
+                    }
+                case "FileName":
+                    {
+                        if (column == "FileName")
+                        {
+                            if (direction == "asc")
+                            {
+                                direction = "desc";
+                                temp = new ObservableCollection<ModelCategory>(Files.OrderByDescending(p => (p as File).FileName));
+                                Files.Clear();
+                                foreach (ModelCategory j in temp) Files.Add(j);
+
+                            }
+                            else
+                            {
+                                direction = "asc";
+                                temp = new ObservableCollection<ModelCategory>(Files.OrderBy(p => (p as File).FileName));
+                                Files.Clear();
+                                foreach (ModelCategory j in temp) Files.Add(j);
+                            }
+                        }
+                        else
+                        {
+                            column = "FileName";
+                            direction = "asc";
+                            temp = new ObservableCollection<ModelCategory>(Files.OrderBy(p => (p as File).FileName));
+                            Files.Clear();
+                            foreach (ModelCategory j in temp) Files.Add(j);
+                        }
+                        break;
+                    }
+                case "User":
+                    {
+                        if (column == "User")
+                        {
+                            if (direction == "asc")
+                            {
+                                direction = "desc";
+                                temp = new ObservableCollection<ModelCategory>(Files.OrderByDescending(p => (p as File).User));
+                                Files.Clear();
+                                foreach (ModelCategory j in temp) Files.Add(j);
+
+                            }
+                            else
+                            {
+                                direction = "asc";
+                                temp = new ObservableCollection<ModelCategory>(Files.OrderBy(p => (p as File).User));
+                                Files.Clear();
+                                foreach (ModelCategory j in temp) Files.Add(j);
+                            }
+                        }
+                        else
+                        {
+                            column = "User";
+                            direction = "asc";
+                            temp = new ObservableCollection<ModelCategory>(Files.OrderBy(p => (p as File).User));
+                            Files.Clear();
+                            foreach (ModelCategory j in temp) Files.Add(j);
+                        }
+                        break;
+                    }
+                case "Date":
+                    {
+                        if (column == "Date")
+                        {
+                            if (direction == "asc")
+                            {
+                                direction = "desc";
+                                temp = new ObservableCollection<ModelCategory>(Files.OrderByDescending(p => (p as File).Date));
+                                Files.Clear();
+                                foreach (ModelCategory j in temp) Files.Add(j);
+
+                            }
+                            else
+                            {
+                                direction = "asc";
+                                temp = new ObservableCollection<ModelCategory>(Files.OrderBy(p => (p as File).Date));
+                                Files.Clear();
+                                foreach (ModelCategory j in temp) Files.Add(j);
+                            }
+                        }
+                        else
+                        {
+                            column = "Date";
+                            direction = "asc";
+                            temp = new ObservableCollection<ModelCategory>(Files.OrderBy(p => (p as File).Date));
+                            Files.Clear();
+                            foreach (ModelCategory j in temp) Files.Add(j);
+                        }
+                        break;
+                    }
+            }
+            File = file;
         }
 
     }

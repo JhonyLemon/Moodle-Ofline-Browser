@@ -140,8 +140,16 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
 
         public void Handle(SubItemSelected message)
         {
-            message.Category.IsSelected = true;
-            SetSelectedType(message.Category);
+            if (message != null && message.Category != null)
+            {
+                message.Category.IsSelected = true;
+                SetSelectedType(message.Category);
+            }
+        }
+
+        public void SetMoodleFileVisibility(bool value)
+        {
+            _filesListViewModel.ShowMoodleFiles = value;
         }
 
         private void UpdatePath(ModelCategory category)

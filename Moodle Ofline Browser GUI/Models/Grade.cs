@@ -13,17 +13,21 @@ namespace Moodle_Ofline_Browser_GUI.Models
         }
         public string GradeValue { get; set; }
         public string Date { get; set; }
+        public string Activity { get; set; }
 
-        public Grade(string gradeValue, string date)
+
+        public Grade(string gradeValue, string date,string activity)
         {
             GradeValue = gradeValue;
             Date = date;
+            Activity = activity;
         }
 
         public Grade(Grade grade) : base(grade)
         {
             GradeValue = grade.GradeValue;
             Date = grade.Date;
+            Activity = grade.Activity;
         }
     }
 }

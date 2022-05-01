@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:Moodle_Ofline_Browser_GUI.Views"
              mc:Ignorable="d" 
              d:DesignHeight="440" d:DesignWidth="595"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
                      xmlns:cal="http://www.caliburnproject.org"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -23,8 +24,45 @@
             ItemsSource="{Binding Grades}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Data" DisplayMemberBinding="{Binding Date}" />
-                    <GridViewColumn Header="Ocena" DisplayMemberBinding="{Binding GradeValue}" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Activity}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Aktywność">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Click">
+                                        <cal:ActionMessage MethodName="SortCol">
+                                            <cal:Parameter Value="Activity" />
+                                        </cal:ActionMessage>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Date}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Data">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Click">
+                                        <cal:ActionMessage MethodName="SortCol">
+                                            <cal:Parameter Value="Date" />
+                                        </cal:ActionMessage>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding GradeValue}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Ocena">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Click">
+                                        <cal:ActionMessage MethodName="SortCol">
+                                            <cal:Parameter Value="GradeValue" />
+                                        </cal:ActionMessage>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>

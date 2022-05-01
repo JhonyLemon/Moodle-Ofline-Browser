@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:Moodle_Ofline_Browser_GUI.Views"
              mc:Ignorable="d" 
              d:DesignHeight="440" d:DesignWidth="595"
-                     xmlns:cal="http://www.caliburnproject.org"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:cal="http://www.caliburnproject.org"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -18,14 +19,51 @@
         Padding="3"
         UniformCornerRadius="10">
         <ListView
+            
             SelectedItem="{Binding Activity}"
             cal:Message.Attach="[Event MouseDoubleClick] = [Action AcitivtySelection()]" 
             ItemsSource="{Binding Activities}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" />
-                    <GridViewColumn Header="Nazwa aktywności" DisplayMemberBinding="{Binding Name}" />
-                    <GridViewColumn Header="Typ aktywności" DisplayMemberBinding="{Binding Type}" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Id}" >
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader x:Name="SortById" Content="Id">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Click">
+                                        <cal:ActionMessage MethodName="SortCol">
+                                            <cal:Parameter Value="Id" />
+                                        </cal:ActionMessage>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Name}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader x:Name="SortByName" Content="Nazwa aktywności">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Click">
+                                        <cal:ActionMessage MethodName="SortCol">
+                                            <cal:Parameter Value="Name" />
+                                        </cal:ActionMessage>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Type}" >
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader x:Name="SortByType" Content="Typ aktywności">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Click">
+                                        <cal:ActionMessage MethodName="SortCol">
+                                            <cal:Parameter Value="Type" />
+                                        </cal:ActionMessage>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>

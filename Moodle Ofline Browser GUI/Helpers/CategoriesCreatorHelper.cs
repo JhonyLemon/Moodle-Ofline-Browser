@@ -309,7 +309,7 @@ namespace Moodle_Ofline_Browser_GUI.Helpers
             {
                 ModelCategory usersSubItem = new User();
                 usersSubItem.ParentCategory = users;
-                usersSubItem.CategoryName = user.Firstname+" "+user.Lastname;
+                usersSubItem.CategoryName = user.Firstname + " " + user.Lastname;
                 usersSubItem.FieldInfo = typeof(MainViewModel).GetField("_infoViewModel", BindingFlags.Instance | BindingFlags.NonPublic);
 
                 ((User)usersSubItem).Id = user.Id;
@@ -324,18 +324,22 @@ namespace Moodle_Ofline_Browser_GUI.Helpers
                 ((NameValuePair)userSubitem).Name = "Oceny użytkownika";
                 userSubitem.CategoryName = "Oceny użytkownika";
                 userSubitem.FieldInfo = typeof(MainViewModel).GetField("_gradesViewModel", BindingFlags.Instance | BindingFlags.NonPublic);
-                foreach(Moodle_Ofline_Browser_Core.models.grade_history.Grade_grade grades in fullCourse.gradeHistory.Grade_grades.Grade_grade)
+                foreach (KeyValuePair<int, Moodle_Ofline_Browser_Core.models.activities.ActivityFolder> activity in fullCourse.ActivitiesFolder)
                 {
-                    if (grades.Userid==user.Id)
+                    foreach( Moodle_Ofline_Browser_Core.models.grade_history.Grade_grade grade_ in activity.Value.gradeHistory.Grade_grades.Grade_grade)
                     {
-                        ModelCategory grade = new Grade();
-                        grade.ParentCategory = userSubitem;
-                        grade.FieldInfo = typeof(MainViewModel).GetField("_infoViewModel", BindingFlags.Instance | BindingFlags.NonPublic);
-                        grade.CategoryName = grades.Finalgrade;
-                        ((Grade)grade).GradeValue= grades.Finalgrade;
-                        ((Grade)grade).Date = DateTimeOffset.FromUnixTimeSeconds((long)grades.Timemodified).ToString("G");
-                        NameValueProperties<Moodle_Ofline_Browser_Core.models.grade_history.Grade_grade>(grade, grades);
-                        userSubitem.SubCategories.Add(grade);
+                        if (grade_.Userid == user.Id)
+                        {
+                            ModelCategory grade = new Grade();
+                            grade.ParentCategory = userSubitem;
+                            grade.FieldInfo = typeof(MainViewModel).GetField("_infoViewModel", BindingFlags.Instance | BindingFlags.NonPublic);
+                            grade.CategoryName = grade_.Finalgrade;
+                            ((Grade)grade).GradeValue = grade_.Finalgrade;
+                            ((Grade)grade).Activity= activity.Value.Activity.Modulename + "_" + activity.Value.Activity.Moduleid;
+                            ((Grade)grade).Date = DateTimeOffset.FromUnixTimeSeconds((long)grade_.Timemodified).ToString("G");
+                            NameValueProperties<Moodle_Ofline_Browser_Core.models.grade_history.Grade_grade>(grade, grade_);
+                            userSubitem.SubCategories.Add(grade);
+                        }
                     }
                 }
                 usersSubItem.SubCategories.Add(userSubitem);

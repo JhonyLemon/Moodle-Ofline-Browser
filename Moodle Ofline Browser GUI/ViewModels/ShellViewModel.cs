@@ -26,6 +26,7 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
         private bool dialogIsOpen;
         private bool canCloseOnClickAway;
         private Brush treeViewIconColor;
+        private PackIconKind moodleFileVisibility;
 
 
         public ShellViewModel(IEventAggregator eventAggregator, MainViewModel mainViewModel,DialogViewModel dialogViewModel)
@@ -37,7 +38,9 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
             ActivateItem(_mainViewModel);
 
             TreeViewIconColor = Brushes.Black;
+            MoodleFileVisibility = PackIconKind.Visibility;
             CanCloseOnClickAway = true;
+            MoodleFilesVisibility();
     }
 
         public void Handle(CanClickAway message)
@@ -54,6 +57,17 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
                 NotifyOfPropertyChange(() => CanCloseOnClickAway);
             }
         }
+
+        public PackIconKind MoodleFileVisibility
+        {
+            get { return moodleFileVisibility; }
+            set
+            {
+                moodleFileVisibility = value;
+                NotifyOfPropertyChange(() => MoodleFileVisibility);
+            }
+        }
+        
         public bool DialogIsOpen
         {
             get { return dialogIsOpen; }
@@ -81,6 +95,20 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
                 UIElement uiElement = ViewLocator.LocateForModel(_dialogViewModel, null, null);
                 ViewModelBinder.Bind(_dialogViewModel, uiElement, null);
                 DialogHost.Show(uiElement);
+            }
+        }
+
+        public void MoodleFilesVisibility()
+        {
+            if (MoodleFileVisibility == PackIconKind.Visibility)
+            {
+                MoodleFileVisibility = PackIconKind.VisibilityOff;
+                _mainViewModel.SetMoodleFileVisibility(false);
+            }
+            else if(MoodleFileVisibility == PackIconKind.VisibilityOff)
+            {
+                MoodleFileVisibility = PackIconKind.Visibility;
+                _mainViewModel.SetMoodleFileVisibility(true);
             }
         }
 

@@ -16,6 +16,8 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
 
         private ObservableCollection<ModelCategory> grades;
         Grade grade;
+        private string column;
+        private string direction;
 
         public GradesViewModel(IEventAggregator eventAggregator)
         {
@@ -54,6 +56,107 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
         public void GradeSelection()
         {
             _eventAggregator.PublishOnUIThread(new SubItemSelected(Grade));
+        }
+
+        public void SortCol(string propName)
+        {
+            ObservableCollection<ModelCategory> temp;
+            Grade grade = Grade;
+            switch (propName)
+            {
+                case "Date":
+                    {
+                        if (column == "Date")
+                        {
+                            if (direction == "asc")
+                            {
+                                direction = "desc";
+                                temp = new ObservableCollection<ModelCategory>(Grades.OrderByDescending(p => (p as Grade).Date));
+                                Grades.Clear();
+                                foreach (ModelCategory j in temp) Grades.Add(j);
+
+                            }
+                            else
+                            {
+                                direction = "asc";
+                                temp = new ObservableCollection<ModelCategory>(Grades.OrderBy(p => (p as Grade).Date));
+                                Grades.Clear();
+                                foreach (ModelCategory j in temp) Grades.Add(j);
+                            }
+                        }
+                        else
+                        {
+                            column = "Date";
+                            direction = "asc";
+                            temp = new ObservableCollection<ModelCategory>(Grades.OrderBy(p => (p as Grade).Date));
+                            Grades.Clear();
+                            foreach (ModelCategory j in temp) Grades.Add(j);
+                        }
+                        break;
+                    }
+                    
+                case "Activity":
+                    {
+                        if (column == "Activity")
+                        {
+                            if (direction == "asc")
+                            {
+                                direction = "desc";
+                                temp = new ObservableCollection<ModelCategory>(Grades.OrderByDescending(p => (p as Grade).Activity));
+                                Grades.Clear();
+                                foreach (ModelCategory j in temp) Grades.Add(j);
+
+                            }
+                            else
+                            {
+                                direction = "asc";
+                                temp = new ObservableCollection<ModelCategory>(Grades.OrderBy(p => (p as Grade).Activity));
+                                Grades.Clear();
+                                foreach (ModelCategory j in temp) Grades.Add(j);
+                            }
+                        }
+                        else
+                        {
+                            column = "Activity";
+                            direction = "asc";
+                            temp = new ObservableCollection<ModelCategory>(Grades.OrderBy(p => (p as Grade).Activity));
+                            Grades.Clear();
+                            foreach (ModelCategory j in temp) Grades.Add(j);
+                        }
+                        break;
+                    }
+                case "GradeValue":
+                    {
+                        if (column == "GradeValue")
+                        {
+                            if (direction == "asc")
+                            {
+                                direction = "desc";
+                                temp = new ObservableCollection<ModelCategory>(Grades.OrderByDescending(p => (p as Grade).GradeValue));
+                                Grades.Clear();
+                                foreach (ModelCategory j in temp) Grades.Add(j);
+
+                            }
+                            else
+                            {
+                                direction = "asc";
+                                temp = new ObservableCollection<ModelCategory>(Grades.OrderBy(p => (p as Grade).GradeValue));
+                                Grades.Clear();
+                                foreach (ModelCategory j in temp) Grades.Add(j);
+                            }
+                        }
+                        else
+                        {
+                            column = "GradeValue";
+                            direction = "asc";
+                            temp = new ObservableCollection<ModelCategory>(Grades.OrderBy(p => (p as Grade).GradeValue));
+                            Grades.Clear();
+                            foreach (ModelCategory j in temp) Grades.Add(j);
+                        }
+                        break;
+                    }
+            }
+            Grade = grade;
         }
     }
 }

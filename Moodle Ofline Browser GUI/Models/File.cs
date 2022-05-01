@@ -11,6 +11,11 @@ namespace Moodle_Ofline_Browser_GUI.Models
     {
         public File()
         {
+            Id = "";
+            User = "";
+            FileName = "";
+            UserId = "";
+            Date = "";
         }
 
         public string Id { get; set; }

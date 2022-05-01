@@ -17,6 +17,8 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
 
         private ObservableCollection<ModelCategory> users;
         User user;
+        private string column;
+        private string direction;
 
         public UsersListViewModel(IEventAggregator eventAggregator)
         {
@@ -56,6 +58,136 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
         {
             if (User != null)
                 _eventAggregator.PublishOnUIThread(new SubItemSelected(User));
+        }
+
+        public void SortCol(string propName)
+        {
+            ObservableCollection<ModelCategory> temp;
+            User user = User;
+            switch (propName)
+            {
+                case "Id":
+                    {
+                        if (column == "Id")
+                        {
+                            if (direction == "asc")
+                            {
+                                direction = "desc";
+                                temp = new ObservableCollection<ModelCategory>(Users.OrderByDescending(p => (p as User).Id));
+                                Users.Clear();
+                                foreach (ModelCategory j in temp) Users.Add(j);
+
+                            }
+                            else
+                            {
+                                direction = "asc";
+                                temp = new ObservableCollection<ModelCategory>(Users.OrderBy(p => (p as User).Id));
+                                Users.Clear();
+                                foreach (ModelCategory j in temp) Users.Add(j);
+                            }
+                        }
+                        else
+                        {
+                            column = "Id";
+                            direction = "asc";
+                            temp = new ObservableCollection<ModelCategory>(Users.OrderBy(p => (p as User).Id));
+                            Users.Clear();
+                            foreach (ModelCategory j in temp) Users.Add(j);
+                        }
+                        break;
+                    }
+                case "FirstName":
+                    {
+                        if (column == "FirstName")
+                        {
+                            if (direction == "asc")
+                            {
+                                direction = "desc";
+                                temp = new ObservableCollection<ModelCategory>(Users.OrderByDescending(p => (p as User).FirstName));
+                                Users.Clear();
+                                foreach (ModelCategory j in temp) Users.Add(j);
+
+                            }
+                            else
+                            {
+                                direction = "asc";
+                                temp = new ObservableCollection<ModelCategory>(Users.OrderBy(p => (p as User).FirstName));
+                                Users.Clear();
+                                foreach (ModelCategory j in temp) Users.Add(j);
+                            }
+                        }
+                        else
+                        {
+                            column = "FirstName";
+                            direction = "asc";
+                            temp = new ObservableCollection<ModelCategory>(Users.OrderBy(p => (p as User).FirstName));
+                            Users.Clear();
+                            foreach (ModelCategory j in temp) Users.Add(j);
+                        }
+                        break;
+                    }
+                case "Surname":
+                    {
+                        if (column == "Surname")
+                        {
+                            if (direction == "asc")
+                            {
+                                direction = "desc";
+                                temp = new ObservableCollection<ModelCategory>(Users.OrderByDescending(p => (p as User).Surname));
+                                Users.Clear();
+                                foreach (ModelCategory j in temp) Users.Add(j);
+
+                            }
+                            else
+                            {
+                                direction = "asc";
+                                temp = new ObservableCollection<ModelCategory>(Users.OrderBy(p => (p as User).Surname));
+                                Users.Clear();
+                                foreach (ModelCategory j in temp) Users.Add(j);
+                            }
+                        }
+                        else
+                        {
+                            column = "Surname";
+                            direction = "asc";
+                            temp = new ObservableCollection<ModelCategory>(Users.OrderBy(p => (p as User).Surname));
+                            Users.Clear();
+                            foreach (ModelCategory j in temp) Users.Add(j);
+                        }
+                        break;
+                    }
+                case "Email":
+                    {
+                        if (column == "Email")
+                        {
+                            if (direction == "asc")
+                            {
+                                direction = "desc";
+                                temp = new ObservableCollection<ModelCategory>(Users.OrderByDescending(p => (p as User).Email));
+                                Users.Clear();
+                                foreach (ModelCategory j in temp) Users.Add(j);
+
+                            }
+                            else
+                            {
+                                direction = "asc";
+                                temp = new ObservableCollection<ModelCategory>(Users.OrderBy(p => (p as User).Email));
+                                Users.Clear();
+                                foreach (ModelCategory j in temp) Users.Add(j);
+                            }
+                        }
+                        else
+                        {
+                            column = "Email";
+                            direction = "asc";
+                            temp = new ObservableCollection<ModelCategory>(Users.OrderBy(p => (p as User).Email));
+                            Users.Clear();
+                            foreach (ModelCategory j in temp) Users.Add(j);
+                        }
+                        break;
+                    }
+            }
+            User = user;
         }
 
     }
