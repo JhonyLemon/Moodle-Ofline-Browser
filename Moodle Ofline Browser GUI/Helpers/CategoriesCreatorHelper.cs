@@ -47,10 +47,7 @@ namespace Moodle_Ofline_Browser_GUI.Helpers
             LoadFiles();
             LoadCourseDetails();
             LoadActivities();
-            LoadUsers();
-            
-            
-            
+            LoadUsers();   
         }
 
         public void CreateUsersDictionary()
@@ -68,25 +65,6 @@ namespace Moodle_Ofline_Browser_GUI.Helpers
             course.FieldInfo = typeof(MainViewModel).GetField("_infoViewModel", BindingFlags.Instance | BindingFlags.NonPublic);
 
             NameValueProperties<Moodle_Ofline_Browser_Core.models.course.Course>(course,fullCourse.Course.Course);
-            //foreach (System.Reflection.PropertyInfo prop in typeof(Moodle_Ofline_Browser_Core.models.course.Course).GetProperties())
-            //{
-            //    ModelCategory courseInfo = new NameValuePair();
-            //    courseInfo.CategoryName = prop.Name;
-            //    courseInfo.ParentCategory = course;
-            //    courseInfo.FieldInfo = typeof(MainViewModel).GetField("_infoViewModel", BindingFlags.Instance | BindingFlags.NonPublic);
-            //    ((NameValuePair)courseInfo).Name = prop.Name;
-            //    if (prop.GetValue(fullCourse.Course.Course, null) is string)
-            //    {
-            //        ((NameValuePair)courseInfo).Value=(string)prop.GetValue(fullCourse.Course.Course, null);
-            //    }
-            //    else if (prop.GetValue(fullCourse.Course.Course, null) is long)
-            //    {
-            //        ((NameValuePair)courseInfo).Value = DateTimeOffset.FromUnixTimeSeconds((long)prop.GetValue(fullCourse.Course.Course, null)).ToString("G");
-            //    }
-            //    course.SubCategories.Add(courseInfo);
-            //}
-
-
             categoryItems.Add(course);
         }
 
@@ -335,7 +313,14 @@ namespace Moodle_Ofline_Browser_GUI.Helpers
                             grade.FieldInfo = typeof(MainViewModel).GetField("_infoViewModel", BindingFlags.Instance | BindingFlags.NonPublic);
                             grade.CategoryName = grade_.Finalgrade;
                             ((Grade)grade).GradeValue = grade_.Finalgrade;
-                            ((Grade)grade).Activity= activity.Value.Activity.Modulename + "_" + activity.Value.Activity.Moduleid;
+                            foreach (ModelCategory model in categoryItems[2].SubCategories)
+                            {
+                                if (activity.Value.Activity.Modulename == ((Models.Activity)model).Type)
+                                {
+                                    ((Grade)grade).Activity = ((Models.Activity)model).Name;
+                                    break;
+                                }
+                            }
                             ((Grade)grade).Date = DateTimeOffset.FromUnixTimeSeconds((long)grade_.Timemodified).ToString("G");
                             NameValueProperties<Moodle_Ofline_Browser_Core.models.grade_history.Grade_grade>(grade, grade_);
                             userSubitem.SubCategories.Add(grade);
