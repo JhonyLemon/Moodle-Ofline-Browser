@@ -19,6 +19,7 @@
         Padding="3"
         UniformCornerRadius="10">
         <ListView
+            FontSize="{Binding FontSize,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
             SelectedItem="{Binding User}"
             cal:Message.Attach="[Event MouseDoubleClick] = [Action UserSelection()]" 
             ItemsSource="{Binding Users}">

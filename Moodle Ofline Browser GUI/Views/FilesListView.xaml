@@ -19,6 +19,7 @@
         Padding="3"
         UniformCornerRadius="10">
         <ListView
+            FontSize="{Binding FontSize,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
             SelectedItem="{Binding File}"
             cal:Message.Attach="[Event MouseDoubleClick] = [Action FileSelection()]" 
             ItemsSource="{Binding Files}">

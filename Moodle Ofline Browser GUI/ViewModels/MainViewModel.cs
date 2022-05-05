@@ -13,7 +13,7 @@ using System.Windows;
 
 namespace Moodle_Ofline_Browser_GUI.ViewModels
 {
-    class MainViewModel : Screen, IHandle<CourseParsed>,IHandle<SubItemSelected>
+    class MainViewModel : Screen, IHandle<CourseParsed>,IHandle<SubItemSelected>, IHandle<FontChanged>
     {
         private ObservableCollection<ModelCategory> categoryItems;
 
@@ -145,6 +145,22 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
                 message.Category.IsSelected = true;
                 SetSelectedType(message.Category);
             }
+        }
+
+        private int fontSize;
+        public int FontSize
+        {
+            get { return fontSize; }
+            set
+            {
+                fontSize = value;
+                NotifyOfPropertyChange(() => FontSize);
+            }
+        }
+
+        public void Handle(FontChanged message)
+        {
+            FontSize = message.FontSize;
         }
 
         public void SetMoodleFileVisibility(bool value)

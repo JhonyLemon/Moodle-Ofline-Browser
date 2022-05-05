@@ -60,6 +60,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Caliburn.Micro.3.2.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
@@ -87,6 +88,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="EventModels\CanClickAway.cs" />
+    <Compile Include="EventModels\FontChanged.cs" />
     <Compile Include="EventModels\InformSubView.cs" />
     <Compile Include="EventModels\CategorySelected.cs" />
     <Compile Include="EventModels\CourseParsed.cs" />
@@ -102,14 +104,19 @@
     <Compile Include="Models\File.cs" />
     <Compile Include="Models\ReportDataProviderProgress.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\ActivitiesListViewModel.cs" />
     <Compile Include="ViewModels\DialogViewModel.cs" />
     <Compile Include="ViewModels\FilesListViewModel.cs" />
+    <Compile Include="ViewModels\FontDetailsViewModel.cs" />
     <Compile Include="ViewModels\GradesViewModel.cs" />
     <Compile Include="ViewModels\InfoViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="ViewModels\UsersListViewModel.cs" />
+    <Compile Include="Views\AboutView.xaml.cs">
+      <DependentUpon>AboutView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ActivitiesListView.xaml.cs">
       <DependentUpon>ActivitiesListView.xaml</DependentUpon>
     </Compile>
@@ -118,6 +125,9 @@
     </Compile>
     <Compile Include="Views\FilesListView.xaml.cs">
       <DependentUpon>FilesListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FontDetailsView.xaml.cs">
+      <DependentUpon>FontDetailsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\GradesView.xaml.cs">
       <DependentUpon>GradesView.xaml</DependentUpon>
@@ -173,6 +183,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\AboutView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ActivitiesListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -182,6 +196,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\FilesListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FontDetailsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

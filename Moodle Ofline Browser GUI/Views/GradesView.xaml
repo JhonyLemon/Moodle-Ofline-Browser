@@ -11,7 +11,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
-        TextElement.FontSize="13"
+        TextElement.FontSize="24"
         TextOptions.TextFormattingMode="Ideal" 
         TextOptions.TextRenderingMode="Auto"        
         FontFamily="{DynamicResource MaterialDesignFont}">
@@ -19,6 +19,7 @@
         Padding="3"
         UniformCornerRadius="10">
         <ListView
+            FontSize="{Binding FontSize,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
             SelectedItem="{Binding Grade}"
             cal:Message.Attach="[Event MouseDoubleClick] = [Action GradeSelection()]" 
             ItemsSource="{Binding Grades}">

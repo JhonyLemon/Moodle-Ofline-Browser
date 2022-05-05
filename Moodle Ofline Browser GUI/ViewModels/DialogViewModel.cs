@@ -14,7 +14,7 @@ using System.Windows.Forms;
 
 namespace Moodle_Ofline_Browser_GUI.ViewModels
 {
-    class DialogViewModel: Caliburn.Micro.Screen
+    class DialogViewModel: Caliburn.Micro.Screen, IHandle<FontChanged>
     {
         private IEventAggregator _eventAggregator;
         private ObservableCollection<ReportDataProviderProgress> logs;
@@ -66,7 +66,23 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
             }
         }
 
-         public bool BackupRadio
+        private int fontSize;
+        public int FontSize
+        {
+            get { return fontSize; }
+            set
+            {
+                fontSize = value;
+                NotifyOfPropertyChange(() => FontSize);
+            }
+        }
+
+        public void Handle(FontChanged message)
+        {
+            FontSize = message.FontSize;
+        }
+
+        public bool BackupRadio
         {
             get { return backupRadio; }
             set

@@ -26,6 +26,7 @@
         VerticalContentAlignment="Stretch"
         UniformCornerRadius="10">
             <ListView
+                FontSize="{Binding FontSize,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
             cal:Message.Attach="[Event MouseDoubleClick] = [Action InfoSelection()]" 
             ScrollViewer.HorizontalScrollBarVisibility="Auto"
                     ScrollViewer.CanContentScroll="True"

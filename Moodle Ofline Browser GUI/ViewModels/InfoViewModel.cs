@@ -11,7 +11,7 @@ using System.Windows;
 
 namespace Moodle_Ofline_Browser_GUI.ViewModels
 {
-    internal class InfoViewModel : Screen, IHandle<InformSubView>
+    internal class InfoViewModel : Screen, IHandle<InformSubView>, IHandle<FontChanged>
     {
 
         private IEventAggregator _eventAggregator;
@@ -36,6 +36,22 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
                 infos = value;
                 NotifyOfPropertyChange(() => Infos);
             }
+        }
+
+        private int fontSize;
+        public int FontSize
+        {
+            get { return fontSize; }
+            set
+            {
+                fontSize = value;
+                NotifyOfPropertyChange(() => FontSize);
+            }
+        }
+
+        public void Handle(FontChanged message)
+        {
+            FontSize = message.FontSize;
         }
         public Visibility OpenFileVisibility
         {

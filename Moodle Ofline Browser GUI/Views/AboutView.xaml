@@ -1,0 +1,87 @@
+﻿<UserControl 
+            x:Class="Moodle_Ofline_Browser_GUI.Views.AboutView"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+            xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+            xmlns:local="clr-namespace:Moodle_Ofline_Browser_GUI.Views"
+            mc:Ignorable="d" 
+            d:DesignHeight="450" d:DesignWidth="755"
+            xmlns:cal="http://www.caliburnproject.org"
+            xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+            TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+            TextElement.FontWeight="Regular"
+            TextElement.FontSize="13"
+            TextOptions.TextFormattingMode="Ideal" 
+            TextOptions.TextRenderingMode="Auto"        
+            FontFamily="{DynamicResource MaterialDesignFont}">
+
+    <materialDesign:Card
+            Grid.Column="0" 
+            VerticalAlignment="Center" 
+            HorizontalAlignment="Center" 
+            UniformCornerRadius="20"
+            Padding="10 10 10 10">
+        <StackPanel 
+            Orientation="Vertical" >
+            <TextBlock 
+                Margin="15" 
+                FontSize="{Binding FontSize,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
+                Text="About Moodle Offline Browser"/>
+            <StackPanel 
+                Orientation="Horizontal">
+                <Image
+                    Margin="10"
+                    Width="150" 
+                    Height="150">
+                    <Image.Source>
+                        <BitmapImage 
+                            UriSource="/online-course.ico"></BitmapImage>
+                    </Image.Source>
+                </Image>
+                <StackPanel 
+                    Orientation="Vertical" >
+
+                    <TextBlock 
+                        Margin="0 10 0 0"
+                        TextAlignment="Left" 
+                        FontSize="{Binding FontSize,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
+                        Text="Moodle Offline Browser"/>
+                    <TextBlock 
+                        TextAlignment="Left" 
+                        FontSize="{Binding FontSize,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
+                        Text="12.05.2022"/>
+                    <TextBlock 
+                        TextAlignment="Left" 
+                        FontSize="{Binding FontSize,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
+                        Text=""/>
+                    <TextBlock  
+                        TextAlignment="Left" 
+                        FontSize="{Binding FontSize,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
+                        Text="Kamil Musioł"/>
+                    <TextBlock  
+                        TextAlignment="Left"  
+                        FontSize="{Binding FontSize,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
+                        Text="Kacper Czerwiński"/>
+                    <TextBlock  
+                        TextAlignment="Left"  
+                        FontSize="{Binding FontSize,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
+                        Text="Bartłomiej Urbańczyk"/>
+                    <TextBlock  
+                        TextAlignment="Left"
+                        FontSize="{Binding FontSize,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
+                        Text="Adam Nosol"/>
+                    <TextBlock  
+                        TextAlignment="Left"  
+                        FontSize="{Binding FontSize,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
+                        Text=""/>
+                    <TextBlock  
+                        TextAlignment="Left" 
+                        FontSize="{Binding FontSize,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
+                        Text="MIT License"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </materialDesign:Card>
+    
+</UserControl>

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Moodle_Ofline_Browser_GUI.ViewModels
 {
-    class FilesListViewModel : Screen, IHandle<InformSubView>
+    class FilesListViewModel : Screen, IHandle<InformSubView>, IHandle<FontChanged>
     {
         private IEventAggregator _eventAggregator;
 
@@ -39,6 +39,22 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
                 files = value;
                 NotifyOfPropertyChange(() => Files);
             }
+        }
+
+        private int fontSize;
+        public int FontSize
+        {
+            get { return fontSize; }
+            set
+            {
+                fontSize = value;
+                NotifyOfPropertyChange(() => FontSize);
+            }
+        }
+
+        public void Handle(FontChanged message)
+        {
+            FontSize = message.FontSize;
         }
         public File File
         {

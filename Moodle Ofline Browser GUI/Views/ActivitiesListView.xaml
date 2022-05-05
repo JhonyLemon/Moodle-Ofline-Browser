@@ -19,7 +19,7 @@
         Padding="3"
         UniformCornerRadius="10">
         <ListView
-            
+            FontSize="{Binding FontSize,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
             SelectedItem="{Binding Activity}"
             cal:Message.Attach="[Event MouseDoubleClick] = [Action AcitivtySelection()]" 
             ItemsSource="{Binding Activities}">

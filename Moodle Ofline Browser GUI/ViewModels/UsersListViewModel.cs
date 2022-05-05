@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Moodle_Ofline_Browser_GUI.ViewModels
 {
-    class UsersListViewModel :Screen,IHandle<InformSubView>
+    class UsersListViewModel :Screen,IHandle<InformSubView>, IHandle<FontChanged>
     {
         private IEventAggregator _eventAggregator;
 
@@ -26,6 +26,22 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
             this._eventAggregator.Subscribe(this);
             users = new ObservableCollection<ModelCategory>();
             user = null;
+        }
+
+        private int fontSize;
+        public int FontSize
+        {
+            get { return fontSize; }
+            set
+            {
+                fontSize = value;
+                NotifyOfPropertyChange(() => FontSize);
+            }
+        }
+
+        public void Handle(FontChanged message)
+        {
+            FontSize = message.FontSize;
         }
 
         public ObservableCollection<ModelCategory> Users
@@ -59,6 +75,7 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
             if (User != null)
                 _eventAggregator.PublishOnUIThread(new SubItemSelected(User));
         }
+
 
         public void SortCol(string propName)
         {

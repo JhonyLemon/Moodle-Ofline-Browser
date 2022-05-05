@@ -35,6 +35,7 @@
             Grid.RowSpan="1"
             Grid.Column="0">
             <TreeView 
+                FontSize="{Binding FontSize,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
                 Visibility="{Binding TreeViewVisibility,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
                 cal:Message.Attach="[Event SelectedItemChanged] = [Action SetSelectedType($this.SelectedItem)]"
                 Style="{DynamicResource MaterialDesignTreeView}"

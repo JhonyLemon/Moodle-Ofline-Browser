@@ -22,6 +22,8 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
         private IEventAggregator _eventAggregator;
         private MainViewModel _mainViewModel;
         private DialogViewModel _dialogViewModel;
+        private FontDetailsViewModel _fontDetailsViewModel;
+        private AboutViewModel _aboutViewModel;
 
         private bool dialogIsOpen;
         private bool canCloseOnClickAway;
@@ -29,11 +31,17 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
         private PackIconKind moodleFileVisibility;
 
 
-        public ShellViewModel(IEventAggregator eventAggregator, MainViewModel mainViewModel,DialogViewModel dialogViewModel)
+        public ShellViewModel(IEventAggregator eventAggregator, 
+                              MainViewModel mainViewModel,
+                              DialogViewModel dialogViewModel,
+                              FontDetailsViewModel fontDetailsViewModel,
+                              AboutViewModel aboutViewModel)
         {
             _eventAggregator = eventAggregator;
             _mainViewModel = mainViewModel;
             _dialogViewModel = dialogViewModel;
+            _fontDetailsViewModel = fontDetailsViewModel;
+            _aboutViewModel = aboutViewModel;
             _eventAggregator.Subscribe(this);
             ActivateItem(_mainViewModel);
 
@@ -77,7 +85,7 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
                 NotifyOfPropertyChange(() => DialogIsOpen);
             }
         }
- 
+
         public Brush TreeViewIconColor
         {
             get { return treeViewIconColor; }
@@ -94,6 +102,27 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
             {
                 UIElement uiElement = ViewLocator.LocateForModel(_dialogViewModel, null, null);
                 ViewModelBinder.Bind(_dialogViewModel, uiElement, null);
+                _dialogViewModel.FontSize = _fontDetailsViewModel.FontSize;
+                DialogHost.Show(uiElement);
+            }
+        }
+
+        public void OpenFontDetails()
+        {
+            if (!DialogIsOpen)
+            {
+                UIElement uiElement = ViewLocator.LocateForModel(_fontDetailsViewModel, null, null);
+                ViewModelBinder.Bind(_fontDetailsViewModel, uiElement, null);
+                DialogHost.Show(uiElement);
+            }
+        }
+        public void OpenAbout()
+        {
+            if (!DialogIsOpen)
+            {
+                UIElement uiElement = ViewLocator.LocateForModel(_aboutViewModel, null, null);
+                ViewModelBinder.Bind(_aboutViewModel, uiElement, null);
+                _aboutViewModel.FontSize = _fontDetailsViewModel.FontSize;
                 DialogHost.Show(uiElement);
             }
         }

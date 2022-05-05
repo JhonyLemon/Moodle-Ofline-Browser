@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Moodle_Ofline_Browser_GUI.ViewModels
 {
-    class ActivitiesListViewModel: Screen,IHandle<InformSubView>
+    class ActivitiesListViewModel: Screen,IHandle<InformSubView>, IHandle<FontChanged>
     {
         private IEventAggregator _eventAggregator;
 
@@ -47,6 +47,22 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
                 activity = value;
                 NotifyOfPropertyChange(() => Activity);
             }
+        }
+
+        private int fontSize;
+        public int FontSize
+        {
+            get { return fontSize; }
+            set
+            {
+                fontSize = value;
+                NotifyOfPropertyChange(() => FontSize);
+            }
+        }
+
+        public void Handle(FontChanged message)
+        {
+            FontSize = message.FontSize;
         }
 
         public void Handle(InformSubView message)
