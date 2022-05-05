@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using MaterialDesignThemes.Wpf;
 using Moodle_Ofline_Browser_GUI.EventModels;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,8 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
     {
         private IEventAggregator _eventAggregator;
         private int fontSize;
+        private PackIconKind moodleFileVisibility;
+        private PackIconKind moodleGradeVisibility;
         private int font;
 
         public FontDetailsViewModel(IEventAggregator eventAggregator)
@@ -21,6 +24,10 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
             _eventAggregator = eventAggregator;
             _eventAggregator.Subscribe(this);
             Font = 13;
+            MoodleFileVisibility = PackIconKind.Visibility;
+            MoodleGradeVisibility = PackIconKind.Visibility;
+            MoodleFilesVisibility();
+            MoodleGradesVisibility();
         }
         public int FontSize
         {
@@ -42,6 +49,57 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
                 {
                     _eventAggregator.PublishOnUIThread(new FontChanged(Font));
                 }
+            }
+        }
+        public PackIconKind MoodleFileVisibility
+        {
+            get { return moodleFileVisibility; }
+            set
+            {
+                moodleFileVisibility = value;
+                NotifyOfPropertyChange(() => MoodleFileVisibility);
+            }
+        }
+
+        public void MoodleFilesVisibility()
+        {
+            if (MoodleFileVisibility == PackIconKind.Visibility)
+            {
+                MoodleFileVisibility = PackIconKind.VisibilityOff;
+                _eventAggregator.PublishOnUIThread(new FileVisibility(false));
+                //_mainViewModel.SetMoodleFileVisibility(false);
+            }
+            else if (MoodleFileVisibility == PackIconKind.VisibilityOff)
+            {
+                MoodleFileVisibility = PackIconKind.Visibility;
+                _eventAggregator.PublishOnUIThread(new FileVisibility(true));
+                //_mainViewModel.SetMoodleFileVisibility(true);
+            }
+        }
+
+        public PackIconKind MoodleGradeVisibility
+        {
+            get { return moodleGradeVisibility; }
+            set
+            {
+                moodleGradeVisibility = value;
+                NotifyOfPropertyChange(() => MoodleGradeVisibility);
+            }
+        }
+
+        public void MoodleGradesVisibility()
+        {
+            if (MoodleGradeVisibility == PackIconKind.Visibility)
+            {
+                MoodleGradeVisibility = PackIconKind.VisibilityOff;
+                _eventAggregator.PublishOnUIThread(new GradeVisibility(false));
+                //_mainViewModel.SetMoodleFileVisibility(false);
+            }
+            else if (MoodleGradeVisibility == PackIconKind.VisibilityOff)
+            {
+                MoodleGradeVisibility = PackIconKind.Visibility;
+                //_mainViewModel.SetMoodleFileVisibility(true);
+                _eventAggregator.PublishOnUIThread(new GradeVisibility(true));
             }
         }
 

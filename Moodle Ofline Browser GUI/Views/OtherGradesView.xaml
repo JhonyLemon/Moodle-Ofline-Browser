@@ -1,0 +1,72 @@
+﻿<UserControl x:Class="Moodle_Ofline_Browser_GUI.Views.OtherGradesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Moodle_Ofline_Browser_GUI.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="440" d:DesignWidth="595"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+                     xmlns:cal="http://www.caliburnproject.org"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="24"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        FontFamily="{DynamicResource MaterialDesignFont}">
+    <materialDesign:Card
+        Padding="3"
+        UniformCornerRadius="10">
+        <ListView
+            FontSize="{Binding FontSize,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
+            SelectedItem="{Binding Grade}"
+            cal:Message.Attach="[Event MouseDoubleClick] = [Action GradeSelection()]" 
+            ItemsSource="{Binding Grades}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding User}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Użytkownik">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Click">
+                                        <cal:ActionMessage MethodName="SortCol">
+                                            <cal:Parameter Value="User" />
+                                        </cal:ActionMessage>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Date}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Data">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Click">
+                                        <cal:ActionMessage MethodName="SortCol">
+                                            <cal:Parameter Value="Date" />
+                                        </cal:ActionMessage>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding GradeValue}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Ocena">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Click">
+                                        <cal:ActionMessage MethodName="SortCol">
+                                            <cal:Parameter Value="GradeValue" />
+                                        </cal:ActionMessage>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </materialDesign:Card>
+</UserControl>
+

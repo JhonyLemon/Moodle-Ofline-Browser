@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Moodle_Ofline_Browser_GUI.ViewModels
 {
-    public class GradesViewModel : Screen, IHandle<InformSubView>, IHandle<FontChanged>,IHandle<GradeVisibility>
+    public class OtherGradesViewModel : Screen, IHandle<InformSubView>, IHandle<FontChanged>, IHandle<GradeVisibility>
     {
         private IEventAggregator _eventAggregator;
 
@@ -21,7 +21,7 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
         private string column;
         private string direction;
 
-        public GradesViewModel(IEventAggregator eventAggregator)
+        public OtherGradesViewModel(IEventAggregator eventAggregator)
         {
             _eventAggregator = eventAggregator;
             this._eventAggregator.Subscribe(this);
@@ -68,7 +68,7 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
 
         public void Handle(InformSubView message)
         {
-            if (message.Category.FieldInfo.FieldType == typeof(GradesViewModel) && Grades != message.Category.SubCategories)
+            if (message.Category.FieldInfo.FieldType == typeof(OtherGradesViewModel) && Grades != message.Category.SubCategories)
             {
                 gradesFull = message.Category.SubCategories;
                 ChangeGrades(ShowMoodleGrades);
@@ -150,15 +150,15 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
                         }
                         break;
                     }
-                    
-                case "Activity":
+
+                case "User":
                     {
-                        if (column == "Activity")
+                        if (column == "User")
                         {
                             if (direction == "asc")
                             {
                                 direction = "desc";
-                                temp = new ObservableCollection<ModelCategory>(Grades.OrderByDescending(p => (p as Grade).Activity));
+                                temp = new ObservableCollection<ModelCategory>(Grades.OrderByDescending(p => (p as Grade).User));
                                 Grades.Clear();
                                 foreach (ModelCategory j in temp) Grades.Add(j);
 
@@ -166,16 +166,16 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
                             else
                             {
                                 direction = "asc";
-                                temp = new ObservableCollection<ModelCategory>(Grades.OrderBy(p => (p as Grade).Activity));
+                                temp = new ObservableCollection<ModelCategory>(Grades.OrderBy(p => (p as Grade).User));
                                 Grades.Clear();
                                 foreach (ModelCategory j in temp) Grades.Add(j);
                             }
                         }
                         else
                         {
-                            column = "Activity";
+                            column = "User";
                             direction = "asc";
-                            temp = new ObservableCollection<ModelCategory>(Grades.OrderBy(p => (p as Grade).Activity));
+                            temp = new ObservableCollection<ModelCategory>(Grades.OrderBy(p => (p as Grade).User));
                             Grades.Clear();
                             foreach (ModelCategory j in temp) Grades.Add(j);
                         }

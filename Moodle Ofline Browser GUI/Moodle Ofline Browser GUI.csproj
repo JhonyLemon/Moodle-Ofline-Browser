@@ -88,7 +88,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="EventModels\CanClickAway.cs" />
+    <Compile Include="EventModels\FileVisibility.cs" />
     <Compile Include="EventModels\FontChanged.cs" />
+    <Compile Include="EventModels\GradeVisibility.cs" />
     <Compile Include="EventModels\InformSubView.cs" />
     <Compile Include="EventModels\CategorySelected.cs" />
     <Compile Include="EventModels\CourseParsed.cs" />
@@ -112,6 +114,7 @@
     <Compile Include="ViewModels\GradesViewModel.cs" />
     <Compile Include="ViewModels\InfoViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\OtherGradesViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="ViewModels\UsersListViewModel.cs" />
     <Compile Include="Views\AboutView.xaml.cs">
@@ -137,6 +140,9 @@
     </Compile>
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OtherGradesView.xaml.cs">
+      <DependentUpon>OtherGradesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ShellView.xaml.cs">
       <DependentUpon>ShellView.xaml</DependentUpon>
@@ -212,6 +218,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OtherGradesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -16,11 +16,13 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
     class MainViewModel : Screen, IHandle<CourseParsed>,IHandle<SubItemSelected>, IHandle<FontChanged>
     {
         private ObservableCollection<ModelCategory> categoryItems;
+        private ObservableCollection<ModelCategory> categoryItemsFull;
 
         private IEventAggregator _eventAggregator;
         private UsersListViewModel _usersListViewModel;
         private FilesListViewModel _filesListViewModel;
         private InfoViewModel _infoViewModel;
+        private OtherGradesViewModel _otherGradesViewModel;
         private GradesViewModel _gradesViewModel;
         private ActivitiesListViewModel _activitiesListViewModel;
 
@@ -35,6 +37,7 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
             UsersListViewModel usersListViewModel, 
             ActivitiesListViewModel activitiesListViewModel,
             InfoViewModel infoViewModel,
+            OtherGradesViewModel otherGradesViewModel,
             GradesViewModel gradesViewModel,
             FilesListViewModel filesListViewModel)
         {
@@ -43,10 +46,11 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
             _activitiesListViewModel = activitiesListViewModel;
             _filesListViewModel = filesListViewModel;
             _gradesViewModel = gradesViewModel;
+            _otherGradesViewModel = otherGradesViewModel;
             _infoViewModel = infoViewModel;
 
             this._eventAggregator.Subscribe(this);
-
+            categoryItemsFull = new ObservableCollection<ModelCategory>();
             categoryItems = new ObservableCollection<ModelCategory>();
         }
         
@@ -162,12 +166,6 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
         {
             FontSize = message.FontSize;
         }
-
-        public void SetMoodleFileVisibility(bool value)
-        {
-            _filesListViewModel.ShowMoodleFiles = value;
-        }
-
         private void UpdatePath(ModelCategory category)
         {
             StringBuilder stringBuilder = new StringBuilder();

@@ -108,6 +108,12 @@ namespace Moodle_Ofline_Browser_GUI.Helpers
             categoryItems.Add(files);
         }
 
+        private void ActivitiesSubItems()
+        {
+
+        }
+
+
         private void LoadActivities()
         {
             ModelCategory activities = new ModelCategory();
@@ -127,6 +133,37 @@ namespace Moodle_Ofline_Browser_GUI.Helpers
                     ((Models.Activity)activitiesSubItem).Id= activity.Value.Activity.Moduleid;
                     ((Models.Activity)activitiesSubItem).Type = activity.Value.Activity.Modulename;
 
+                    ModelCategory gradeMenu = new NameValuePair();
+                    gradeMenu.ParentCategory = activitiesSubItem;
+                    ((NameValuePair)gradeMenu).Name = "Oceny użytkowników";
+                    gradeMenu.CategoryName = "Oceny użytkowników";
+                    gradeMenu.FieldInfo = typeof(MainViewModel).GetField("_otherGradesViewModel", BindingFlags.Instance | BindingFlags.NonPublic);
+                    activitiesSubItem.SubCategories.Add(gradeMenu);
+
+                    foreach (Moodle_Ofline_Browser_Core.models.grade_history.Grade_grade grade_ in activity.Value.gradeHistory.Grade_grades.Grade_grade)
+                    {
+                        Moodle_Ofline_Browser_Core.models.users.User user;
+                        if(Users.TryGetValue(grade_.Userid,out user))
+                        {
+                            ModelCategory gradeItem = new Grade();
+                            gradeItem.ParentCategory = activitiesSubItem;
+                            ((Grade)gradeItem).GradeValue = grade_.Finalgrade;
+                            ((Grade)gradeItem).Date = DateTimeOffset.FromUnixTimeSeconds((long)grade_.Timemodified).ToString("G");
+                            ((Grade)gradeItem).User = user.Firstname + " " + user.Lastname;
+                            gradeItem.CategoryName = grade_.Finalgrade;
+                            gradeItem.FieldInfo = typeof(MainViewModel).GetField("_infoViewModel", BindingFlags.Instance | BindingFlags.NonPublic);
+                            NameValueProperties<Moodle_Ofline_Browser_Core.models.grade_history.Grade_grade>(gradeItem, grade_);
+                            gradeMenu.SubCategories.Add(gradeItem);
+                        }
+                    }
+
+                    ModelCategory allAboutMenu = new NameValuePair();
+                    allAboutMenu.ParentCategory = activitiesSubItem;
+                    ((NameValuePair)allAboutMenu).Name = "Informacje ogólne";
+                    allAboutMenu.CategoryName = "Informacje ogólne";
+                    allAboutMenu.FieldInfo = typeof(MainViewModel).GetField("_infoViewModel", BindingFlags.Instance | BindingFlags.NonPublic);
+                    activitiesSubItem.SubCategories.Add(allAboutMenu);
+
                     switch (activity.Value.Activity.Modulename)
                     {
                         case "attendance":
@@ -136,7 +173,7 @@ namespace Moodle_Ofline_Browser_GUI.Helpers
                                 activity.Value.Activity.ActivityType)
                                 .Name;
 
-                                NameValueProperties<Moodle_Ofline_Browser_Core.models.activities.activityTypes.attendance.Attendance>(activitiesSubItem, 
+                                NameValueProperties<Moodle_Ofline_Browser_Core.models.activities.activityTypes.attendance.Attendance>(allAboutMenu, 
                                     ((Moodle_Ofline_Browser_Core.models.activities.activityTypes.attendance.Attendance)activity.Value.Activity.ActivityType));
                             break;
                         case "assign":
@@ -145,7 +182,7 @@ namespace Moodle_Ofline_Browser_GUI.Helpers
                                 (Moodle_Ofline_Browser_Core.models.activities.activityTypes.assign.Assign)
                                 activity.Value.Activity.ActivityType)
                                 .Name;
-                                NameValueProperties<Moodle_Ofline_Browser_Core.models.activities.activityTypes.assign.Assign>(activitiesSubItem,
+                                NameValueProperties<Moodle_Ofline_Browser_Core.models.activities.activityTypes.assign.Assign>(allAboutMenu,
                                     ((Moodle_Ofline_Browser_Core.models.activities.activityTypes.assign.Assign)activity.Value.Activity.ActivityType));
                             break;
                         case "bigbluebuttonbn":
@@ -154,7 +191,7 @@ namespace Moodle_Ofline_Browser_GUI.Helpers
                                 (Moodle_Ofline_Browser_Core.models.activities.activityTypes.bigbluebuttonbn.Bigbluebuttonbn)
                                 activity.Value.Activity.ActivityType)
                                 .Name;
-                            NameValueProperties<Moodle_Ofline_Browser_Core.models.activities.activityTypes.bigbluebuttonbn.Bigbluebuttonbn>(activitiesSubItem,
+                            NameValueProperties<Moodle_Ofline_Browser_Core.models.activities.activityTypes.bigbluebuttonbn.Bigbluebuttonbn>(allAboutMenu,
                                 ((Moodle_Ofline_Browser_Core.models.activities.activityTypes.bigbluebuttonbn.Bigbluebuttonbn)activity.Value.Activity.ActivityType));
                             break;
                         case "book":
@@ -163,7 +200,7 @@ namespace Moodle_Ofline_Browser_GUI.Helpers
                                 (Moodle_Ofline_Browser_Core.models.activities.activityTypes.book.Book)
                                 activity.Value.Activity.ActivityType)
                                 .Name;
-                            NameValueProperties<Moodle_Ofline_Browser_Core.models.activities.activityTypes.book.Book>(activitiesSubItem,
+                            NameValueProperties<Moodle_Ofline_Browser_Core.models.activities.activityTypes.book.Book>(allAboutMenu,
                                 ((Moodle_Ofline_Browser_Core.models.activities.activityTypes.book.Book)activity.Value.Activity.ActivityType));
                             break;
                         case "chat":
@@ -172,7 +209,7 @@ namespace Moodle_Ofline_Browser_GUI.Helpers
                                 (Moodle_Ofline_Browser_Core.models.activities.activityTypes.chat.Chat)
                                 activity.Value.Activity.ActivityType)
                                 .Name;
-                            NameValueProperties<Moodle_Ofline_Browser_Core.models.activities.activityTypes.chat.Chat>(activitiesSubItem,
+                            NameValueProperties<Moodle_Ofline_Browser_Core.models.activities.activityTypes.chat.Chat>(allAboutMenu,
                                 ((Moodle_Ofline_Browser_Core.models.activities.activityTypes.chat.Chat)activity.Value.Activity.ActivityType));
                             break;
                         case "checklist":
@@ -181,7 +218,7 @@ namespace Moodle_Ofline_Browser_GUI.Helpers
                                 (Moodle_Ofline_Browser_Core.models.activities.activityTypes.checklist.Checklist)
                                 activity.Value.Activity.ActivityType)
                                 .Name;
-                            NameValueProperties<Moodle_Ofline_Browser_Core.models.activities.activityTypes.checklist.Checklist>(activitiesSubItem,
+                            NameValueProperties<Moodle_Ofline_Browser_Core.models.activities.activityTypes.checklist.Checklist>(allAboutMenu,
                                 ((Moodle_Ofline_Browser_Core.models.activities.activityTypes.checklist.Checklist)activity.Value.Activity.ActivityType));
                             break;
                         case "choice":
@@ -190,7 +227,7 @@ namespace Moodle_Ofline_Browser_GUI.Helpers
                                 (Moodle_Ofline_Browser_Core.models.activities.activityTypes.choice.Choice)
                                 activity.Value.Activity.ActivityType)
                                 .Name;
-                            NameValueProperties<Moodle_Ofline_Browser_Core.models.activities.activityTypes.choice.Choice>(activitiesSubItem,
+                            NameValueProperties<Moodle_Ofline_Browser_Core.models.activities.activityTypes.choice.Choice>(allAboutMenu,
                                 ((Moodle_Ofline_Browser_Core.models.activities.activityTypes.choice.Choice)activity.Value.Activity.ActivityType));
                             break;
                         case "customcert":
@@ -199,7 +236,7 @@ namespace Moodle_Ofline_Browser_GUI.Helpers
                                 (Moodle_Ofline_Browser_Core.models.activities.activityTypes.customcert.Customcert)
                                 activity.Value.Activity.ActivityType)
                                 .Name;
-                            NameValueProperties<Moodle_Ofline_Browser_Core.models.activities.activityTypes.customcert.Customcert>(activitiesSubItem,
+                            NameValueProperties<Moodle_Ofline_Browser_Core.models.activities.activityTypes.customcert.Customcert>(allAboutMenu,
                                 ((Moodle_Ofline_Browser_Core.models.activities.activityTypes.customcert.Customcert)activity.Value.Activity.ActivityType));
                             break;
                         case "folder":
@@ -208,7 +245,7 @@ namespace Moodle_Ofline_Browser_GUI.Helpers
                                 (Moodle_Ofline_Browser_Core.models.activities.activityTypes.folder.Folder)
                                 activity.Value.Activity.ActivityType)
                                 .Name;
-                            NameValueProperties<Moodle_Ofline_Browser_Core.models.activities.activityTypes.folder.Folder>(activitiesSubItem,
+                            NameValueProperties<Moodle_Ofline_Browser_Core.models.activities.activityTypes.folder.Folder>(allAboutMenu,
                                 ((Moodle_Ofline_Browser_Core.models.activities.activityTypes.folder.Folder)activity.Value.Activity.ActivityType));
                             break;
                         case "forum":
@@ -217,7 +254,7 @@ namespace Moodle_Ofline_Browser_GUI.Helpers
                                 (Moodle_Ofline_Browser_Core.models.activities.activityTypes.forum.Forum)
                                 activity.Value.Activity.ActivityType)
                                 .Name;
-                            NameValueProperties<Moodle_Ofline_Browser_Core.models.activities.activityTypes.forum.Forum>(activitiesSubItem,
+                            NameValueProperties<Moodle_Ofline_Browser_Core.models.activities.activityTypes.forum.Forum>(allAboutMenu,
                                 ((Moodle_Ofline_Browser_Core.models.activities.activityTypes.forum.Forum)activity.Value.Activity.ActivityType));
                             break;
                         case "page":
@@ -226,7 +263,7 @@ namespace Moodle_Ofline_Browser_GUI.Helpers
                                 (Moodle_Ofline_Browser_Core.models.activities.activityTypes.page.Page)
                                 activity.Value.Activity.ActivityType)
                                 .Name;
-                            NameValueProperties<Moodle_Ofline_Browser_Core.models.activities.activityTypes.page.Page>(activitiesSubItem,
+                            NameValueProperties<Moodle_Ofline_Browser_Core.models.activities.activityTypes.page.Page>(allAboutMenu,
                                 ((Moodle_Ofline_Browser_Core.models.activities.activityTypes.page.Page)activity.Value.Activity.ActivityType));
                             break;
                         case "quiz":
@@ -235,7 +272,7 @@ namespace Moodle_Ofline_Browser_GUI.Helpers
                                 (Moodle_Ofline_Browser_Core.models.activities.activityTypes.quiz.Quiz)
                                 activity.Value.Activity.ActivityType)
                                 .Name;
-                            NameValueProperties<Moodle_Ofline_Browser_Core.models.activities.activityTypes.quiz.Quiz>(activitiesSubItem,
+                            NameValueProperties<Moodle_Ofline_Browser_Core.models.activities.activityTypes.quiz.Quiz>(allAboutMenu,
                                 ((Moodle_Ofline_Browser_Core.models.activities.activityTypes.quiz.Quiz)activity.Value.Activity.ActivityType));
                             break;
                         case "survey":
@@ -244,7 +281,7 @@ namespace Moodle_Ofline_Browser_GUI.Helpers
                                 (Moodle_Ofline_Browser_Core.models.activities.activityTypes.survey.Survey)
                                 activity.Value.Activity.ActivityType)
                                 .Name;
-                            NameValueProperties<Moodle_Ofline_Browser_Core.models.activities.activityTypes.survey.Survey>(activitiesSubItem,
+                            NameValueProperties<Moodle_Ofline_Browser_Core.models.activities.activityTypes.survey.Survey>(allAboutMenu,
                                 ((Moodle_Ofline_Browser_Core.models.activities.activityTypes.survey.Survey)activity.Value.Activity.ActivityType));
                             break;
                         case "url":
@@ -253,7 +290,7 @@ namespace Moodle_Ofline_Browser_GUI.Helpers
                                 (Moodle_Ofline_Browser_Core.models.activities.activityTypes.url.Url)
                                 activity.Value.Activity.ActivityType)
                                 .Name;
-                            NameValueProperties<Moodle_Ofline_Browser_Core.models.activities.activityTypes.url.Url>(activitiesSubItem,
+                            NameValueProperties<Moodle_Ofline_Browser_Core.models.activities.activityTypes.url.Url>(allAboutMenu,
                                 ((Moodle_Ofline_Browser_Core.models.activities.activityTypes.url.Url)activity.Value.Activity.ActivityType));
                             break;
                         case "wiki":
@@ -262,12 +299,13 @@ namespace Moodle_Ofline_Browser_GUI.Helpers
                                 (Moodle_Ofline_Browser_Core.models.activities.activityTypes.wiki.Wiki)
                                 activity.Value.Activity.ActivityType)
                                 .Name;
-                            NameValueProperties<Moodle_Ofline_Browser_Core.models.activities.activityTypes.wiki.Wiki>(activitiesSubItem,
+                            NameValueProperties<Moodle_Ofline_Browser_Core.models.activities.activityTypes.wiki.Wiki>(allAboutMenu,
                                 ((Moodle_Ofline_Browser_Core.models.activities.activityTypes.wiki.Wiki)activity.Value.Activity.ActivityType));
                             break;
                         default:
                             break;
                     }
+
                     activities.SubCategories.Add(activitiesSubItem);
                 }
             }

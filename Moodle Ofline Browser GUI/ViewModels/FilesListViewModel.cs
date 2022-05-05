@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Moodle_Ofline_Browser_GUI.ViewModels
 {
-    class FilesListViewModel : Screen, IHandle<InformSubView>, IHandle<FontChanged>
+    class FilesListViewModel : Screen, IHandle<InformSubView>, IHandle<FontChanged>,IHandle<FileVisibility>
     {
         private IEventAggregator _eventAggregator;
 
@@ -105,6 +105,10 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
                      Files.Add(j);
                 }
             }
+        }
+        public void Handle(FileVisibility message)
+        {
+            ShowMoodleFiles = message.IsVisible;
         }
 
         public void SortCol(string propName)
@@ -236,6 +240,5 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
             }
             File = file;
         }
-
     }
 }

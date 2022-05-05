@@ -28,8 +28,6 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
         private bool dialogIsOpen;
         private bool canCloseOnClickAway;
         private Brush treeViewIconColor;
-        private PackIconKind moodleFileVisibility;
-
 
         public ShellViewModel(IEventAggregator eventAggregator, 
                               MainViewModel mainViewModel,
@@ -46,9 +44,7 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
             ActivateItem(_mainViewModel);
 
             TreeViewIconColor = Brushes.Black;
-            MoodleFileVisibility = PackIconKind.Visibility;
             CanCloseOnClickAway = true;
-            MoodleFilesVisibility();
     }
 
         public void Handle(CanClickAway message)
@@ -63,16 +59,6 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
             {
                 canCloseOnClickAway = value;
                 NotifyOfPropertyChange(() => CanCloseOnClickAway);
-            }
-        }
-
-        public PackIconKind MoodleFileVisibility
-        {
-            get { return moodleFileVisibility; }
-            set
-            {
-                moodleFileVisibility = value;
-                NotifyOfPropertyChange(() => MoodleFileVisibility);
             }
         }
         
@@ -124,20 +110,6 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
                 ViewModelBinder.Bind(_aboutViewModel, uiElement, null);
                 _aboutViewModel.FontSize = _fontDetailsViewModel.FontSize;
                 DialogHost.Show(uiElement);
-            }
-        }
-
-        public void MoodleFilesVisibility()
-        {
-            if (MoodleFileVisibility == PackIconKind.Visibility)
-            {
-                MoodleFileVisibility = PackIconKind.VisibilityOff;
-                _mainViewModel.SetMoodleFileVisibility(false);
-            }
-            else if(MoodleFileVisibility == PackIconKind.VisibilityOff)
-            {
-                MoodleFileVisibility = PackIconKind.Visibility;
-                _mainViewModel.SetMoodleFileVisibility(true);
             }
         }
 
