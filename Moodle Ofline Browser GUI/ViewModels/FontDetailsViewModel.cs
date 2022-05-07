@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using MaterialDesignColors;
 using MaterialDesignThemes.Wpf;
 using Moodle_Ofline_Browser_GUI.EventModels;
 using System;
@@ -88,7 +89,17 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
             else
                 isDark = true;
             ITheme theme = _paletteHelper.GetTheme();
+
             IBaseTheme baseTheme = isDark ? new MaterialDesignDarkTheme() : (IBaseTheme)new MaterialDesignLightTheme();
+            if (isDark)
+            {
+                
+                theme.SetPrimaryColor(System.Windows.Media.Color.FromRgb(183, 208, 203));
+            }
+            else
+            {
+                theme.SetPrimaryColor(System.Windows.Media.Color.FromRgb(103, 58, 183));
+            }
             theme.SetBaseTheme(baseTheme);
             _paletteHelper.SetTheme(theme);
         }

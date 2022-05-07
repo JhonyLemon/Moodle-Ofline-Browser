@@ -135,11 +135,14 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
             NoDataVisibility = Visibility.Collapsed;
             FullCourse = message.FullCourse;
             CategoryItems.Clear();
-            CurrentlyLoadedCourse = fullCourse.Course.Course.Fullname;
+            if (fullCourse.Course.Course != null)
+            {
+                CurrentlyLoadedCourse = fullCourse.Course.Course.Fullname;
 
-            CategoriesCreatorHelper helper = new CategoriesCreatorHelper(FullCourse);
-            helper.LoadToCategories();
-            CategoryItems = helper.CategoryItems;
+                CategoriesCreatorHelper helper = new CategoriesCreatorHelper(FullCourse);
+                helper.LoadToCategories();
+                CategoryItems = helper.CategoryItems;
+            }
         }
 
         public void Handle(SubItemSelected message)
