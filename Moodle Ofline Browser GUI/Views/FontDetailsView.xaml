@@ -100,6 +100,37 @@
                                 Kind="{Binding MoodleGradeVisibility,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" />
                 </Button>
             </StackPanel>
+            <StackPanel 
+                    Margin="5" 
+                    HorizontalAlignment="Center"
+                    Orientation="Horizontal">
+                <TextBlock 
+                        HorizontalAlignment="Center" 
+                        VerticalAlignment="Center"
+                        Margin="0 0 5 0"
+                        Text="Tryb jasny/ciemny"/>
+                <Button 
+                            x:Name="ThemeSelection"
+                            Height="30" 
+                            Width="30" 
+                            ToolTip="Tryb jasny/ciemny"
+                            Padding="0"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Margin="0 0 0 0">
+                    <materialDesign:PackIcon
+                                Width="30"
+                                Height="30"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Foreground="Black"
+                                Kind="ThemeLightDark" />
+                </Button>
+            </StackPanel>
         </StackPanel>
         
     </materialDesign:Card>

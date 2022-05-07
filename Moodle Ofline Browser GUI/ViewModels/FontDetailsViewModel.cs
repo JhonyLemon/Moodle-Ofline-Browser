@@ -18,6 +18,8 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
         private PackIconKind moodleFileVisibility;
         private PackIconKind moodleGradeVisibility;
         private int font;
+        private bool isDark;
+        private readonly PaletteHelper _paletteHelper = new PaletteHelper();
 
         public FontDetailsViewModel(IEventAggregator eventAggregator)
         {
@@ -26,6 +28,7 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
             Font = 13;
             MoodleFileVisibility = PackIconKind.Visibility;
             MoodleGradeVisibility = PackIconKind.Visibility;
+            isDark = false;
             MoodleFilesVisibility();
             MoodleGradesVisibility();
         }
@@ -75,6 +78,19 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
                 _eventAggregator.PublishOnUIThread(new FileVisibility(true));
                 //_mainViewModel.SetMoodleFileVisibility(true);
             }
+        }
+
+        
+        public void ThemeSelection()
+        {
+            if (isDark)
+                isDark = false;
+            else
+                isDark = true;
+            ITheme theme = _paletteHelper.GetTheme();
+            IBaseTheme baseTheme = isDark ? new MaterialDesignDarkTheme() : (IBaseTheme)new MaterialDesignLightTheme();
+            theme.SetBaseTheme(baseTheme);
+            _paletteHelper.SetTheme(theme);
         }
 
         public PackIconKind MoodleGradeVisibility
