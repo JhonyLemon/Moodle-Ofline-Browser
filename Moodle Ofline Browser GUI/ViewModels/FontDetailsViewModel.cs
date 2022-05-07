@@ -94,7 +94,7 @@ namespace Moodle_Ofline_Browser_GUI.ViewModels
             if (isDark)
             {
                 
-                theme.SetPrimaryColor(System.Windows.Media.Color.FromRgb(183, 208, 203));
+                theme.SetPrimaryColor(System.Windows.Media.Color.FromRgb(183, 208, 203));//button color
             }
             else
             {
