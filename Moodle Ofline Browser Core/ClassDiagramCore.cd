@@ -1,0 +1,1362 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Moodle_Ofline_Browser_Core.CoreModule" Collapsed="true">
+    <Position X="1.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAIAAAAAAAAAAAAAAAAACAAEAAAAAAAA=</HashCode>
+      <FileName>CoreModule.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.MbzDecompressor" Collapsed="true">
+    <Position X="0.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACEAAQAQAAAQAAAAAAIAAAIADAAAAAAAAAAA=</HashCode>
+      <FileName>MbzDecompressor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.MoodleBackupParser" Collapsed="true">
+    <Position X="2.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAgAAAAAAAgBAAAABYAAAAACCAAACICAAIAgEAAAAA=</HashCode>
+      <FileName>MoodleBackupParser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.ActivityFolder" Collapsed="true">
+    <Position X="20" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAAAIAAAAAAAAAAgAAAAAEAAAADEIAgAA=</HashCode>
+      <FileName>models\activities\ActivityFolder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.Activity" Collapsed="true">
+    <Position X="14.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAABAEAAAAAAAAAggAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\Activity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.ActivityType" Collapsed="true">
+    <Position X="17.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\ActivityType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.assign.Assign" Collapsed="true">
+    <Position X="13.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAjIAAAZQAARABIAAIgBAVAAABEgAAABABAJIGAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\assign\Assign.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.assign.Feedback_comments" Collapsed="true">
+    <Position X="20" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAACAAAAEAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\assign\Feedback_comments.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.assign.Feedback_editpdf_files" Collapsed="true">
+    <Position X="21.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\assign\Feedback_editpdf_files.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.assign.Feedback_editpdf_rotation" Collapsed="true">
+    <Position X="23.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\assign\Feedback_editpdf_rotation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.assign.Grade" Collapsed="true">
+    <Position X="13" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QgACIAAAAAAAAAAAAAAAAAAAAABAAAAABAAAAAEAAEY=</HashCode>
+      <FileName>models\activities\activityTypes\assign\Grade.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.assign.Grades" Collapsed="true">
+    <Position X="20" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\assign\Grades.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.assign.Pagerotation" Collapsed="true">
+    <Position X="27" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAQAAQAAAAAAAAEAAAAEgAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\assign\Pagerotation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.assign.Plugin_config" Collapsed="true">
+    <Position X="13" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAEAAQAAAAAAAAAAAAgAAAQAAA=</HashCode>
+      <FileName>models\activities\activityTypes\assign\Plugin_config.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.assign.Plugin_configs" Collapsed="true">
+    <Position X="14.75" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\assign\Plugin_configs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.assign.Submission" Collapsed="true">
+    <Position X="21.75" Y="15" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAACIgAEAAAAAAAAAAABAAAAAABAAAAAAAAAAAIAAAQ=</HashCode>
+      <FileName>models\activities\activityTypes\assign\Submission.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.assign.Submission_file" Collapsed="true">
+    <Position X="23.5" Y="15" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\assign\Submission_file.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.assign.Submissions" Collapsed="true">
+    <Position X="25.25" Y="15" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\assign\Submissions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.assign.Subplugin_assignfeedback_comments_grade" Collapsed="true">
+    <Position X="27" Y="15" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\assign\Subplugin_assignfeedback_comments_grade.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.assign.Subplugin_assignfeedback_editpdf_grade" Collapsed="true">
+    <Position X="28.75" Y="15" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAgAAAAAAAAAAACAAAAAAAAAACAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\assign\Subplugin_assignfeedback_editpdf_grade.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.assign.Subplugin_assignsubmission_file_submission" Collapsed="true">
+    <Position X="30.5" Y="15" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\assign\Subplugin_assignsubmission_file_submission.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.assign.Userflag" Collapsed="true">
+    <Position X="21.75" Y="16" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACIAAgAgAAAAAAAACAAQAAAAAAAIAAAAABAAAAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\assign\Userflag.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.assign.Userflags" Collapsed="true">
+    <Position X="23.5" Y="16" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\assign\Userflags.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.attendance.Attendance" Collapsed="true">
+    <Position X="22.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEACAAAAAAAAgAAEACAABAQAAAAAAACAAAAAAAEBAAg=</HashCode>
+      <FileName>models\activities\activityTypes\attendance\Attendance.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.attendance.Log" Collapsed="true">
+    <Position X="21.75" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAIAACAAAAAAAAAAAAAAAAMEAAAAgAAIAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\attendance\Log.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.attendance.Logs" Collapsed="true">
+    <Position X="27" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\attendance\Logs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.attendance.Session" Collapsed="true">
+    <Position X="30.5" Y="14" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AoACAgAUAICmAAAIgAAJAAAACABAgECAABAAAAgAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\attendance\Session.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.attendance.Sessions" Collapsed="true">
+    <Position X="32.25" Y="14" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\attendance\Sessions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.attendance.Status" Collapsed="true">
+    <Position X="14.75" Y="15" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAgAEAAAAAAEEBAAAAAAACIAAAAAAEAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\attendance\Status.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.attendance.Statuses" Collapsed="true">
+    <Position X="16.5" Y="15" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\attendance\Statuses.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.bigbluebuttonbn.Bigbluebuttonbn" Collapsed="true">
+    <Position X="2" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>WEADgAARQACAAAAAIIEABAQBFATgBAAAASAAAAAQFhQ=</HashCode>
+      <FileName>models\activities\activityTypes\bigbluebuttonbn\Bigbluebuttonbn.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.bigbluebuttonbn.Log" Collapsed="true">
+    <Position X="23.5" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACIAAAAAAAAAAAIAAAAAgAAAAAAMAAAAAAAAAABAQ=</HashCode>
+      <FileName>models\activities\activityTypes\bigbluebuttonbn\Log.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.bigbluebuttonbn.Logs" Collapsed="true">
+    <Position X="25.25" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\bigbluebuttonbn\Logs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.book.Book" Collapsed="true">
+    <Position X="11" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEBCAAgAAAAAAAACAACABAQAAAJAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>models\activities\activityTypes\book\Book.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.book.Chapter" Collapsed="true">
+    <Position X="20" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAgAAAEAAAAAAAAAAAABAIAABAAASAAAEAAA=</HashCode>
+      <FileName>models\activities\activityTypes\book\Chapter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.book.Chapters" Collapsed="true">
+    <Position X="21.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\book\Chapters.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.chat.Chat" Collapsed="true">
+    <Position X="17.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEACAAAAIAQAAAAAAAAABAQAAEFAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\chat\Chat.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.chat.Message" Collapsed="true">
+    <Position X="34" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACIAAEAIAAAAAAAAACAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\chat\Message.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.chat.Messages" Collapsed="true">
+    <Position X="13" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\chat\Messages.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.checklist.Check" Collapsed="true">
+    <Position X="23.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACIAAAAAEAAAAAAAAAAAAAAAAAAACAAAIAACAAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\checklist\Check.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.checklist.Checklist" Collapsed="true">
+    <Position X="29" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEQCoAAAAABACACZAAAAhAQAAABAACBAAAAAQAAAAAQ=</HashCode>
+      <FileName>models\activities\activityTypes\checklist\Checklist.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.checklist.Checks" Collapsed="true">
+    <Position X="25.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\checklist\Checks.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.checklist.Item" Collapsed="true">
+    <Position X="14.75" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACIAgAAAAEAAEgACQAAAAAAAAEACAAAACAABAEIAA=</HashCode>
+      <FileName>models\activities\activityTypes\checklist\Item.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.checklist.Items" Collapsed="true">
+    <Position X="16.5" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\checklist\Items.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.choice.Answer" Collapsed="true">
+    <Position X="21.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACIAAAAAABAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\choice\Answer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.choice.Answers" Collapsed="true">
+    <Position X="25.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\choice\Answers.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.choice.Choice" Collapsed="true">
+    <Position X="8.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AECGAAAAAAAAAQggAEAAB6QAAABAAEAQQAAAAADAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\choice\Choice.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.choice.Option" Collapsed="true">
+    <Position X="18.25" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAACQAAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\choice\Option.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.choice.Options" Collapsed="true">
+    <Position X="20" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\choice\Options.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.customcert.Customcert" Collapsed="true">
+    <Position X="15.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BEECAAAAAEAAAIQEAAAABAQAQABAAABgAAAAAAAAAAQ=</HashCode>
+      <FileName>models\activities\activityTypes\customcert\Customcert.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.customcert.Issue" Collapsed="true">
+    <Position X="34" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACIAAAAAAAAAAAAAAgAAIAAAAQAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>models\activities\activityTypes\customcert\Issue.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.customcert.Issues" Collapsed="true">
+    <Position X="13" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\customcert\Issues.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.customcert.Page" Collapsed="true">
+    <Position X="25.25" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAABAAAIAAAAAAAAEAAAABAAABAAAgAAAEAAAQ=</HashCode>
+      <FileName>models\activities\activityTypes\customcert\Page.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.customcert.Pages" Collapsed="true">
+    <Position X="28.75" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\customcert\Pages.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.customcert.Template" Collapsed="true">
+    <Position X="14.75" Y="16" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAgAAAAAAQAABBAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>models\activities\activityTypes\customcert\Template.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.folder.Folder" Collapsed="true">
+    <Position X="31.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEACAAAAAAAAAAAAAAAABQQAgEBAAAAAAAAAAEAAAgA=</HashCode>
+      <FileName>models\activities\activityTypes\folder\Folder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.forum.Post" Collapsed="true">
+    <Position X="18.25" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACIAAEAAgAAAAAApCAQAAAAAAAAAQAAACAIAAAAAg=</HashCode>
+      <FileName>models\activities\activityTypes\forum\Forum.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.forum.Posts" Collapsed="true">
+    <Position X="20" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\forum\Forum.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.forum.Discussion_sub" Collapsed="true">
+    <Position X="25.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACIAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\forum\Forum.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.forum.Discussion_subs" Collapsed="true">
+    <Position X="27" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\forum\Forum.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.forum.Discussion" Collapsed="true">
+    <Position X="23.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQCIAAEIAAIAAAABAQAAAQAAABABAAAAAAAQQAAgAA=</HashCode>
+      <FileName>models\activities\activityTypes\forum\Forum.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.forum.Discussions" Collapsed="true">
+    <Position X="28.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\forum\Forum.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.forum.Read" Collapsed="true">
+    <Position X="23.5" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABDIAAAAAAQAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\forum\Forum.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.forum.Readposts" Collapsed="true">
+    <Position X="25.25" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\forum\Forum.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.forum.Forum" Collapsed="true">
+    <Position X="20" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BEACIBAQIAEgAAAIAAJABARARABgDBZAAyBEAAEAhAA=</HashCode>
+      <FileName>models\activities\activityTypes\forum\Forum.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.page.Page" Collapsed="true">
+    <Position X="24.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEACABAAAgAAAQAAIAAABQQAAEBAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\page\Page.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.quiz.Question_instance" Collapsed="true">
+    <Position X="16.5" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAgAQgAAAAAAAAAAAAAAAAEAAAAACAIQAAgA=</HashCode>
+      <FileName>models\activities\activityTypes\quiz\Quiz.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.quiz.Question_instances" Collapsed="true">
+    <Position X="18.25" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\quiz\Quiz.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.quiz.Section" Collapsed="true">
+    <Position X="23.5" Y="14" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAACAAAAE=</HashCode>
+      <FileName>models\activities\activityTypes\quiz\Quiz.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.quiz.Sections" Collapsed="true">
+    <Position X="27" Y="14" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\quiz\Quiz.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.quiz.Feedback" Collapsed="true">
+    <Position X="18.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQCAAAABAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>models\activities\activityTypes\quiz\Quiz.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.quiz.Feedbacks" Collapsed="true">
+    <Position X="25.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\quiz\Quiz.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.quiz.Grade" Collapsed="true">
+    <Position X="14.75" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACIAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\quiz\Quiz.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.quiz.Grades" Collapsed="true">
+    <Position X="18.25" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\quiz\Quiz.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.quiz.Step" Collapsed="true">
+    <Position X="18.25" Y="15" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACIAAAAABAAAAAAAgAAAAAAAAAAAEAAAAABAAAAAQ=</HashCode>
+      <FileName>models\activities\activityTypes\quiz\Quiz.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.quiz.Variable" Collapsed="true">
+    <Position X="28.75" Y="16" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\quiz\Quiz.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.quiz.Response" Collapsed="true">
+    <Position X="27" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\quiz\Quiz.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.quiz.Steps" Collapsed="true">
+    <Position X="20" Y="15" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\quiz\Quiz.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.quiz.Question_attempt" Collapsed="true">
+    <Position X="28.75" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAADAAAAgAEAAAAAIAAAQAAAAADABAAAQAAAAIQAAgA=</HashCode>
+      <FileName>models\activities\activityTypes\quiz\Quiz.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.quiz.Question_attempts" Collapsed="true">
+    <Position X="30.5" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\quiz\Quiz.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.quiz.Question_usage" Collapsed="true">
+    <Position X="20" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAABAAAAAAAAAAAAAAAAAEAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\quiz\Quiz.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.quiz.Attempt" Collapsed="true">
+    <Position X="34" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABCIAAAAAAAAAAAgAQAAAAABABAAIAKAAQABUIAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\quiz\Quiz.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.quiz.Attempts" Collapsed="true">
+    <Position X="13" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\quiz\Quiz.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.quiz.Quiz" Collapsed="true">
+    <Position X="33.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAWAAQAAQQlFEAEQwgKJgYACGBIBACCAEQQAQEIACY=</HashCode>
+      <FileName>models\activities\activityTypes\quiz\Quiz.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.survey.Answer" Collapsed="true">
+    <Position X="23.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAECIAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAQA=</HashCode>
+      <FileName>models\activities\activityTypes\survey\Survey.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.survey.Answers" Collapsed="true">
+    <Position X="27" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\survey\Survey.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.survey.Survey" Collapsed="true">
+    <Position X="4.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEACAAAAAEAAAAAAAAAABAQAAABAAAAEQAAABACAAAQ=</HashCode>
+      <FileName>models\activities\activityTypes\survey\Survey.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.url.Url" Collapsed="true">
+    <Position X="6.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEACAAAAAAAAAAAAIAAABQQAAABAAAAAAIAAgAAAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\url\Url.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.wiki.Version" Collapsed="true">
+    <Position X="30.5" Y="16" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACIAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAQAAAgAAQ=</HashCode>
+      <FileName>models\activities\activityTypes\wiki\Wiki.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.wiki.Versions" Collapsed="true">
+    <Position X="32.25" Y="16" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\wiki\Wiki.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.wiki.Page" Collapsed="true">
+    <Position X="23.5" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAACIAAAAAAQAEAAAAAMAAAAAABAAEEAAAAAAAAAAAQ=</HashCode>
+      <FileName>models\activities\activityTypes\wiki\Wiki.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.wiki.Pages" Collapsed="true">
+    <Position X="30.5" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\wiki\Wiki.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.wiki.Subwiki" Collapsed="true">
+    <Position X="34" Y="15" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACIAAEAAAAAAAgAAAAAAAAAAAAAAAACAAAAAAAAAI=</HashCode>
+      <FileName>models\activities\activityTypes\wiki\Wiki.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.wiki.Subwikis" Collapsed="true">
+    <Position X="13" Y="16" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\activities\activityTypes\wiki\Wiki.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.activities.activityTypes.wiki.Wiki" Collapsed="true">
+    <Position X="26.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEACAAAAAAAAAAAAAAAABBQAAARAAAAAAAAAASAgAA0=</HashCode>
+      <FileName>models\activities\activityTypes\wiki\Wiki.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.badges.Badge" Collapsed="true">
+    <Position X="14.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IBgCAEAEDEAkAIJAAAACAAQABABIQAAAQQAAYEAABAQ=</HashCode>
+      <FileName>models\badges\Badge.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.badges.Badges" Collapsed="true">
+    <Position X="16.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\badges\Badges.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.badges.Criteria" Collapsed="true">
+    <Position X="14.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\badges\Criteria.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.badges.Criterion" Collapsed="true">
+    <Position X="16.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAgACgAAAAAAAgAAAAAAAAAAAAAIAAAAAAAgA=</HashCode>
+      <FileName>models\badges\Criterion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.badges.Parameter" Collapsed="true">
+    <Position X="32.25" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAEAAAQAAAAAAAAAAAAgAAAAAgA=</HashCode>
+      <FileName>models\badges\Parameter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.badges.Parameters" Collapsed="true">
+    <Position X="34" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\badges\Parameters.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.calendar.Event" Collapsed="true">
+    <Position X="14.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACIAAEAAAgAAAUAAYIAAQEAAhAABAoQQAAAgEABAA=</HashCode>
+      <FileName>models\calendar\Event.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.calendar.Events" Collapsed="true">
+    <Position X="16.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\calendar\Events.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.completion.Course_completion" Collapsed="true">
+    <Position X="32.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\completion\Course_completion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.completion.Course_completions" Collapsed="true">
+    <Position X="34" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACIACAAAAIAAAAAIAAAEAAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>models\completion\Course_completions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.course.Category" Collapsed="true">
+    <Position X="18.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAgAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\course\Category.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.course.Course" Collapsed="true">
+    <Position X="30.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABKCAAAAQACAARBQACAEAQJAABhACMAIJAAABMBCGBQ=</HashCode>
+      <FileName>models\course\Course.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.course.CourseFolder" Collapsed="true">
+    <Position X="13" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QCAAAAQAAAAAAAIAAIAAAAAAAAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>models\course\CourseFolder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.enrolments.EnrolClass" Collapsed="true">
+    <Position X="30.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>DgEKAAAGAJAAAACEAEEABBwQCABAAgICAAAAgQQAAPQ=</HashCode>
+      <FileName>models\enrolments\EnrolClass.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.enrolments.Enrolment" Collapsed="true">
+    <Position X="32.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACIAAEAAAIAAAAAAQAAAAEAABAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\enrolments\Enrolment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.enrolments.Enrolments" Collapsed="true">
+    <Position X="34" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\enrolments\Enrolments.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.enrolments.Enrols" Collapsed="true">
+    <Position X="13" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\enrolments\Enrols.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.enrolments.User_enrolments" Collapsed="true">
+    <Position X="20" Y="16" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\enrolments\User_enrolments.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.files.File" Collapsed="true">
+    <Position X="27" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAACIAGEAgAAQAAAgAAAAAAAABBCAABEAARABAAADAY=</HashCode>
+      <FileName>models\files\File.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.files.Files" Collapsed="true">
+    <Position X="32.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\files\Files.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.FullCourse" Collapsed="true">
+    <Position X="34" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAGAAAABAAAIIAoIAAAACAgAAAAAEAAAACQIAAIA=</HashCode>
+      <FileName>models\FullCourse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.ProgressReportEventArgs" Collapsed="true">
+    <Position X="25.25" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>models\ProgressReportEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.grade_history.Grade_grade" Collapsed="true">
+    <Position X="21.75" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACMABkIgAADAAAAAAiEAAAAABAAAAAAAAIQEIEEA4=</HashCode>
+      <FileName>models\grade_history\Grade_grade.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.grade_history.Grade_grades" Collapsed="true">
+    <Position X="25.25" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>models\grade_history\Grade_grades.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.grade_history.Grade_history" Collapsed="true">
+    <Position X="27" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>models\grade_history\Grade_history.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.gradebook.Grade_categories" Collapsed="true">
+    <Position X="16.5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\gradebook\Grade_categories.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.gradebook.Grade_category" Collapsed="true">
+    <Position X="18.25" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAICAAAAAADAIAIAAQAAQAAAAABAAAAgAAIAAAAEAAQ=</HashCode>
+      <FileName>models\gradebook\Grade_category.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.gradebook.Grade_grade" Collapsed="true">
+    <Position X="20" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACMABkIAAADAAAEAACEAAAAABACAAAAAAIQEIEEAw=</HashCode>
+      <FileName>models\gradebook\Grade_grade.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.gradebook.Grade_grades" Collapsed="true">
+    <Position X="23.5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>models\gradebook\Grade_grades.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.gradebook.Grade_item" Collapsed="true">
+    <Position X="30.5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAKDgCgAABABgAIAIAEAUAAAkDAEABEgACAQAhEgAQ=</HashCode>
+      <FileName>models\gradebook\Grade_item.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.gradebook.Grade_items" Collapsed="true">
+    <Position X="34" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\gradebook\Grade_items.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.gradebook.Grade_setting" Collapsed="true">
+    <Position X="13" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>models\gradebook\Grade_setting.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.gradebook.Grade_settings" Collapsed="true">
+    <Position X="14.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\gradebook\Grade_settings.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.gradebook.Gradebook" Collapsed="true">
+    <Position X="16.5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAAAAIAQAACAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>models\gradebook\Gradebook.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.grades.Activity_gradebook" Collapsed="true">
+    <Position X="18.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAAAAAAAAACAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\grades\Activity_gradebook.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.grading.Area" Collapsed="true">
+    <Position X="28.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAEAAAAAAAAAAAAAAAAAAAAFAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\grading\Area.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.grading.Areas" Collapsed="true">
+    <Position X="30.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>models\grading\Areas.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.groups.Group" Collapsed="true">
+    <Position X="23.5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACgAAAAACgAAAAAAAAAAQAAABAAAAAAAAEIABAAAQ=</HashCode>
+      <FileName>models\groups\Group.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.groups.Group_member" Collapsed="true">
+    <Position X="25.25" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACIAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAQAAAAI=</HashCode>
+      <FileName>models\groups\Group_member.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.groups.Group_members" Collapsed="true">
+    <Position X="27" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\groups\Group_members.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.groups.Groups" Collapsed="true">
+    <Position X="30.5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\groups\Groups.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.inforef.File" Collapsed="true">
+    <Position X="28.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\inforef\File.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.inforef.Fileref" Collapsed="true">
+    <Position X="30.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\inforef\Fileref.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.inforef.Grade_item" Collapsed="true">
+    <Position X="28.75" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\inforef\Grade_item.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.inforef.Grade_itemref" Collapsed="true">
+    <Position X="32.25" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\inforef\Grade_itemref.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.inforef.Group" Collapsed="true">
+    <Position X="21.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\inforef\Group.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.inforef.Groupref" Collapsed="true">
+    <Position X="28.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\inforef\Groupref.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.inforef.Inforef" Collapsed="true">
+    <Position X="5.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\inforef\Inforef.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.inforef.Question_category" Collapsed="true">
+    <Position X="13" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\inforef\Question_category.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.inforef.Question_categoryref" Collapsed="true">
+    <Position X="14.75" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\inforef\Question_categoryref.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.inforef.Role" Collapsed="true">
+    <Position X="30.5" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\inforef\Role.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.inforef.Roleref" Collapsed="true">
+    <Position X="34" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\inforef\Roleref.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.inforef.User" Collapsed="true">
+    <Position X="16.5" Y="16" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\inforef\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.inforef.Userref" Collapsed="true">
+    <Position X="25.25" Y="16" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\inforef\Userref.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.inforef.type.assign.Assign" Collapsed="true">
+    <Position X="3" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>models\inforef\type\assign\Assign.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.inforef.type.attendance.Attendance" Collapsed="true">
+    <Position X="5.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>models\inforef\type\attendance\Attendance.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.inforef.type.course.Course" Collapsed="true">
+    <Position X="7.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>models\inforef\type\course\Course.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.inforef.type.folder.Folder" Collapsed="true">
+    <Position X="9.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\inforef\type\folder\Folder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.inforef.type.quiz.Quiz" Collapsed="true">
+    <Position X="0.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAE=</HashCode>
+      <FileName>models\inforef\type\quiz\Quiz.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.loglastaccess.Lastaccess" Collapsed="true">
+    <Position X="18.25" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACIAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\loglastaccess\Lastaccess.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.loglastaccess.Lastaccesses" Collapsed="true">
+    <Position X="20" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\loglastaccess\Lastaccesses.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.logstores.Logstore" Collapsed="true">
+    <Position X="28.75" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\logstores\Logstore.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.logstores.Logstore_standard_log" Collapsed="true">
+    <Position X="30.5" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BEICIAAAAAAAAAAAAAACACAAIJAAAAAhAABAAEAAIAQ=</HashCode>
+      <FileName>models\logstores\Logstore_standard_log.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.logstores.Logstores" Collapsed="true">
+    <Position X="32.25" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\logstores\Logstores.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.logstores.Subplugin_logstore_standard_logstore" Collapsed="true">
+    <Position X="32.25" Y="15" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\logstores\Subplugin_logstore_standard_logstore.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.module.Module" Collapsed="true">
+    <Position X="14.75" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAACAAiAAACEAAgEAAARAEECAABAAEAIAAAQAoBAAAA=</HashCode>
+      <FileName>models\module\Module.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.moodle_backup.Activities" Collapsed="true">
+    <Position X="13" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>models\moodle_backup\Activities.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.moodle_backup.Activity" Collapsed="true">
+    <Position X="16.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAEAAAAAQAAAAAAAEAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>models\moodle_backup\Activity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.moodle_backup.Contents" Collapsed="true">
+    <Position X="27" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAEAAAIAAAAA=</HashCode>
+      <FileName>models\moodle_backup\Contents.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.moodle_backup.Course" Collapsed="true">
+    <Position X="28.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>models\moodle_backup\Course.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.moodle_backup.Detail" Collapsed="true">
+    <Position X="20" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAIAAgAAACAAQAIABAAAAA=</HashCode>
+      <FileName>models\moodle_backup\Detail.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.moodle_backup.Details" Collapsed="true">
+    <Position X="21.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>models\moodle_backup\Details.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.moodle_backup.Information" Collapsed="true">
+    <Position X="32.25" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CICBAACAEAARAIAAAAAAAAQAAQAAAEAAgQABGiBAAgE=</HashCode>
+      <FileName>models\moodle_backup\Information.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.moodle_backup.Moodle_backup" Collapsed="true">
+    <Position X="16.5" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\moodle_backup\Moodle_backup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.moodle_backup.Section" Collapsed="true">
+    <Position X="21.75" Y="14" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAEAAAAAQAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\moodle_backup\Section.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.moodle_backup.Sections" Collapsed="true">
+    <Position X="28.75" Y="14" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>models\moodle_backup\Sections.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.moodle_backup.Setting" Collapsed="true">
+    <Position X="34" Y="14" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAABAAAgAMAAAAA=</HashCode>
+      <FileName>models\moodle_backup\Setting.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.moodle_backup.Settings" Collapsed="true">
+    <Position X="13" Y="15" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>models\moodle_backup\Settings.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.outcomes.Outcomes" Collapsed="true">
+    <Position X="21.75" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\outcomes\Outcomes.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.questions.Ddmarker" Collapsed="true">
+    <Position X="18.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQCAAAAAAQACAAAAAAASgAAAAAAAAAAAABAAAAAAgA=</HashCode>
+      <FileName>models\questions\Ddmarker.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.questions.Plugin_qtype_ddmarker_question" Collapsed="true">
+    <Position X="16.5" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAhAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\questions\Plugin_qtype_ddmarker_question.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.questions.Question" Collapsed="true">
+    <Position X="27" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IACCCAAAAAABAAAAgAAgUARABAFgAEQAQAAAAABEAAQ=</HashCode>
+      <FileName>models\questions\Question.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.questions.Question_categories" Collapsed="true">
+    <Position X="32.25" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\questions\Question_categories.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.questions.Question_category" Collapsed="true">
+    <Position X="34" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IEACAAAAAAABAAAAAAAAQAQAABAAAAAEIAAAAEBAAAA=</HashCode>
+      <FileName>models\questions\Question_category.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.questions.Questions" Collapsed="true">
+    <Position X="21.75" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>models\questions\Questions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.roles.Assignment" Collapsed="true">
+    <Position X="32.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACIAAAAIAAAAAAAAAAAAAEAABAAAAEAABAAAAAAAI=</HashCode>
+      <FileName>models\roles\Assignment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.roles.Role" Collapsed="true">
+    <Position X="28.75" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAgAAAAAgAAAAQAEAAAAIAEAAAAAAAAAAA=</HashCode>
+      <FileName>models\roles\Role.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.roles.Role_assignments" Collapsed="true">
+    <Position X="32.25" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\roles\Role_assignments.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.roles.Roles" Collapsed="true">
+    <Position X="13" Y="14" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>models\roles\Roles.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.roles.Roles_definition" Collapsed="true">
+    <Position X="16.5" Y="14" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\roles\Roles_definition.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.scales.Scales" Collapsed="true">
+    <Position X="18.25" Y="14" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\scales\Scales.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.section.Section" Collapsed="true">
+    <Position X="20" Y="14" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACCAAAAAAAAAAAAAEAAAAQCAABAAAAIAAAABAEAAAA=</HashCode>
+      <FileName>models\section\Section.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.section.SectionFolder" Collapsed="true">
+    <Position X="25.25" Y="14" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>models\section\SectionFolder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.users.Preference" Collapsed="true">
+    <Position X="21.75" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>models\users\Preference.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.users.Preferences" Collapsed="true">
+    <Position X="23.5" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\users\Preferences.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.users.Roles" Collapsed="true">
+    <Position X="14.75" Y="14" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>models\users\Roles.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.users.User" Collapsed="true">
+    <Position X="18.25" Y="16" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgADgFAgACCgAAAZwQAIEBAAGjJAAEAKBAIgIBRAAEQ=</HashCode>
+      <FileName>models\users\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moodle_Ofline_Browser_Core.models.users.Users" Collapsed="true">
+    <Position X="27" Y="16" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>models\users\Users.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="Moodle_Ofline_Browser_Core.models.TypeAndName" Collapsed="true">
+    <Position X="34" Y="16" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>models\TypeAndName.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
