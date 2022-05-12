@@ -353,7 +353,7 @@ namespace Moodle_Ofline_Browser_GUI.Helpers
                             ((Grade)grade).GradeValue = grade_.Finalgrade;
                             foreach (ModelCategory model in categoryItems[2].SubCategories)
                             {
-                                if (activity.Value.Activity.Modulename == ((Models.Activity)model).Type)
+                                if (activity.Value.Activity!=null && activity.Value.Activity.Modulename == ((Models.Activity)model).Type)
                                 {
                                     ((Grade)grade).Activity = ((Models.Activity)model).Name;
                                     break;
